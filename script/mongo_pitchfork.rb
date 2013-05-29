@@ -20,7 +20,7 @@ def parse(url)
 		date_raw    = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/h4/span')[0].content.to_s.strip
 		date        = Date.strptime(date_raw, "%B %d, %Y")
 		score       = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/span')[0].content.to_s.strip
-        artwork     = doc.xpath('//div[@id = "main"]/*/*/div[@class = "artwork"]/img/@src')[0].content.to_s.strip
+		artwork     = doc.xpath('//div[@id = "main"]/*/*/div[@class = "artwork"]/img/@src')[0].content.to_s.strip
 	rescue
 		puts url
 	end
