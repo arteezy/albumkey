@@ -1,5 +1,9 @@
 class ArticlesController < ApplicationController
-    def view
-        @article = Article.find_by(artist: params[:name])
+    def show
+        @article = Article.where(artist: params[:id])
+    end
+
+    def index
+    	Article.all
     end
 end

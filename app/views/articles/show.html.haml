@@ -1,0 +1,11 @@
+- @article.sort{ |x,y| x.year <=> y.year }.each do |i|
+	.large-4.columns
+		%ul.pricing-table
+			%li.bullet-item
+				=image_tag i.artwork
+			%li.title=i.title
+			%li.price=i.artist
+			%li.description=i.year
+			%li.bullet-item=i.label
+			%li.cta-button
+				%a.button{:href => "#"}=i.score
