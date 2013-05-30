@@ -25,15 +25,15 @@ def parse(url)
     end
 
     item = {
-            "id"        => url.match('/\d{1,5}-')[0][1..-2],
-            "url"       => url,
-            "artist"    => artist,
-            "title"     => title,
-            "label"     => label,
-            "year"      => year,
-            "date"      => date.to_s,
-            "score"     => score,
-            "artwork"   => artwork
+        "id"        => url.match('/\d{1,5}-')[0][1..-2],
+        "url"       => url,
+        "artist"    => artist,
+        "title"     => title,
+        "label"     => label,
+        "year"      => year,
+        "date"      => date.to_s,
+        "score"     => score,
+        "artwork"   => artwork
     }
 end
 

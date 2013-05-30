@@ -5,7 +5,7 @@ Richfork::Application.routes.draw do
   # first created -> highest priority.
 
   # Sample of regular route:
-  # match 'articles/:name' => 'articles#view'
+  match 'articles/score/:score' => 'articles#score'
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
