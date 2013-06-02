@@ -8,6 +8,10 @@ class ArticlesController < ApplicationController
     end
 
     def index
-    	Article.all
+        Article.all
+    end
+
+    def create
+        Article.new
     end
 end
