@@ -1,11 +1,11 @@
 .well.well-sm
     .row
-        .col-md-4            
-            =image_tag(i.artwork, :class => "img-thumbnail center-block")
-        .col-md-8
-            %h2=i.title
-            %h2=i.artist
-            %h3=i.year
-            %h4=i.label
-            %h5=i.date            
-            %a.btn.btn-danger.btn-lg{:href => i.url}=i.score
+        .col-md-3           
+            =image_tag(i.artwork, :class => "img-thumbnail img-responsive center-block")
+        .col-md-9
+            %h4=i.title
+            %h4=i.artist
+            %h5.small=i.year
+            %h5.small=i.label
+            %h6.small=i.date            
+            %a.btn.btn-danger.btn-sm{:href => i.url}=i.score
