@@ -20,6 +20,7 @@ def parse(url)
         date        = Date.strptime(date_raw, "%B %d, %Y")
         score       = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/span')[0].content.to_s.strip
         artwork     = doc.xpath('//div[@id = "main"]/*/*/div[@class = "artwork"]/img/@src')[0].content.to_s.strip
+        bnm         = !doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/div[@class = "bnm-label"]')[0].content.strip.empty?
     rescue
         puts url
     end
@@ -33,7 +34,8 @@ def parse(url)
         "year"      => year,
         "date"      => date.to_s,
         "score"     => score,
-        "artwork"   => artwork
+        "artwork"   => artwork,
+        "bnm"       => bnm
     }
     item
 end
