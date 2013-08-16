@@ -37,7 +37,6 @@ def parse(url)
         "artwork"   => artwork,
         "bnm"       => bnm
     }
-    item
 end
 
 1.times do
