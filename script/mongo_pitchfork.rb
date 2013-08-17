@@ -20,7 +20,8 @@ def parse(url)
         date        = Date.strptime(date_raw, "%B %d, %Y")
         score       = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/span')[0].content.to_s.strip
         artwork     = doc.xpath('//div[@id = "main"]/*/*/div[@class = "artwork"]/img/@src')[0].content.to_s.strip
-        bnm         = !doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/div[@class = "bnm-label"]')[0].content.strip.empty?
+        bnm         = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/div[@class = "bnm-label"]')[0].content.include?("Best New Music")
+        bnr         = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/div[@class = "bnm-label"]')[0].content.include?("Best New Reissue")
     rescue
         puts url
     end
@@ -35,7 +36,8 @@ def parse(url)
         "date"      => date.to_s,
         "score"     => score,
         "artwork"   => artwork,
-        "bnm"       => bnm
+        "bnm"       => bnm,
+        "bnr"       => bnr
     }
 end
 
