@@ -15,22 +15,7 @@
     = javascript_include_tag "vendor/custom.modernizr"
     = csrf_meta_tag
 
-    .navbar.navbar-default.navbar-inverse.navbar-static-top
-        .container
-            .collapse.navbar-collapse
-                %ul.nav.navbar-nav
-                    %li
-                        %a{:href => "/articles/Interpol"}
-                            Interpol
-                    %li
-                        %a{:href => "/articles/Ducktails"}
-                            Ducktails
-                    %li
-                        %a{:href => "/articles/Julia Holter"}
-                            Julia Holter
-                    %li
-                        %a{:href => "/articles/The Flaming Lips"}
-                            The Flaming Lips
+    = render "navbar"
 
     %body
         .container
