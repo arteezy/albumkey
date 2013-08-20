@@ -9,9 +9,9 @@
             %h5.small=i.label
             %h6.small=i.date
             -if i.bnm == true           
-                %a.btn.btn-danger.btn-sm{:href => i.url}=i.score
+                %a.btn.btn-danger{:href => i.url}=i.score
             -else
                 -if i.bnr == true
-                    %a.btn.btn-success.btn-sm{:href => i.url}=i.score
+                    %a.btn.btn-success{:href => i.url}=i.score
                 -else
-                    %a.btn.btn-primary.btn-sm{:href => i.url}=i.score
+                    %a.btn.btn-primary{:href => i.url}=i.score
