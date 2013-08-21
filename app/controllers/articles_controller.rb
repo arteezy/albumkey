@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
     end
 
     def index
-        Article.all
+        @articles = Article.all.distinct(:artist)
     end
 
     def create
