@@ -5,8 +5,7 @@ require 'mongo'
 include Mongo
 
 @db = MongoClient.new("localhost", 27017).db("pitchfork")
-@reviews = @db["dater"]
-@bulk = Array.new
+@reviews = @db["reviews"]
 
 def parse(url)
     doc = Nokogiri::HTML(open(url))
@@ -47,21 +46,19 @@ end
 
 def list
     i = 1
-    while (i < 200) do
+    while (i <= 200) do
         links('http://pitchfork.com/reviews/albums/' + i.to_s)
         i+=1
     end
 end
 
 def links(url)
+	bulk = Array.new
     doc = Nokogiri::HTML(open(url))  
     doc.xpath('//div[@id = "main"]/ul[@class = "object-grid "]/li/ul/li/a/@href').each do |elem|
-        @bulk << parse('http://pitchfork.com' + elem) 
-        if @bulk.size > 32
-            @reviews.insert(@bulk)
-            @bulk.clear
-        end
+        bulk << parse('http://pitchfork.com' + elem)
     end
+    @reviews.insert(bulk)
 end
 
-#list
+list
