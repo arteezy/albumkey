@@ -53,7 +53,7 @@ def list
 end
 
 def links(url)
-	bulk = Array.new
+    bulk = Array.new
     doc = Nokogiri::HTML(open(url))  
     doc.xpath('//div[@id = "main"]/ul[@class = "object-grid "]/li/ul/li/a/@href').each do |elem|
         bulk << parse('http://pitchfork.com' + elem)
