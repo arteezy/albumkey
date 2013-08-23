@@ -1,11 +1,11 @@
 Richfork::Application.routes.draw do
 
-  resources :articles
+  resources :articles, :constraints => { :id => /[^\/]+/ }
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
   # Sample of regular route:
-  match 'articles/score/:score' => 'articles#score'
+  # match 'articles/score/:score' => 'articles#score'
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
