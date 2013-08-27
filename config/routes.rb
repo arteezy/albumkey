@@ -1,6 +1,8 @@
 Richfork::Application.routes.draw do
 
   resources :articles, :constraints => { :id => /[^\/]+/ }
+
+  get '/top/:year', to: 'top#show'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
