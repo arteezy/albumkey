@@ -1,8 +1,11 @@
 # Ignore bundler config
 /.bundle
 
+/.idea
+
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
 
+Gemfile.lock
 .DS_Store
