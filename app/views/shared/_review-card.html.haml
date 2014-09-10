@@ -1,17 +1,17 @@
 .well.well-sm
-    .row
-        .col-md-3           
-            =image_tag(i.artwork, :class => "img-thumbnail img-responsive center-block")
-        .col-md-9
-            %h4=i.title
-            %h4=i.artist
-            %h5.small=i.year
-            %h5.small=i.label
-            %h6.small=i.date
-            -if i.bnm == true           
-                %a.btn.btn-danger{:href => i.url}=i.score
-            -else
-                -if i.bnr == true
-                    %a.btn.btn-success{:href => i.url}=i.score
-                -else
-                    %a.btn.btn-primary{:href => i.url}=i.score
+  .row
+    .col-md-3
+      =image_tag(i.artwork, class: ["img-thumbnail", "img-responsive", "center-block"])
+    .col-md-9
+      %h4=i.title
+      %h4=i.artist
+      %h5.small=i.year
+      %h5.small=i.label
+      %h6.small=i.date
+      -if i.bnm
+        %a.btn.btn-danger{href: i.url}=i.score
+      -else
+        -if i.bnr
+          %a.btn.btn-success{href: i.url}=i.score
+        -else
+          %a.btn.btn-primary{href: i.url}=i.score

@@ -1,16 +1,12 @@
 .navbar.navbar-default.navbar-inverse.navbar-static-top
-    .container
-        .collapse.navbar-collapse
-            %ul.nav.navbar-nav
-                %li
-                    %a{:href => "/articles/Interpol"}
-                        Interpol
-                %li
-                    %a{:href => "/articles/Ducktails"}
-                        Ducktails
-                %li
-                    %a{:href => "/articles/Julia Holter"}
-                        Julia Holter
-                %li
-                    %a{:href => "/articles/The Flaming Lips"}
-                        The Flaming Lips
+  .container
+    .collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li
+          = link_to "Interpol", article_path("Interpol")
+        %li
+          = link_to "Ducktails", article_path("Ducktails")
+        %li
+          = link_to "Julia Holter", article_path("Julia Holter")
+        %li
+          = link_to "The Flaming Lips", article_path("The Flaming Lips")
