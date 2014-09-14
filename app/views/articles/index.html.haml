@@ -1,4 +1,5 @@
-= @articles.sort.each do |elem|
-  %p
-    %a{:href => elem}
-      =elem
+- content_for :title do
+  Articles
+
+- @articles.sort.each do |artist|
+  %p= link_to artist, article_path(artist)
