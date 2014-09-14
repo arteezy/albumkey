@@ -1,6 +1,8 @@
 Richfork::Application.routes.draw do
 
-  resources :articles, :constraints => { :id => /[^\/]+/ }
+  root to: 'articles#index'
+
+  resources :articles#, :constraints => { :id => /[^\/]+/ }
 
   get '/top/:year', to: 'top#index'
   # The priority is based upon order of creation:
@@ -22,10 +24,6 @@ Richfork::Application.routes.draw do
   #     resources :comments, :sales
   #     resource :seller
   #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => 'articles'
 
   # See how all your routes lay out with "rake routes"
 
