@@ -1,5 +1,5 @@
 - content_for :title do
   Articles
 
-- @articles.sort.each do |artist|
+- @articles.first(25).sort.each do |artist|
   %p= link_to artist, article_path(artist)
