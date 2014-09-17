@@ -15,7 +15,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'better_errors'
+group :development do
+  gem 'better_errors'
+  gem 'rack-mini-profiler'
+end
 
 gem 'jquery-rails'
 
