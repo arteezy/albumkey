@@ -1,5 +1,10 @@
 - content_for :title do
   Articles
 
-- @articles.first(25).sort.each do |artist|
+= form_tag articles_path, method: 'get' do
+  %p
+    = text_field_tag :search, params[:search]
+    = submit_tag "Search", name: nil
+
+- @articles.sort.each do |artist|
   %p= link_to artist, article_path(artist)
