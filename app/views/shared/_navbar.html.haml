@@ -1,8 +1,9 @@
 .navbar.navbar-default.navbar-inverse.navbar-static-top
   .container
     .collapse.navbar-collapse
-      %ul.nav.navbar-nav
+      %ul.nav.navbar-nav.navbar-left
         %li= link_to "Home", root_path
+      %ul.nav.navbar-nav.navbar-right
         %li= link_to "Interpol", article_path("Interpol")
         %li= link_to "Ducktails", article_path("Ducktails")
         %li= link_to "Julia Holter", article_path("Julia Holter")
