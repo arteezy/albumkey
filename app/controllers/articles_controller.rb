@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    @articles = Article.all.distinct(:artist)
+    @articles = Article.search(params[:search])
   end
 
   def create
