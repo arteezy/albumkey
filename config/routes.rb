@@ -4,7 +4,7 @@ Richfork::Application.routes.draw do
 
   resources :articles#, :constraints => { :id => /[^\/]+/ }
 
-  get '/top/:year', to: 'top#index'
+  get '/top/:year', to: 'top#index', as: 'top'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
