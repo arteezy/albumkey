@@ -1,3 +1,6 @@
+- content_for :title do
+  = "Top Albums of " + params[:year]
+
 %ul{ class: "nav nav-pills" }
   - (Time.now.year - 10).upto(Time.now.year) do |year|
     %li= link_to "#{year}", controller: "top", year: year
