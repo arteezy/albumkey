@@ -13,13 +13,18 @@
     %title= content_for?(:title) ? yield(:title) : "Untitled"
 
     = stylesheet_link_tag "application"
-    -# = javascript_include_tag "vendor/custom.modernizr"
     = csrf_meta_tag
 
     = render "shared/navbar"
 
   %body
     .container
+      .row
+        .col-md-12
+          - unless notice.blank?
+            .alert.alert-info{role: "alert"}= notice
+          - unless alert.blank?
+            .alert.alert-danger{role: "alert"}= alert
       .row
         .col-md-12
           = yield
