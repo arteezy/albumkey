@@ -2,7 +2,7 @@
   .row
     .col-md-3
       = image_tag(i.artwork, class: ["img-thumbnail", "img-responsive", "center-block"])
-    .col-md-9
+    .col-md-6
       %h4= i.title
       %h4= i.artist
       %h5.small= i.year
@@ -15,3 +15,6 @@
           %a.btn.btn-success{href: i.url}= i.score
         - else
           %a.btn.btn-primary{href: i.url}= i.score
+    .col-md-3
+      .score
+        = i.score
