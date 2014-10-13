@@ -13,7 +13,14 @@
  */
 
 .score {
-  font-family: Helvetica;
-  font-size: 64px;
+  font-family: sans-serif;
+  font-size: 72px;
+  line-height: 250px;
   text-align: center;
+  vertical-align: middle;
+}
+
+.artwork {
+  min-height: 250px;
+  min-width: 250px;
 }
