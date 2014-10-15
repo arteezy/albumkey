@@ -16,5 +16,10 @@
         - else
           %a.btn.btn-primary{href: i.url}= i.score
     .col-md-3
-      .score
-        = i.score
+      - if i.bnm
+        .score.bnm= i.score
+      - else
+        - if i.bnr
+          .score.bnr= i.score
+        - else
+          .score= i.score
