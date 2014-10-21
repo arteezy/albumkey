@@ -1,8 +1,8 @@
 - content_for :title do
   = "Top Albums of " + params[:year]
 
-.col-md-offset-2
-  %ul{ class: "nav nav-pills" }
+.col-lg-offset-2.col-md-offset-2
+  %ul{ class: ["nav", "nav-pills"] }
     - (Time.now.year - 10).upto(Time.now.year) do |year|
       - if year.to_s == params[:year]
         %li.active= link_to "#{year}", controller: "top", year: year
