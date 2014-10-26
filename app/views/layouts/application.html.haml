@@ -10,7 +10,7 @@
 
     %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
 
-    %title= content_for?(:title) ? yield(:title) : "Untitled"
+    %title= content_for?(:title) ? yield(:title) : "Richfork"
 
     = stylesheet_link_tag "application"
     = csrf_meta_tag
@@ -20,13 +20,13 @@
   %body
     .container
       .row
-        .col-md-12
+        .col-lg-12.col-md-12
           - unless notice.blank?
             .alert.alert-info{role: "alert"}= notice
           - unless alert.blank?
             .alert.alert-danger{role: "alert"}= alert
       .row
-        .col-md-12
+        .col-lg-12.col-md-12
           = yield
 
     = javascript_include_tag "application"
