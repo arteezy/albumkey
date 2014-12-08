@@ -4,65 +4,55 @@ require 'rethinkdb'
 
 include RethinkDB::Shortcuts
 
-@conn = r.connect('localhost', 28015, 'pitchfork')
-@bulk = Array.new
+@db = r.connect("localhost", 28015, "pitchfork")
 
-def parse(url)
-    doc = Nokogiri::HTML(open(url))
+def parse_review(url)
+  doc = Nokogiri::HTML(open(url))
 
-    begin
-        artist      = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/h1')[0].content.to_s.strip
-        title       = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/h2')[0].content.to_s.strip
-        label_year  = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/h3')[0].content.to_s.strip.split(';')
-        label       = label_year[0].strip
-        year        = label_year[1].strip if label_year.size > 1
-        date_raw    = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/h4/span')[0].content.to_s.strip
-        date        = Date.strptime(date_raw, "%B %d, %Y")
-        score       = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/span')[0].content.to_s.strip
-        artwork     = doc.xpath('//div[@id = "main"]/*/*/div[@class = "artwork"]/img/@src')[0].content.to_s.strip
-    rescue
-        puts url
-    end
+  begin
+    artist     = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/h1').first.content.strip
+    title      = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/h2').first.content.strip
+    label_year = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/h3').first.content.strip.split(';')
+    label      = label_year[0].strip
+    year       = label_year[1].strip unless label_year.empty?
+    date_raw   = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/h4/span').first.content.strip
+    date       = Date.strptime(date_raw, "%B %d, %Y")
+    score      = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/span').first.content.strip
+    artwork    = doc.xpath('//div[@id = "main"]/*/*/div[@class = "artwork"]/img/@src').first.content.strip
+    bnm        = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/div[@class = "bnm-label"]').first.content.include?("Best New Music")
+    bnr        = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/div[@class = "bnm-label"]').first.content.include?("Best New Reissue")
+  rescue
+    puts "Failed to parse: " + url
+  end
 
-    item = {
-        "id"        => url.match('/\d{1,5}-')[0][1..-2],
-        "url"       => url,
-        "artist"    => artist,
-        "title"     => title,
-        "label"     => label,
-        "year"      => year,
-        "date"      => date.to_s,
-        "score"     => score,
-        "artwork"   => artwork
-    }
+  review = {
+    id:      url.match('/\d{1,5}-')[0][1..-2],
+    url:     url,
+    artist:  artist,
+    title:   title,
+    label:   label,
+    year:    year,
+    date:    date.to_s,
+    score:   score,
+    artwork: artwork,
+    bnm:     bnm,
+    bnr:     bnr
+  }
 end
 
-def test(num)
-    num.times do
-        puts parse('http://pitchfork.com/reviews/albums/17675-how-to-destroy-angels-welcome-oblivion/')
-        puts parse('http://pitchfork.com/reviews/albums/17253-good-kid-maad-city/')
-        puts parse('http://pitchfork.com/reviews/albums/17272-iii/')
-    end
+def scan_pages(last_page)
+  for i in 1..last_page
+    parse_review_links('http://pitchfork.com/reviews/albums/' + i.to_s)
+  end
 end
 
-def list
-    i = 1
-    while (i < 200) do
-        links('http://pitchfork.com/reviews/albums/' + i.to_s)
-        i+=1
-    end
+def parse_review_links(url)
+  page = []
+  doc = Nokogiri::HTML(open(url))
+  doc.xpath('//div[@id = "main"]/ul[@class = "object-grid "]/li/ul/li/a/@href').each do |review|
+    page << parse_review('http://pitchfork.com' + review)
+  end
+  r.table("articles").insert(page).run(@db)
 end
 
-def links(url)
-    doc = Nokogiri::HTML(open(url))  
-    doc.xpath('//div[@id = "main"]/ul[@class = "object-grid "]/li/ul/li/a/@href').each do |elem|
-        @bulk << parse('http://pitchfork.com' + elem) 
-        if @bulk.size > 16
-            r.table("preview").insert(@bulk).run(@conn)
-            @bulk.clear
-        end
-    end
-end
-
-test(1)
-#list
+scan_pages(500)
