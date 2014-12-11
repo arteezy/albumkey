@@ -3,40 +3,42 @@
  * listed below.
  *
  * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
  *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
  *
  *= require_tree .
  *= require_self
  */
 
-.score {
-  font-family: sans-serif;
-  font-weight: bold;
-  font-size: 64px;
-  line-height: 130px;
-  text-align: center;
-  vertical-align: middle;
-  border-radius: 50%;
-  border: 10px solid;
-  margin: 50px;
-  height: 150px;
-  width: 150px;
-}
+ .score {
+   font-family: sans-serif;
+   font-weight: bold;
+   font-size: 64px;
+   line-height: 130px;
+   text-align: center;
+   vertical-align: middle;
+   border-radius: 50%;
+   border: 10px solid;
+   margin: 50px;
+   height: 150px;
+   width: 150px;
+ }
 
-.bnm {
-  color: red;
-  border: 10px solid red;
-}
+ .bnm {
+   color: red;
+   border: 10px solid red;
+ }
 
-.bnr {
-  color: limegreen;
-  border: 10px solid limegreen;
-}
+ .bnr {
+   color: limegreen;
+   border: 10px solid limegreen;
+ }
 
-.artwork {
-  min-height: 250px;
-  min-width: 250px;
-}
+ .artwork {
+   min-height: 250px;
+   min-width: 250px;
+ }
