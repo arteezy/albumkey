@@ -10,5 +10,4 @@
         %li= link_to "#{year}", controller: "top", year: year
 %br
 
-- @top.each do |album|
-  = render "shared/review-card", i: album
+= render partial: "shared/review_card", collection: @top_albums

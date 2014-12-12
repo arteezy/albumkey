@@ -1,0 +1,26 @@
+.well.well-sm
+  .row
+    .col-lg-3.col-md-4.col-sm-6.col-xs-12
+      = image_tag(review_card["artwork"], class: ["artwork", "img-thumbnail", "img-responsive", "center-block"])
+    .col-lg-6.col-md-4.col-sm-6.col-xs-12
+      %h4= review_card["title"]
+      %h4= review_card["artist"]
+      %h5.small= review_card["year"]
+      %h5.small= review_card["label"]
+      %h6.small= review_card["date"]
+      .hidden-lg.hidden-md.hidden-sm
+        - if review_card["bnm"]
+          .btn.btn-lg.btn-danger= review_card["score"]
+        - else
+          - if review_card["bnr"]
+            .btn.btn-lg.btn-success= review_card["score"]
+          - else
+            .btn.btn-lg.btn-primary= review_card["score"]
+    .col-lg-3.col-md-4.col-sm-6.hidden-xs
+      - if review_card["bnm"]
+        .score.bnm= review_card["score"]
+      - else
+        - if review_card["bnr"]
+          .score.bnr= review_card["score"]
+        - else
+          .score= review_card["score"]

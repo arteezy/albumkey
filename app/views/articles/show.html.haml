@@ -1,5 +1,4 @@
 - content_for :title do
   = params[:id]
 
-- @article.sort{ |a, b| a.year <=> b.year }.each do |i|
-  = render "shared/review-card", i: i
+= render partial: "shared/review_card", collection: @articles.sort{ |a, b| a["year"] <=> b["year"] }
