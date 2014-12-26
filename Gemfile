@@ -36,4 +36,6 @@ group :development, :test do
   gem 'spring'
   # Use this gem for profiling
   gem 'rack-mini-profiler'
+  # Use Pry as Rails console replacement
+  gem 'pry-rails'
 end
