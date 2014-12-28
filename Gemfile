@@ -38,4 +38,6 @@ group :development, :test do
   gem 'rack-mini-profiler'
   # Use Pry as Rails console replacement
   gem 'pry-rails'
+  # Use Better Errors gem to replace errors page
+  gem 'better_errors'
 end
