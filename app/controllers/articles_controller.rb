@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   def show
-    @articles = Article.where(artist: params[:id])
+    @articles = Article.where(artist: params[:id]).includes(:rates)
   end
 
   def index
