@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'rate/create'
+
   root to: 'articles#index'
 
   devise_for :users
