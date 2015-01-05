@@ -13,6 +13,7 @@
     %title= content_for?(:title) ? yield(:title) : "Richfork"
 
     = stylesheet_link_tag "application"
+    = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Crete+Round"
     = csrf_meta_tag
     = javascript_include_tag "application", defer: true
 
@@ -26,6 +27,6 @@
             .alert.alert-info{role: "alert"}= notice
           - unless alert.blank?
             .alert.alert-danger{role: "alert"}= alert
-      .row
+      .row.content
         .col-lg-12.col-md-12
           = yield
