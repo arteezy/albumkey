@@ -21,7 +21,7 @@
       - unless review_card.rates.blank?
         .score= review_card.rates.where(user_id: current_user.id).last["rate"]
       = form_tag rate_path(review_card) do
-        = number_field(nil, :rate, in 0.0..10.0, step: 0.1, value: 7.5)
+        = number_field(nil, :rate, in: 0.0..10.0, step: 0.1, value: 7.5)
         = submit_tag("Rate")
     .col-lg-3.col-md-4.col-sm-6.hidden-xs
       - if review_card["bnm"]
