@@ -19,7 +19,7 @@
             .btn.btn-lg.btn-primary= review_card["score"]
     .col-lg-2
       - unless review_card.rates.blank?
-        .score= review_card.rates.where(user_id: current_user.id).last["rate"]
+        .score= review_card.rates.where(user_id: current_user.id).first["rate"]
       = form_tag rate_path(review_card) do
         = number_field(nil, :rate, in: 0.0..10.0, step: 0.1, value: 7.5)
         = submit_tag("Rate")
