@@ -40,4 +40,6 @@ group :development, :test do
   gem 'pry-rails'
   # Use Better Errors gem to replace errors page
   gem 'better_errors'
+  # Use Quiest Assets to supress assets console logging
+  gem 'quiet_assets'
 end
