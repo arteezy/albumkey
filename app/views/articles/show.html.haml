@@ -1,4 +1,6 @@
 - content_for :title do
   = params[:id]
 
-= render partial: "shared/review_card", collection: @articles.sort{ |a, b| a["year"] <=> b["year"] }
+= render partial: "shared/review_card", collection: @articles
+
+= paginate @articles

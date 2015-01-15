@@ -4,7 +4,9 @@
 = form_tag articles_path, method: 'get' do
   %p
     = text_field_tag :search, params[:search]
-    = submit_tag "Search", name: nil
+    = submit_tag 'Search', name: nil
 
-- @articles.sort.each do |artist|
+- @articles.each do |artist|
   %p= link_to artist, article_path(artist)
+
+= paginate @articles
