@@ -6,9 +6,9 @@ class Article
 
   def self.search(search)
     if search
-      where(artist: Regexp.new("#{search}", true)).distinct(:artist)
+      where(artist: Regexp.new("#{search}", true)).distinct(:artist).sort
     else
-      all.distinct(:artist)
+      all.distinct(:artist).sort
     end
   end
 end
