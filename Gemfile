@@ -26,8 +26,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'tzinfo-data'
 # Use Kaminari gem for pagination
 gem 'kaminari'
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -36,6 +34,10 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  # Use RSpec for advanced testing
+  gem 'rspec-rails', '~> 3.2.1'
+  # Use Factory Girl as factories generator for specs
+  gem 'factory_girl_rails', '~> 4.5.0'
   # Use this gem for profiling
   gem 'rack-mini-profiler'
   # Use Pry as Rails console replacement
@@ -44,4 +46,13 @@ group :development, :test do
   gem 'better_errors'
   # Use Quiest Assets to supress assets console logging
   gem 'quiet_assets'
+end
+
+group :test do
+  # Use Faker gem to generate fake test data
+  gem 'faker', '~> 1.4.3'
+  # Use Capybara for integration specs
+  gem 'capybara', '~> 2.4.4'
+  # Use Launchy as helper to Capybara specs
+  gem 'launchy', '~> 2.4.3'
 end
