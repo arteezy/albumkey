@@ -1,7 +1,17 @@
 class Article
   include Mongoid::Document
-  #field :id, type: String
-  #field :_id, type: String, default: ->{ id }
+
+  field :url, type: String
+  field :artist, type: String
+  field :title, type: String
+  field :label, type: String
+  field :year, type: String
+  field :date, type: String
+  field :score, type: Float
+  field :artwork, type: String
+  field :bnm, type: Boolean
+  field :bnr, type: Boolean
+
   has_many :rates
 
   def self.search(search)

@@ -1,5 +1,6 @@
 class Rate
   include Mongoid::Document
+
   field :rate, type: Float
 
   belongs_to :user
