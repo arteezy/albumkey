@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Albums</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Artist</th>
+      <th>Label</th>
+      <th>Year</th>
+      <th>Date</th>
+      <th>Artwork</th>
+      <th>Url</th>
+      <th>Score</th>
+      <th>Bnm</th>
+      <th>Bnr</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @albums.each do |album| %>
+      <tr>
+        <td><%= album.title %></td>
+        <td><%= album.artist %></td>
+        <td><%= album.label %></td>
+        <td><%= album.year %></td>
+        <td><%= album.date %></td>
+        <td><%= album.artwork %></td>
+        <td><%= album.url %></td>
+        <td><%= album.score %></td>
+        <td><%= album.bnm %></td>
+        <td><%= album.bnr %></td>
+        <td><%= link_to 'Show', album %></td>
+        <td><%= link_to 'Edit', edit_album_path(album) %></td>
+        <td><%= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Album', new_album_path %>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :albums
+
   root to: 'articles#index'
 
   devise_for :users
