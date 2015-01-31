@@ -9,8 +9,8 @@ class Article
   field :date, type: String
   field :score, type: Float
   field :artwork, type: String
-  field :bnm, type: Boolean
-  field :bnr, type: Boolean
+  field :bnm, type: Mongoid::Boolean
+  field :bnr, type: Mongoid::Boolean
 
   has_many :rates
 
