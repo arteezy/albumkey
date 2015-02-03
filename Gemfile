@@ -26,6 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'tzinfo-data'
 # Use Kaminari gem for pagination
 gem 'kaminari'
+# Use Mongoid Slug as slug generator for beautiful URLs
+gem 'mongoid-slug'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

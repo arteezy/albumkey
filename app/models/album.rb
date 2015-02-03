@@ -1,5 +1,6 @@
 class Album
   include Mongoid::Document
+  include Mongoid::Slug
 
   field :title, type: String
   field :artist, type: String
@@ -11,6 +12,8 @@ class Album
   field :score, type: Float
   field :bnm, type: Mongoid::Boolean
   field :bnr, type: Mongoid::Boolean
+
+  slug :artist, :title
 
   def self.search_by_artist(artist)
     if artist
