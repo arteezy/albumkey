@@ -27,7 +27,7 @@
         <td><%= album.label %></td>
         <td><%= album.year %></td>
         <td><%= album.date %></td>
-        <td><%= album.artwork %></td>
+        <td><%= image_tag (album.artwork, size: "100") %></td>
         <td><%= album.url %></td>
         <td><%= album.score %></td>
         <td><%= album.bnm %></td>
@@ -39,6 +39,10 @@
     <% end %>
   </tbody>
 </table>
+
+<br>
+
+<%= paginate @albums %>
 
 <br>
 
