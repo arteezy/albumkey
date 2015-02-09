@@ -13,6 +13,8 @@ class Album
   field :bnm, type: Mongoid::Boolean
   field :bnr, type: Mongoid::Boolean
 
+  has_many :rates
+
   slug :artist, :title
 
   def self.search_by_artist(artist)

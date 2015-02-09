@@ -5,4 +5,5 @@ class Rate
 
   belongs_to :user
   belongs_to :article
+  belongs_to :album
 end
