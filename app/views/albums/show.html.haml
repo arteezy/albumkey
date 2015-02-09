@@ -1,0 +1,38 @@
+%p#notice= notice
+
+.well.well-sm
+  .row.card
+    .col-lg-3.col-md-4.col-sm-6.col-xs-12
+      = image_tag(@album["artwork"], class: ["artwork", "img-thumbnail", "img-responsive", "center-block"])
+    .col-lg-4.col-md-4.col-sm-6.col-xs-12
+      %h3= @album["title"]
+      %h4= link_to @album["artist"], article_path(@album["artist"])
+      %h5= @album["year"]
+      %h5= @album["label"]
+      %h6= @album["date"]
+      %h6= link_to "Read review at Pitchfork", @album["url"]
+      .hidden-lg.hidden-md.hidden-sm
+        - if @album["bnm"]
+          .btn.btn-lg.btn-danger= @album["score"]
+        - else
+          - if @album["bnr"]
+            .btn.btn-lg.btn-success= @album["score"]
+          - else
+            .btn.btn-lg.btn-primary= @album["score"]
+    .col-lg-2
+      - unless @album.rates.blank?
+        .score= @album.rates.where(user_id: current_user.id).first["rate"]
+      = form_tag rate_path(@album) do
+        = number_field(nil, :rate, in: 0.0..10.0, step: 0.1, value: 7.5)
+        = submit_tag("Rate")
+    .col-lg-3.col-md-4.col-sm-6.hidden-xs
+      - if @album["bnm"]
+        .score.bnm= @album["score"]
+      - else
+        - if @album["bnr"]
+          .score.bnr= @album["score"]
+        - else
+          .score= @album["score"]
+
+= link_to 'Edit', edit_album_path(@album)
+= link_to 'Back', albums_path
