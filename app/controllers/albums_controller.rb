@@ -7,6 +7,14 @@ class AlbumsController < ApplicationController
     @albums = Album.all.page(params[:page])
   end
 
+  def dash
+    selectors = []
+    selectors << {artist: params[:artist]} if params[:artist]
+    selectors << {year: params[:year]} if params[:year]
+    selectors << {label: params[:label]} if params[:label]
+    @albums = Album.all_of(*selectors).page(params[:page])
+  end
+
   # GET /albums/1
   # GET /albums/1.json
   def show

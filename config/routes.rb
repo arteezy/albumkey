@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   resources :articles#, :constraints => { :id => /[^\/]+/ }
 
+  get '/dash', to: 'albums#dash', as: 'dash'
+
   get '/top/:year', to: 'top#index', as: 'top'
 
   post '/rate/:id', to: 'rate#create', as: 'rate'
