@@ -1,6 +1,15 @@
 - content_for :title do
   = params[:id]
 
+= form_tag dash_path, method: :get, id: 'filter' do
+  = label_tag :artist
+  = text_field_tag :artist
+  = label_tag :year
+  = text_field_tag :year
+  = label_tag :label
+  = text_field_tag :label
+  %button.btn.btn-primary= 'Search'
+
 = render partial: 'shared/review_card', collection: @albums
 
 = paginate @albums
