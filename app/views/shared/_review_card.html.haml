@@ -3,7 +3,7 @@
     .col-lg-3.col-md-4.col-sm-6.col-xs-12
       = image_tag(review_card["artwork"], class: ["artwork", "img-thumbnail", "img-responsive", "center-block"])
     .col-lg-4.col-md-4.col-sm-6.col-xs-12
-      %h3= review_card["title"]
+      %h3= link_to review_card["title"], album_path(review_card)
       %h4= link_to review_card["artist"], dash_path(artist: review_card["artist"])
       %h5= link_to review_card["year"], dash_path(year: review_card["year"])
       %h5= link_to review_card["label"], dash_path(label: review_card["label"])
