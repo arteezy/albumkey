@@ -9,9 +9,9 @@ class AlbumsController < ApplicationController
 
   def dash
     selectors = []
-    selectors << {artist: params[:artist]} if params[:artist]
-    selectors << {year: params[:year]} if params[:year]
-    selectors << {label: params[:label]} if params[:label]
+    selectors << { artist: params[:artist] } if params[:artist]
+    selectors << { year: params[:year] } if params[:year]
+    selectors << { label: params[:label] } if params[:label]
     @albums = Album.all_of(*selectors).includes(:rates).page(params[:page])
   end
 
