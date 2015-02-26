@@ -2,12 +2,14 @@
   = params[:id]
 
 = form_tag dash_path, method: :get, id: 'filter' do
-  = label_tag :artist
+  = label_tag "Artist:"
   = text_field_tag :artist, params[:artist]
-  = label_tag :year
+  = label_tag "Year:"
   = text_field_tag :year, params[:year]
-  = label_tag :label
+  = label_tag "Label:"
   = text_field_tag :label, params[:label]
+  = label_tag "Order by:"
+  = select_tag :order, options_for_select({ artist: "Artist", year: "Year", date: "Date", score: "Score" }.invert, params[:order])
   %button.btn.btn-primary= 'Search'
 
 = render partial: 'shared/review_card', collection: @albums
