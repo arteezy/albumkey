@@ -14,8 +14,9 @@ class AlbumsController < ApplicationController
     selectors << { label: params[:label] } if params[:label]
 
     order = params[:order] ? params[:order] : "date"
+    dir = params[:dir] ? params[:dir] : "desc"
 
-    @albums = Album.all_of(*selectors).desc(order).includes(:rates).page(params[:page])
+    @albums = Album.all_of(*selectors).order_by(order => dir).includes(:rates).page(params[:page])
   end
 
   # GET /albums/1

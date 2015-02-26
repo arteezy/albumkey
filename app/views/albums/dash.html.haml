@@ -10,6 +10,8 @@
   = text_field_tag :label, params[:label]
   = label_tag "Order by:"
   = select_tag :order, options_for_select({ artist: "Artist", year: "Year", date: "Date", score: "Score" }.invert, params[:order])
+  = label_tag "Direction:"
+  = select_tag :dir, options_for_select({ asc: "ASC", desc: "DESC"}.invert, params[])
   %button.btn.btn-primary= 'Search'
 
 = render partial: 'shared/review_card', collection: @albums
