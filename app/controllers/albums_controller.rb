@@ -8,13 +8,13 @@ class AlbumsController < ApplicationController
   end
 
   def dash
+    order = params[:order] ? params[:order] : 'date'
+    dir = params[:dir] ? params[:dir] : 'desc'
+
     selectors = []
     selectors << { artist: params[:artist] } if params[:artist]
     selectors << { year: params[:year] } if params[:year]
     selectors << { label: params[:label] } if params[:label]
-
-    order = params[:order] ? params[:order] : "date"
-    dir = params[:dir] ? params[:dir] : "desc"
 
     @albums = Album.all_of(*selectors).order_by(order => dir).includes(:rates).page(params[:page])
   end
