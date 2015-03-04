@@ -1,4 +1,4 @@
-%h1= "Listing Albums"
+%h1= 'Listing Albums'
 
 = form_tag articles_path, method: 'get' do
   %p
@@ -8,17 +8,17 @@
 %table
   %thead
     %tr
-      %th= "Title"
-      %th= "Artist"
-      %th= "Label"
-      %th= "Year"
-      %th= "Date"
-      %th= "Artwork"
-      %th= "Url"
-      %th= "Score"
-      %th= "Bnm"
-      %th= "Bnr"
-      %th{ colspan: "3" }
+      %th= 'Title'
+      %th= 'Artist'
+      %th= 'Label'
+      %th= 'Year'
+      %th= 'Date'
+      %th= 'Artwork'
+      %th= 'Url'
+      %th= 'Score'
+      %th= 'Bnm'
+      %th= 'Bnr'
+      %th{ colspan: '3' }
 
   %tbody
     - @albums.each do |album|
@@ -28,8 +28,8 @@
         %td= album.label
         %td= album.year
         %td= album.date
-        %td= image_tag album.artwork, size: "100"
-        %td= album.url
+        %td= image_tag album.artwork, size: '100'
+        %td= link_to 'Pitchfork Link', album.url
         %td= album.score
         %td= album.bnm
         %td= album.bnr
