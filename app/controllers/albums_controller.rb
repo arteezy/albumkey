@@ -4,7 +4,7 @@ class AlbumsController < ApplicationController
   # GET /albums
   # GET /albums.json
   def index
-    @albums = Album.all.page(params[:page])
+    @albums = Album.search_by_artist(params[:search]).page(params[:page])
   end
 
   def dash

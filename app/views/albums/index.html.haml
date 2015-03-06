@@ -1,6 +1,6 @@
 %h1= 'Listing Albums'
 
-= form_tag articles_path, method: 'get' do
+= form_tag albums_path, method: 'get' do
   %p
     = text_field_tag :search, params[:search]
     = submit_tag 'Search', name: nil
