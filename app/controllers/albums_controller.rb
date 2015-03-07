@@ -8,15 +8,15 @@ class AlbumsController < ApplicationController
   end
 
   def dash
-    order = params[:order] ? params[:order] : 'date'
-    dir = params[:dir] ? params[:dir] : 'desc'
+    params[:order] ||= 'date'
+    params[:dir] ||= 'desc'
 
     selectors = []
     selectors << { artist: params[:artist] } if params[:artist]
     selectors << { year: params[:year] } if params[:year]
     selectors << { label: params[:label] } if params[:label]
 
-    @albums = Album.all_of(*selectors).order_by(order => dir).includes(:rates).page(params[:page])
+    @albums = Album.all_of(*selectors).order_by(params[:order] => params[:dir]).includes(:rates).page(params[:page])
   end
 
   # GET /albums/1
