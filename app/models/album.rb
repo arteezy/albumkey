@@ -19,9 +19,9 @@ class Album
 
   def self.search_by_artist(artist)
     if artist
-      where(artist: Regexp.new("#{artist}", true)).distinct(:artist).sort
+      where(artist: Regexp.new("#{artist}", true))
     else
-      all.distinct(:artist).sort
+      all
     end
   end
 end
