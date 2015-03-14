@@ -13,36 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
-.card {
-  font-family: 'Crete Round', serif;
-}
-
-.score {
-  font-family: sans-serif;
-  font-weight: bold;
-  font-size: 64px;
-  line-height: 130px;
-  text-align: center;
-  vertical-align: middle;
-  border-radius: 50%;
-  border: 10px solid;
-  margin: 50px;
-  height: 150px;
-  width: 150px;
-}
-
-.bnm {
-  color: red;
-  border: 10px solid red;
-}
-
-.bnr {
-  color: limegreen;
-  border: 10px solid limegreen;
-}
-
-.artwork {
-  min-height: 250px;
-  min-width: 250px;
-}
