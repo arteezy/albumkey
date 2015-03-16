@@ -9,8 +9,7 @@ $(document).on("ready page:load", function() {
       $(this).removeClass("dim");
 
       $(this).mousemove(function(e) {
-        $(this).text(((this.offsetTop + this.offsetHeight - e.pageY) / this.offsetHeight * 10.0).toFixed(1));
-        // $(this).text(((e.pageX - this.offsetLeft) / this.offsetWidth * 10.0 + 0.1).toFixed(1));
+        $(this).text(((this.offsetHeight - e.offsetY) / this.offsetHeight * 10.0).toFixed(1));
       });
 
       $(this).mouseleave(function() {
