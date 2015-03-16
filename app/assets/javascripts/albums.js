@@ -22,6 +22,22 @@ $(document).on("ready page:load", function() {
       $(this).off("mousemove");
     });
 
+    $("div.score.user").mousedown(function() {
+      var rate = $(this).text();
+      var album_id = $(this).closest(".card").data("album-id");
+      var jqxhr = $.ajax({
+        url: '/rate/' + album_id,
+        type: 'POST',
+        data: 'rate=' + rate,
+        success: function(data) {
+          alert("success");
+        },
+        error: function(e) {
+          console.log(e.message);
+        }
+      });
+    });
+
     $("div.score.user").mouseup(function() {
       $(this).off("mousemove");
       $(this).off("mouseleave");
