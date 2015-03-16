@@ -5,7 +5,7 @@ $(document).on("ready page:load", function() {
   });
 
   $(function () {
-    $("div.score").mouseenter(function() {
+    $("div.score.user").mouseenter(function() {
       $(this).removeClass("dim");
 
       $(this).mousemove(function(e) {
@@ -19,11 +19,11 @@ $(document).on("ready page:load", function() {
       });
     });
 
-    $("div.score").mouseleave(function() {
+    $("div.score.user").mouseleave(function() {
       $(this).off("mousemove");
     });
 
-    $("div.score").mouseup(function() {
+    $("div.score.user").mouseup(function() {
       $(this).off("mousemove");
       $(this).off("mouseleave");
       $(this).removeClass("dim");
