@@ -5,7 +5,7 @@ $(document).on("ready page:load", function() {
   });
 
   $(function () {
-    $("div.score.user").mouseenter(function() {
+    $(".score.user").mouseenter(function() {
       $(this).removeClass("dim");
 
       $(this).mousemove(function(e) {
@@ -18,27 +18,27 @@ $(document).on("ready page:load", function() {
       });
     });
 
-    $("div.score.user").mouseleave(function() {
+    $(".score.user").mouseleave(function() {
       $(this).off("mousemove");
     });
 
-    $("div.score.user").mousedown(function() {
+    $(".score.user").mousedown(function() {
       var rate = $(this).text();
       var album_id = $(this).closest(".card").data("album-id");
-      var jqxhr = $.ajax({
+      $.ajax({
         url: '/rate/' + album_id,
         type: 'POST',
         data: 'rate=' + rate,
         success: function(data) {
-          alert("success");
+          console.log(data);
         },
         error: function(e) {
-          console.log(e.message);
+          console.log("Can't rate album: " + e.message);
         }
       });
     });
 
-    $("div.score.user").mouseup(function() {
+    $(".score.user").mouseup(function() {
       $(this).off("mousemove");
       $(this).off("mouseleave");
       $(this).removeClass("dim");
