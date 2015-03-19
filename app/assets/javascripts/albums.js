@@ -29,9 +29,6 @@ $(document).on("ready page:load", function() {
         url: '/rate/' + album_id,
         type: 'POST',
         data: 'rate=' + rate,
-        success: function(data) {
-          console.log(data);
-        },
         error: function(e) {
           console.log("Can't rate album: " + e.message);
         }
