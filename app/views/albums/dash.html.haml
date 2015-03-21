@@ -14,6 +14,6 @@
   = select_tag :dir, options_for_select({ desc: 'DESC', asc: 'ASC' }.invert, params[:dir])
   %button.btn.btn-primary= 'Search'
 
-= render partial: 'shared/review_card', collection: @albums
+= render partial: 'shared/card', collection: @albums
 
 = paginate @albums
