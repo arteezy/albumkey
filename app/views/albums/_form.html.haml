@@ -1,0 +1,49 @@
+= form_for(@album) do |f|
+  - if @album.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@album.errors.count, "error")} prohibited this album from being saved:"
+      %ul
+        - @album.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :title
+    %br
+    = f.text_field :title
+  .field
+    = f.label :artist
+    %br
+    = f.text_field :artist
+  .field
+    = f.label :label
+    %br
+    = f.text_field :label
+  .field
+    = f.label :year
+    %br
+    = f.text_field :year
+  .field
+    = f.label :date
+    %br
+    = f.text_field :date
+  .field
+    = f.label :artwork
+    %br
+    = f.text_field :artwork
+  .field
+    = f.label :url
+    %br
+    = f.text_field :url
+  .field
+    = f.label :score
+    %br
+    = f.text_field :score
+  .field
+    = f.label :bnm
+    %br
+    = f.check_box :bnm
+  .field
+    = f.label :bnr
+    %br
+    = f.check_box :bnr
+  .actions= f.submit
