@@ -13,9 +13,18 @@ class Album
   field :bnm, type: Mongoid::Boolean
   field :bnr, type: Mongoid::Boolean
 
+  slug :artist, :title
+
   has_many :rates
 
-  slug :artist, :title
+  validates :title, presence: true
+  validates :artist, presence: true
+  validates :label, presence: true
+  validates :year, presence: true
+  validates :date, presence: true
+  validates :artwork, presence: true
+  validates :url, presence: true
+  validates :score, presence: true
 
   def self.search_by_artist(artist)
     if artist
