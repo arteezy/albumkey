@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  get '/dash', to: 'albums#dash', as: 'dash'
+  get '/search', to: 'albums#search', as: 'search'
 
   post '/rate/:id', to: 'rate#create', as: 'rate'
 end

@@ -4,10 +4,6 @@ class AlbumsController < ApplicationController
   # GET /albums
   # GET /albums.json
   def index
-    @albums = Album.search_by_artist(params[:search]).page(params[:page])
-  end
-
-  def dash
     params[:order] ||= 'date'
     params[:dir] ||= 'desc'
 
@@ -17,6 +13,10 @@ class AlbumsController < ApplicationController
     selectors << { label: params[:label] } if params[:label]
 
     @albums = Album.all_of(*selectors).order_by(params[:order] => params[:dir]).includes(:rates).page(params[:page])
+  end
+
+  def search
+    @albums = Album.search_by_artist(params[:search]).page(params[:page])
   end
 
   # GET /albums/1
