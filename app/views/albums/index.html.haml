@@ -1,46 +1,19 @@
-%h1= 'Listing Albums'
+- content_for :title do
+  = params[:id]
 
-= form_tag albums_path, method: 'get' do
-  %p
-    = text_field_tag :search, params[:search]
-    = submit_tag 'Search', name: nil
+= form_tag dash_path, method: :get, id: 'filter' do
+  = label_tag 'Artist:'
+  = text_field_tag :artist, params[:artist]
+  = label_tag 'Year:'
+  = text_field_tag :year, params[:year]
+  = label_tag 'Label:'
+  = text_field_tag :label, params[:label]
+  = label_tag 'Order by:'
+  = select_tag :order, options_for_select({ date: 'Date', artist: 'Artist', year: 'Year', score: 'Score' }.invert, params[:order])
+  = label_tag 'Direction:'
+  = select_tag :dir, options_for_select({ desc: 'DESC', asc: 'ASC' }.invert, params[:dir])
+  %button.btn.btn-primary= 'Search'
 
-%table
-  %thead
-    %tr
-      %th= 'Title'
-      %th= 'Artist'
-      %th= 'Label'
-      %th= 'Year'
-      %th= 'Date'
-      %th= 'Artwork'
-      %th= 'Url'
-      %th= 'Score'
-      %th= 'Bnm'
-      %th= 'Bnr'
-      %th{ colspan: '3' }
-
-  %tbody
-    - @albums.each do |album|
-      %tr
-        %td= link_to album.title, album_path(album)
-        %td= album.artist
-        %td= album.label
-        %td= album.year
-        %td= album.date
-        %td= image_tag album.artwork, size: '100'
-        %td= link_to 'Pitchfork Link', album.url
-        %td= album.score
-        %td= album.bnm
-        %td= album.bnr
-        %td= link_to 'Show', album
-        %td= link_to 'Edit', edit_album_path(album)
-        %td= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
+= render partial: 'shared/card', collection: @albums
 
 = paginate @albums
-
-%br
-
-= link_to 'New Album', new_album_path
