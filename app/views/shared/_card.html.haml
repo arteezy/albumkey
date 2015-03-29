@@ -4,9 +4,9 @@
       = image_tag(card["artwork"], class: ["artwork", "img-thumbnail", "img-responsive", "center-block"])
     .col-lg-4.col-md-4.col-sm-6.col-xs-12
       %h3= link_to card["title"], album_path(card)
-      %h4= link_to card["artist"], dash_path(artist: card["artist"])
-      %h5= link_to card["year"], dash_path(year: card["year"])
-      %h5= link_to card["label"], dash_path(label: card["label"])
+      %h4= link_to card["artist"], albums_path(artist: card["artist"])
+      %h5= link_to card["year"], albums_path(year: card["year"])
+      %h5= link_to card["label"], albums_path(label: card["label"])
       %h6= card["date"]
       %h6= link_to "Read review at Pitchfork", card["url"]
       .hidden-lg.hidden-md.hidden-sm
