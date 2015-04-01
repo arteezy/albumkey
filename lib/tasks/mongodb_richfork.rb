@@ -4,10 +4,10 @@ require 'mongo'
 
 include Mongo
 
-@db = MongoClient.new("localhost", 27017).db("pitchfork")
-@reviews = @db["articles"]
+@db = MongoClient.new('localhost', 27017).db('richfork')
+@albums = @db['albums']
 
-def parse_review(url)
+def parse_album(url)
   doc = Nokogiri::HTML(open(url))
 
   begin
@@ -23,7 +23,7 @@ def parse_review(url)
     bnm        = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/div[@class = "bnm-label"]').first.content.include?("Best New Music")
     bnr        = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/div[@class = "bnm-label"]').first.content.include?("Best New Reissue")
   rescue
-    puts "Failed to parse: " + url
+    puts 'Failed to parse: ' + url
   end
 
   review = {
@@ -41,19 +41,19 @@ def parse_review(url)
   }
 end
 
-def scan_pages(last_page)
+def scan_album_pages(last_page)
   for i in 1..last_page
-    parse_review_links('http://pitchfork.com/reviews/albums/' + i.to_s)
+    get_album_links('http://pitchfork.com/reviews/albums/' + i.to_s)
   end
 end
 
-def parse_review_links(url)
+def get_album_links(url)
   page = []
   doc = Nokogiri::HTML(open(url))
   doc.xpath('//div[@id = "main"]/ul[@class = "object-grid "]/li/ul/li/a/@href').each do |review|
-    page << parse_review('http://pitchfork.com' + review)
+    page << parse_album('http://pitchfork.com' + review)
   end
-  @reviews.insert(page)
+  @albums.insert(page)
 end
 
-scan_pages(500)
+scan_album_pages(750)
