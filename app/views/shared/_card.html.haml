@@ -7,7 +7,7 @@
       %h4= link_to card["artist"], albums_path(artist: card["artist"])
       %h5= link_to card["year"], albums_path(year: card["year"])
       %h5= link_to card["label"], albums_path(label: card["label"])
-      %h6= card["date"]
+      %h6= card["date"].strftime('%d %b %Y')
       %h6= link_to "Read review at Pitchfork", card["url"]
       .hidden-lg.hidden-md.hidden-sm
         - if card["bnm"]
