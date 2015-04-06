@@ -1,5 +1,5 @@
 - content_for :title do
-  = params[:id]
+  = params[:artist]
 
 = form_tag albums_path, method: :get, id: 'filter' do
   = label_tag 'Artist:'
@@ -13,6 +13,8 @@
   = label_tag 'Direction:'
   = select_tag :dir, options_for_select({ desc: 'DESC', asc: 'ASC' }.invert, params[:dir])
   %button.btn.btn-primary= 'Search'
+
+%br
 
 = render partial: 'shared/card', collection: @albums
 
