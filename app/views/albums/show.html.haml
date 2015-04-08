@@ -1,3 +1,6 @@
+- content_for :title do
+  = "#{@album['artist']} - #{@album['title']}"
+
 = render partial: 'shared/card', object: @album
 
 = link_to 'Edit', edit_album_path(@album)
