@@ -1,23 +1,15 @@
 .well.well-sm
   .row.card{ "data-album-id" => card.id }
-    .col-lg-3.col-md-4.col-sm-6.col-xs-12
-      = image_tag(card["artwork"], class: ["artwork", "img-thumbnail", "img-responsive", "center-block"])
-    .col-lg-6.col-md-4.col-sm-6.col-xs-12
+    .col-lg-3
+      = image_tag(card["artwork"], class: ["artwork", "img-thumbnail", "img-responsive"])
+    .col-lg-6
       %h2= link_to card["title"], album_path(card)
       %h3= link_to card["artist"], albums_path(artist: card["artist"])
       %h4= link_to card["year"], albums_path(year: card["year"])
       %h4= link_to card["label"], albums_path(label: card["label"])
       %h5= card["date"].strftime('%d %b %Y')
       %h5= link_to "Read review at Pitchfork", card["url"]
-      .hidden-lg.hidden-md.hidden-sm
-        - if card["bnm"]
-          .btn.btn-lg.btn-danger= card["score"]
-        - else
-          - if card["bnr"]
-            .btn.btn-lg.btn-success= card["score"]
-          - else
-            .btn.btn-lg.btn-primary= card["score"]
-    .col-lg-3.col-md-4.col-sm-6.hidden-xs
+    .col-lg-3
       - if card["bnm"]
         .score.bnm= card["score"]
       - else
