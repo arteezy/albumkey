@@ -2,7 +2,7 @@
   .row.card{ "data-album-id" => card.id }
     .col-lg-3.col-md-4.col-sm-6.col-xs-12
       = image_tag(card["artwork"], class: ["artwork", "img-thumbnail", "img-responsive", "center-block"])
-    .col-lg-4.col-md-4.col-sm-6.col-xs-12
+    .col-lg-6.col-md-4.col-sm-6.col-xs-12
       %h2= link_to card["title"], album_path(card)
       %h3= link_to card["artist"], albums_path(artist: card["artist"])
       %h4= link_to card["year"], albums_path(year: card["year"])
@@ -17,12 +17,6 @@
             .btn.btn-lg.btn-success= card["score"]
           - else
             .btn.btn-lg.btn-primary= card["score"]
-    .col-lg-2
-      - if current_user
-        - if card.rates.blank?
-          .score.user.dim= 0.0
-        - else
-          .score.user= card.rates.where(user_id: current_user.id).first["rate"]
     .col-lg-3.col-md-4.col-sm-6.hidden-xs
       - if card["bnm"]
         .score.bnm= card["score"]
