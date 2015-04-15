@@ -6,7 +6,5 @@ class RateController < ApplicationController
     else
       rate.create(rate: params[:rate].to_f)
     end
-
-    redirect_to dash_path(artist: Album.find(params[:id])["artist"])
   end
 end
