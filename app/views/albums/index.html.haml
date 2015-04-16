@@ -3,7 +3,7 @@
 
 .row
   .col-lg-3
-    .well.well-sm
+    .well.well-sm#dash
       = form_tag albums_path, method: :get, id: 'filter' do
         = label_tag 'Artist:'
         %br
@@ -30,4 +30,4 @@
   .col-lg-9
     = render partial: 'shared/card', collection: @albums
 
-= paginate @albums
+    = paginate @albums
