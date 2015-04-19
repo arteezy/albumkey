@@ -20,6 +20,16 @@
         .form-group
           = label_tag 'Direction:'
           = select_tag :dir, options_for_select({ desc: 'DESC', asc: 'ASC' }.invert, params[:dir])
+        .form-group
+          = label_tag :direction
+          .btn-group{ data: { toggle: 'buttons' } }
+            %label.btn.btn-primary.active
+              = radio_button_tag 'direction', 'desc'
+              = 'DESC'
+            %label.btn.btn-primary
+              = radio_button_tag 'direction', 'asc'
+              = 'ASC'
+
         %button.btn.btn-primary= 'Search'
 
   .col-lg-9
