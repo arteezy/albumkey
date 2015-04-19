@@ -4,6 +4,12 @@ $(document).on("ready page:load", function() {
     return true;
   });
 
+  $("#dash").affix({
+    offset: {
+      top: $(".navbar-header").height()
+    }
+  });
+
   $(function () {
     $(".score.user").mouseenter(function() {
       $(this).removeClass("dim");
