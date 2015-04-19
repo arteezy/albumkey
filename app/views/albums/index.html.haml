@@ -5,26 +5,21 @@
   .col-lg-3
     .well.well-sm#dash
       = form_tag albums_path, method: :get, id: 'filter' do
-        = label_tag 'Artist:'
-        %br
-        = text_field_tag :artist, params[:artist]
-        %br
-        = label_tag 'Year:'
-        %br
-        = text_field_tag :year, params[:year]
-        %br
-        = label_tag 'Label:'
-        %br
-        = text_field_tag :label, params[:label]
-        %br
-        = label_tag 'Order by:'
-        %br
-        = select_tag :order, options_for_select({ date: 'Date', artist: 'Artist', year: 'Year', score: 'Score' }.invert, params[:order])
-        %br
-        = label_tag 'Direction:'
-        %br
-        = select_tag :dir, options_for_select({ desc: 'DESC', asc: 'ASC' }.invert, params[:dir])
-        %br
+        .form-group
+          = label_tag :artist
+          = text_field_tag :artist, params[:artist], class: 'form-control'
+        .form-group
+          = label_tag :year
+          = text_field_tag :year, params[:year], class: 'form-control'
+        .form-group
+          = label_tag :label
+          = text_field_tag :label, params[:label], class: 'form-control'
+        .form-group
+          = label_tag 'Order by:'
+          = select_tag :order, options_for_select({ date: 'Date', artist: 'Artist', year: 'Year', score: 'Score' }.invert, params[:order])
+        .form-group
+          = label_tag 'Direction:'
+          = select_tag :dir, options_for_select({ desc: 'DESC', asc: 'ASC' }.invert, params[:dir])
         %button.btn.btn-primary= 'Search'
 
   .col-lg-9
