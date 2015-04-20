@@ -22,17 +22,16 @@
           = select_tag :dir, options_for_select({ desc: 'DESC', asc: 'ASC' }.invert, params[:dir])
         .form-group
           = label_tag :direction
-          .btn-group{ data: { toggle: 'buttons' } }
-            %label.btn.btn-primary.active
-              = radio_button_tag 'direction', 'desc'
-              = 'DESC'
-            %label.btn.btn-primary
-              = radio_button_tag 'direction', 'asc'
-              = 'ASC'
-
-        %button.btn.btn-primary= 'Search'
+          %br
+          .btn-group.btn-group-justified{ data: { toggle: 'buttons' } }
+            %label.btn.btn-sm.btn-primary{ class: ('active' if params[:dir] == 'desc') }
+              = radio_button_tag 'dir', 'desc', (true if params[:dir] == 'desc')
+              %span.glyphicon.glyphicon-sort-by-attributes-alt
+            %label.btn.btn-sm.btn-primary{ class: ('active' if params[:dir] == 'asc') }
+              = radio_button_tag 'dir', 'asc', (true if params[:dir] == 'asc')
+              %span.glyphicon.glyphicon-sort-by-attributes
+        %button.btn.btn-success= 'Search'
 
   .col-lg-9
     = render partial: 'shared/card', collection: @albums
-
     = paginate @albums
