@@ -1,37 +1,36 @@
 - content_for :title do
   = params[:artist]
 
-.row
-  .col-lg-3
-    .well.well-sm#dash
-      = form_tag albums_path, method: :get, id: 'filter' do
-        .form-group
-          = label_tag :artist
-          = text_field_tag :artist, params[:artist], class: 'form-control'
-        .form-group
-          = label_tag :year
-          = text_field_tag :year, params[:year], class: 'form-control'
-        .form-group
-          = label_tag :label
-          = text_field_tag :label, params[:label], class: 'form-control'
-        .form-group
-          = label_tag 'Order by:'
-          = select_tag :order, options_for_select({ date: 'Date', artist: 'Artist', year: 'Year', score: 'Score' }.invert, params[:order])
-        .form-group
-          = label_tag 'Direction:'
-          = select_tag :dir, options_for_select({ desc: 'DESC', asc: 'ASC' }.invert, params[:dir])
-        .form-group
-          = label_tag :direction
-          %br
-          .btn-group.btn-group-justified{ data: { toggle: 'buttons' } }
-            %label.btn.btn-sm.btn-primary{ class: ('active' if params[:dir] == 'desc') }
-              = radio_button_tag 'dir', 'desc', (true if params[:dir] == 'desc')
-              %span.glyphicon.glyphicon-sort-by-attributes-alt
-            %label.btn.btn-sm.btn-primary{ class: ('active' if params[:dir] == 'asc') }
-              = radio_button_tag 'dir', 'asc', (true if params[:dir] == 'asc')
-              %span.glyphicon.glyphicon-sort-by-attributes
-        %button.btn.btn-success= 'Search'
+.col-lg-3
+  .well.well-sm#dash
+    = form_tag albums_path, method: :get, id: 'filter' do
+      .form-group
+        = label_tag :artist
+        = text_field_tag :artist, params[:artist], class: 'form-control'
+      .form-group
+        = label_tag :year
+        = text_field_tag :year, params[:year], class: 'form-control'
+      .form-group
+        = label_tag :label
+        = text_field_tag :label, params[:label], class: 'form-control'
+      .form-group
+        = label_tag 'Order by:'
+        = select_tag :order, options_for_select({ date: 'Date', artist: 'Artist', year: 'Year', score: 'Score' }.invert, params[:order])
+      .form-group
+        = label_tag 'Direction:'
+        = select_tag :dir, options_for_select({ desc: 'DESC', asc: 'ASC' }.invert, params[:dir])
+      .form-group
+        = label_tag :direction
+        %br
+        .btn-group.btn-group-justified{ data: { toggle: 'buttons' } }
+          %label.btn.btn-sm.btn-primary{ class: ('active' if params[:dir] == 'desc') }
+            = radio_button_tag 'dir', 'desc', (true if params[:dir] == 'desc')
+            %span.glyphicon.glyphicon-sort-by-attributes-alt
+          %label.btn.btn-sm.btn-primary{ class: ('active' if params[:dir] == 'asc') }
+            = radio_button_tag 'dir', 'asc', (true if params[:dir] == 'asc')
+            %span.glyphicon.glyphicon-sort-by-attributes
+      %button.btn.btn-success= 'Search'
 
-  .col-lg-9
-    = render partial: 'shared/card', collection: @albums
-    = paginate @albums
+.col-lg-9
+  = render partial: 'shared/card', collection: @albums
+  = paginate @albums
