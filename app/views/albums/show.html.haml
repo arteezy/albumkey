@@ -2,38 +2,38 @@
   = "#{@album['artist']} - #{@album['title']}"
 
 .well.well-sm
-  .row.card{ "data-album-id" => card.id }
+  .row.card{ "data-album-id" => @album.id }
     .col-lg-3.col-md-4.col-sm-6.col-xs-12
-      = image_tag(card["artwork"], class: ["artwork", "img-thumbnail", "img-responsive", "center-block"])
+      = image_tag(@album["artwork"], class: ["artwork", "img-thumbnail", "img-responsive", "center-block"])
     .col-lg-4.col-md-4.col-sm-6.col-xs-12
-      %h2= link_to card["title"], album_path(card)
-      %h3= link_to card["artist"], albums_path(artist: card["artist"])
-      %h4= link_to card["year"], albums_path(year: card["year"])
-      %h4= link_to card["label"], albums_path(label: card["label"])
-      %h5= card["date"].strftime('%d %b %Y')
-      %h5= link_to "Read review at Pitchfork", card["url"]
+      %h2= link_to @album["title"], album_path(@album)
+      %h3= link_to @album["artist"], albums_path(artist: @album["artist"])
+      %h4= link_to @album["year"], albums_path(year: @album["year"])
+      %h4= link_to @album["label"], albums_path(label: @album["label"])
+      %h5= @album["date"].strftime('%d %b %Y')
+      %h5= link_to "Read review at Pitchfork", @album["url"]
       .hidden-lg.hidden-md.hidden-sm
-        - if card["bnm"]
-          .btn.btn-lg.btn-danger= card["score"]
+        - if @album["bnm"]
+          .btn.btn-lg.btn-danger= @album["score"]
         - else
-          - if card["bnr"]
-            .btn.btn-lg.btn-success= card["score"]
+          - if @album["bnr"]
+            .btn.btn-lg.btn-success= @album["score"]
           - else
-            .btn.btn-lg.btn-primary= card["score"]
+            .btn.btn-lg.btn-primary= @album["score"]
     .col-lg-2
       - if current_user
-        - if card.rates.blank?
+        - if @album.rates.blank?
           .score.user.dim= 0.0
         - else
-          .score.user= card.rates.where(user_id: current_user.id).first["rate"]
+          .score.user= @album.rates.where(user_id: current_user.id).first["rate"]
     .col-lg-3.col-md-4.col-sm-6.hidden-xs
-      - if card["bnm"]
-        .score.bnm= card["score"]
+      - if @album["bnm"]
+        .score.bnm= @album["score"]
       - else
-        - if card["bnr"]
-          .score.bnr= card["score"]
+        - if @album["bnr"]
+          .score.bnr= @album["score"]
         - else
-          .score= card["score"]
+          .score= @album["score"]
 
 = link_to 'Edit', edit_album_path(@album)
 = link_to 'Destroy', @album, method: :delete, data: { confirm: 'Are you sure?' }
