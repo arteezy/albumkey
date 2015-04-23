@@ -14,11 +14,20 @@
         = label_tag :label
         = text_field_tag :label, params[:label], class: 'form-control'
       .form-group
-        = label_tag 'Order by:'
-        = select_tag :order, options_for_select({ date: 'Date', artist: 'Artist', year: 'Year', score: 'Score' }.invert, params[:order])
-      .form-group
-        = label_tag 'Direction:'
-        = select_tag :dir, options_for_select({ desc: 'DESC', asc: 'ASC' }.invert, params[:dir])
+        = label_tag :order
+        .btn-group.btn-group-justified{ data: { toggle: 'buttons' } }
+          %label.btn.btn-primary{ class: ('active' if params[:order] == 'date') }
+            = radio_button_tag 'order', 'date', (true if params[:order] == 'date')
+            = 'Date'
+          %label.btn.btn-primary{ class: ('active' if params[:order] == 'artist') }
+            = radio_button_tag 'order', 'artist', (true if params[:order] == 'artist')
+            = 'Artist'
+          %label.btn.btn-primary{ class: ('active' if params[:order] == 'year') }
+            = radio_button_tag 'order', 'year', (true if params[:order] == 'year')
+            = 'Year'
+          %label.btn.btn-primary{ class: ('active' if params[:order] == 'score') }
+            = radio_button_tag 'order', 'score', (true if params[:order] == 'score')
+            = 'Score'
       .form-group
         = label_tag :direction
         %br
