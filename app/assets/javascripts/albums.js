@@ -10,6 +10,14 @@ $(document).on("ready page:load", function() {
     }
   });
 
+  $("#rating").slider({
+    min: 0,
+    max: 10,
+    step: 0.1,
+    value: 7.5,
+    handle: 'round'
+  });
+
   $(function () {
     $(".score.user").mouseenter(function() {
       $(this).removeClass("dim");

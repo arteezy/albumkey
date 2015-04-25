@@ -14,6 +14,9 @@
         = label_tag :label
         = text_field_tag :label, params[:label], class: 'form-control'
       .form-group
+        = label_tag :rating
+        = range_field_tag :rating
+      .form-group
         = label_tag :order
         .btn-group.btn-group-justified{ data: { toggle: 'buttons' } }
           %label.btn.btn-primary{ class: ('active' if params[:order] == 'date') }

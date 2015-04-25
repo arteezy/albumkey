@@ -22,3 +22,17 @@
    url('/assets/glyphicons-halflings-regular.ttf') format('truetype'),
    url('/assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
+
+
+.slider.slider-horizontal {
+  width: 242.5px;
+}
+
+.slider-selection {
+	background: lightgrey;
+}
+
+/*.slider-handle {
+  width: 15px;
+  height: 15px;
+}*/
