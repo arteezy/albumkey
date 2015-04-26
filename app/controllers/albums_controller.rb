@@ -6,13 +6,18 @@ class AlbumsController < ApplicationController
   def index
     params[:order] ||= 'date'
     params[:dir] ||= 'desc'
+    params[:rating] ||= 0.0
 
     selectors = []
     selectors << { artist: params[:artist] } if params[:artist]
     selectors << { year: params[:year] } if params[:year]
     selectors << { label: params[:label] } if params[:label]
 
-    @albums = Album.all_of(*selectors).order_by(params[:order] => params[:dir]).includes(:rates).page(params[:page])
+    @albums = Album.all_of(*selectors)
+                  .gte(score: params[:rating])
+                  .order_by(params[:order] => params[:dir])
+                  .includes(:rates)
+                  .page(params[:page])
   end
 
   def search
