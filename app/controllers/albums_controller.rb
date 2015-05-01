@@ -12,6 +12,8 @@ class AlbumsController < ApplicationController
     selectors << { artist: params[:artist] } if params[:artist]
     selectors << { year: params[:year] } if params[:year]
     selectors << { label: params[:label] } if params[:label]
+    selectors << { bnm: false } if params[:bnm]
+    selectors << { bnr: false } if params[:bnr]
 
     @albums = Album.all_of(*selectors)
                   .gte(score: params[:rating])
