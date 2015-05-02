@@ -17,19 +17,6 @@
         = label_tag :rating
         = range_field_tag :rating
       .form-group
-        = label_tag :exclude
-        .btn-toolbar
-          .btn-group{ data: { toggle: 'buttons' } }
-            .btn-group
-              %label.btn.btn-danger{ class: ('active' if params[:bnm]) }
-                = check_box_tag :bnm, nil, params[:bnm]
-                = 'Best New Music'
-          .btn-group{ data: { toggle: 'buttons' } }
-            .btn-group
-              %label.btn.btn-success{ class: ('active' if params[:bnr]) }
-                = check_box_tag :bnr, nil, params[:bnr]
-                = 'Reissue'
-      .form-group
         = label_tag :order
         .btn-group.btn-group-justified{ data: { toggle: 'buttons' } }
           %label.btn.btn-primary{ class: ('active' if params[:order] == 'date') }
@@ -54,6 +41,19 @@
           %label.btn.btn-sm.btn-primary{ class: ('active' if params[:dir] == 'asc') }
             = radio_button_tag 'dir', 'asc', (true if params[:dir] == 'asc')
             %span.glyphicon.glyphicon-sort-by-attributes
+      .form-group
+        = label_tag :exclude
+        .btn-toolbar
+          .btn-group{ data: { toggle: 'buttons' } }
+            .btn-group
+              %label.btn.btn-danger{ class: ('active' if params[:bnm]) }
+                = check_box_tag :bnm, nil, params[:bnm]
+                = 'Best New Music'
+          .btn-group{ data: { toggle: 'buttons' } }
+            .btn-group
+              %label.btn.btn-success{ class: ('active' if params[:bnr]) }
+                = check_box_tag :bnr, nil, params[:bnr]
+                = 'Reissue'
       %button.btn.btn-default.btn-block= 'Search'
 
 .col-lg-9
