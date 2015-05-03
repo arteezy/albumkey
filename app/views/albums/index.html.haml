@@ -45,15 +45,13 @@
         = label_tag :exclude
         .btn-toolbar
           .btn-group{ data: { toggle: 'buttons' } }
-            .btn-group
-              %label.btn.btn-danger{ class: ('active' if params[:bnm]) }
-                = check_box_tag :bnm, nil, params[:bnm]
-                = 'Best New Music'
+            %label.btn.btn-danger{ class: ('active' if params[:bnm]) }
+              = check_box_tag :bnm, nil, params[:bnm]
+              = 'Best New Music'
           .btn-group{ data: { toggle: 'buttons' } }
-            .btn-group
-              %label.btn.btn-success{ class: ('active' if params[:bnr]) }
-                = check_box_tag :bnr, nil, params[:bnr]
-                = 'Reissue'
+            %label.btn.btn-success{ class: ('active' if params[:bnr]) }
+              = check_box_tag :bnr, nil, params[:bnr]
+              = 'Reissue'
       %button.btn.btn-default.btn-block= 'Search'
 
 .col-lg-9
