@@ -1,5 +1,55 @@
 require 'rails_helper'
 
-RSpec.describe Album, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Album, type: :model do
+  it 'has a valid factory' do
+    expect(build(:album)).to be_valid
+  end
+
+  it 'is invalid without a title' do
+    album = build(:album, title: nil)
+    album.valid?
+    expect(album.errors[:title]).to include("can't be blank")
+  end
+
+  it 'is invalid without an artist' do
+    album = build(:album, artist: nil)
+    album.valid?
+    expect(album.errors[:artist]).to include("can't be blank")
+  end
+
+  it 'is invalid without a label' do
+    album = build(:album, label: nil)
+    album.valid?
+    expect(album.errors[:label]).to include("can't be blank")
+  end
+
+  it 'is invalid without a year' do
+    album = build(:album, year: nil)
+    album.valid?
+    expect(album.errors[:year]).to include("can't be blank")
+  end
+
+  it 'is invalid without a date' do
+    album = build(:album, date: nil)
+    album.valid?
+    expect(album.errors[:date]).to include("can't be blank")
+  end
+
+  it 'is invalid without an artwork' do
+    album = build(:album, artwork: nil)
+    album.valid?
+    expect(album.errors[:artwork]).to include("can't be blank")
+  end
+
+  it 'is invalid without an URL' do
+    album = build(:album, url: nil)
+    album.valid?
+    expect(album.errors[:url]).to include("can't be blank")
+  end
+
+  it 'is invalid without a score' do
+    album = build(:album, score: nil)
+    album.valid?
+    expect(album.errors[:score]).to include("can't be blank")
+  end
 end

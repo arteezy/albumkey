@@ -1,16 +1,14 @@
 FactoryGirl.define do
-
   factory :album do
-    title "Everyday Robots"
-    artist "Damon Albarn"
-    label "Parlophone"
-    year "2014"
-    date "2014-04-28"
-    artwork "http://cdn2.pitchfork.com/albums/20489/homepage_large.099546ba.jpg"
-    url "http://pitchfork.com/reviews/albums/19280-damon-albarn-everyday-robots/"
-    score 7.0
+    title { Faker::Lorem.sentence }
+    artist { Faker::Name.name }
+    label { Faker::Company.name }
+    year { Faker::Time.between(10.years.ago, Time.now).year }
+    date { Faker::Time.between(10.years.ago, Time.now) }
+    artwork { Faker::Avatar.image("album-artwork", "300x300", "jpg") }
+    url { Faker::Internet.url }
+    score { rand(0.0...10.0) }
     bnm false
     bnr false
   end
-
 end
