@@ -19,31 +19,31 @@ describe AlbumsController, type: :controller do
 
   describe "GET #index" do
     it "assigns all albums as @albums" do
-      album = Album.create! valid_attributes
-      get :index, {}, valid_session
+      album = create(:album)
+      get :index
       expect(assigns(:albums)).to eq([album])
     end
   end
 
   describe "GET #show" do
     it "assigns the requested album as @album" do
-      album = Album.create! valid_attributes
-      get :show, {:id => album.to_param}, valid_session
+      album = create(:album)
+      get :show, id: album
       expect(assigns(:album)).to eq(album)
     end
   end
 
   describe "GET #new" do
     it "assigns a new album as @album" do
-      get :new, {}, valid_session
+      get :new
       expect(assigns(:album)).to be_a_new(Album)
     end
   end
 
   describe "GET #edit" do
     it "assigns the requested album as @album" do
-      album = Album.create! valid_attributes
-      get :edit, {:id => album.to_param}, valid_session
+      album = create(:album)
+      get :edit, id: album
       expect(assigns(:album)).to eq(album)
     end
   end
