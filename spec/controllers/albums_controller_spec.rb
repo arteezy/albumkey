@@ -21,7 +21,12 @@ describe AlbumsController, type: :controller do
     it "assigns all albums as @albums" do
       album = create(:album)
       get :index
-      expect(assigns(:albums)).to eq([album])
+      expect(assigns(:albums)).to match_array([album])
+    end
+
+    it "renders the :index template" do
+      get :index
+      expect(response).to render_template :index
     end
   end
 
@@ -31,12 +36,23 @@ describe AlbumsController, type: :controller do
       get :show, id: album
       expect(assigns(:album)).to eq(album)
     end
+
+    it "renders the :show template" do
+      album = create(:album)
+      get :show, id: album
+      expect(response).to render_template :show
+    end
   end
 
   describe "GET #new" do
     it "assigns a new album as @album" do
       get :new
       expect(assigns(:album)).to be_a_new(Album)
+    end
+
+    it "renders the :new template" do
+      get :new
+      expect(response).to render_template :new
     end
   end
 
@@ -45,6 +61,12 @@ describe AlbumsController, type: :controller do
       album = create(:album)
       get :edit, id: album
       expect(assigns(:album)).to eq(album)
+    end
+
+    it "renders the :edit template" do
+      album = create(:album)
+      get :edit, id: album
+      expect(response).to render_template :edit
     end
   end
 
