@@ -57,6 +57,8 @@ group :test do
   gem 'faker', '~> 1.4.3'
   # Use Capybara for integration specs
   gem 'capybara', '~> 2.4.4'
+  # Use DatabaseCleaner to wipe DB before tests
+  gem 'database_cleaner', '~> 1.4.1'
   # Use Launchy as helper to Capybara specs
   gem 'launchy', '~> 2.4.3'
 end
