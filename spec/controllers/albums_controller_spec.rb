@@ -146,15 +146,15 @@ describe AlbumsController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested album" do
-      album = Album.create! valid_attributes
+      album = create(:album)
       expect {
-        delete :destroy, {:id => album.to_param}, valid_session
+        delete :destroy, id: album
       }.to change(Album, :count).by(-1)
     end
 
     it "redirects to the albums list" do
-      album = Album.create! valid_attributes
-      delete :destroy, {:id => album.to_param}, valid_session
+      album = create(:album)
+      delete :destroy, id: album
       expect(response).to redirect_to(albums_url)
     end
   end
