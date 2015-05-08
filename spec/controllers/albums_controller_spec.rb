@@ -74,18 +74,18 @@ describe AlbumsController, type: :controller do
     context "with valid params" do
       it "creates a new Album" do
         expect {
-          post :create, {:album => valid_attributes}, valid_session
+          post :create, album: attributes_for(:album)
         }.to change(Album, :count).by(1)
       end
 
       it "assigns a newly created album as @album" do
-        post :create, {:album => valid_attributes}, valid_session
+        post :create, album: attributes_for(:album)
         expect(assigns(:album)).to be_a(Album)
         expect(assigns(:album)).to be_persisted
       end
 
       it "redirects to the created album" do
-        post :create, {:album => valid_attributes}, valid_session
+        post :create, album: attributes_for(:album)
         expect(response).to redirect_to(Album.last)
       end
     end
