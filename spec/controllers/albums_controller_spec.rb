@@ -92,12 +92,12 @@ describe AlbumsController, type: :controller do
 
     context "with invalid params" do
       it "assigns a newly created but unsaved album as @album" do
-        post :create, {:album => invalid_attributes}, valid_session
+        post :create, album: attributes_for(:invalid_album)
         expect(assigns(:album)).to be_a_new(Album)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:album => invalid_attributes}, valid_session
+        post :create, album: attributes_for(:invalid_album)
         expect(response).to render_template("new")
       end
     end

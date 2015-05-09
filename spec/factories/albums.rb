@@ -10,5 +10,9 @@ FactoryGirl.define do
     score { rand(0.0...10.0).round(1) }
     bnm false
     bnr false
+
+    factory :invalid_album do
+      title nil
+    end
   end
 end
