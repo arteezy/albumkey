@@ -98,7 +98,7 @@ describe AlbumsController, type: :controller do
 
       it "re-renders the 'new' template" do
         post :create, album: attributes_for(:invalid_album)
-        expect(response).to render_template("new")
+        expect(response).to render_template :new
       end
     end
   end
