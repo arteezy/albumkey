@@ -1,22 +1,6 @@
 require 'rails_helper'
 
 describe AlbumsController, type: :controller do
-  # This should return the minimal set of attributes required to create a valid
-  # Album. As you add validations to Album, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
-
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # AlbumsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
-
   describe "GET #index" do
     it "assigns all albums as @albums" do
       album = create(:album)
@@ -103,42 +87,39 @@ describe AlbumsController, type: :controller do
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+  describe "PATCH #update" do
+    before :each do
+      @album = create(:album, title: "Illmatic", artist: "Nas")
+    end
 
+    context "with valid params" do
       it "updates the requested album" do
-        album = Album.create! valid_attributes
-        put :update, {:id => album.to_param, :album => new_attributes}, valid_session
-        album.reload
-        skip("Add assertions for updated state")
+        patch :update, id: @album, album: attributes_for(:album, title: "Dalmatic", artist: "Pas")
+        @album.reload
+        expect(@album.title).to eq("Dalmatic")
+        expect(@album.artist).to eq("Pas")
       end
 
       it "assigns the requested album as @album" do
-        album = Album.create! valid_attributes
-        put :update, {:id => album.to_param, :album => valid_attributes}, valid_session
-        expect(assigns(:album)).to eq(album)
+        patch :update, id: @album, album: attributes_for(:album)
+        expect(assigns(:album)).to eq(@album)
       end
 
       it "redirects to the album" do
-        album = Album.create! valid_attributes
-        put :update, {:id => album.to_param, :album => valid_attributes}, valid_session
-        expect(response).to redirect_to(album)
+        patch :update, id: @album, album: attributes_for(:album)
+        @album.reload
+        expect(response).to redirect_to(@album)
       end
     end
 
     context "with invalid params" do
       it "assigns the album as @album" do
-        album = Album.create! valid_attributes
-        put :update, {:id => album.to_param, :album => invalid_attributes}, valid_session
-        expect(assigns(:album)).to eq(album)
+        patch :update, id: @album, album: attributes_for(:invalid_album)
+        expect(assigns(:album)).to eq(@album)
       end
 
       it "re-renders the 'edit' template" do
-        album = Album.create! valid_attributes
-        put :update, {:id => album.to_param, :album => invalid_attributes}, valid_session
+        patch :update, id: @album, album: attributes_for(:invalid_album)
         expect(response).to render_template("edit")
       end
     end
