@@ -64,3 +64,6 @@ group :test do
   # Use Launchy as helper to Capybara specs
   gem 'launchy', '~> 2.4.3'
 end
+
+# 12 Factor gem for Heroku
+gem 'rails_12factor', group: :production

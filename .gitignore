@@ -8,6 +8,4 @@
 /log
 /tmp
 
-Procfile
-Gemfile.lock
 .DS_Store
