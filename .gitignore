@@ -4,8 +4,12 @@
 # Ignore IDEA config
 /.idea
 
-# Ignore all logfiles and tempfiles.
+# Ignore all logfiles and tempfiles
 /log
 /tmp
 
+# Ignore Mac OS X specific files
 .DS_Store
+
+# Ignore local enviroment variables config
+.env
