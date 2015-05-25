@@ -1,6 +1,8 @@
 language: ruby
 rvm:
   - 2.1.6
-  - 2.2.2
 services:
   - mongodb
+addons:
+  code_climate:
+    repo_token: 4c9ecec2102620e17bfe17dcd35c39c3d1cd2694849e63c54caf28c7025c2366

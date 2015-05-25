@@ -66,6 +66,8 @@ group :test do
   gem 'database_cleaner', '~> 1.4.1'
   # Use Launchy as helper to Capybara specs
   gem 'launchy', '~> 2.4.3'
+  # Use Code Climate to measure test coverage and code quality
+  gem 'codeclimate-test-reporter', require: nil
 end
 
 # 12 Factor gem for Heroku
