@@ -1,7 +1,11 @@
+[![Build Status](https://travis-ci.org/arteezy/richfork.svg?branch=master)](https://travis-ci.org/arteezy/richfork)
+[![Code Climate](https://codeclimate.com/github/arteezy/richfork/badges/gpa.svg)](https://codeclimate.com/github/arteezy/richfork)
+[![Test Coverage](https://codeclimate.com/github/arteezy/richfork/badges/coverage.svg)](https://codeclimate.com/github/arteezy/richfork/coverage)
+
 # Pitchfork Analyst Tool
 Rails web application for analysis of [Pitchfork](http://pitchfork.com) reviews.
 
-## How it works 
+## How it works
 
 Web-crawler written with Nokogiri gem parses reviews data directly from [pitchfork.com](http://pitchfork.com) and then stores it in MongoDB.
 
