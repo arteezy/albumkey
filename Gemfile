@@ -35,6 +35,8 @@ gem 'kaminari'
 gem 'mongoid-slug'
 # Use Skylight as monitoring service
 gem 'skylight'
+# Use New Relic as monitoring service
+gem 'newrelic_rpm'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
