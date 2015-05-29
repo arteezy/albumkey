@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+
 ruby '2.1.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -25,16 +26,14 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-# Use Gravtastic gem to add Gravatr support
-gem 'gravtastic'
-# Use TZInfo Data as data source for time zones
-gem 'tzinfo-data'
 # Use Kaminari gem for pagination
 gem 'kaminari'
 # Use Mongoid Slug as slug generator for beautiful URLs
 gem 'mongoid-slug'
-# Use Skylight as monitoring service
-gem 'skylight'
+# Use Gravtastic gem to add Gravatr support
+gem 'gravtastic'
+# Use TZInfo Data as data source for time zones
+gem 'tzinfo-data'
 # Use New Relic as monitoring service
 gem 'newrelic_rpm'
 
