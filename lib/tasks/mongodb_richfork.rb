@@ -18,7 +18,7 @@ def parse_review(url)
     year       = label_year[1].strip
     date_raw   = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/h4/span').first.content.strip
     date       = DateTime.strptime(date_raw, "%B %d, %Y")
-    rating      = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/span').first.content.strip
+    rating     = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/span').first.content.strip
     artwork    = doc.xpath('//div[@id = "main"]/*/*/div[@class = "artwork"]/img/@src').first.content.strip
     bnm        = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/div[@class = "bnm-label"]').first.content.include?("Best New Music")
     reissue    = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/div[@class = "bnm-label"]').first.content.include?("Best New Reissue")
@@ -38,8 +38,8 @@ def parse_review(url)
     date:    date.to_time,
     rating:  rating.to_f,
     artwork: artwork,
-    bnm:     bnm,
-    reissue: reissue
+    reissue: reissue,
+    bnm:     bnm
   }
 end
 
