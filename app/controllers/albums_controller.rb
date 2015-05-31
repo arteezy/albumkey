@@ -12,11 +12,11 @@ class AlbumsController < ApplicationController
     selectors << { artist: params[:artist] } if params[:artist]
     selectors << { year: params[:year] } if params[:year]
     selectors << { label: params[:label] } if params[:label]
+    selectors << { reissue: false } if params[:reissue]
     selectors << { bnm: false } if params[:bnm]
-    selectors << { bnr: false } if params[:bnr]
 
     @albums = Album.all_of(*selectors)
-                  .gte(score: params[:rating])
+                  .gte(rating: params[:rating])
                   .order_by(params[:order] => params[:dir])
                   .includes(:rates)
                   .page(params[:page])
@@ -86,6 +86,6 @@ class AlbumsController < ApplicationController
     end
 
     def album_params
-      params.require(:album).permit(:title, :artist, :label, :year, :date, :artwork, :url, :score, :bnm, :bnr)
+      params.require(:album).permit(:title, :artist, :label, :year, :date, :artwork, :source, :rating, :reissue, :bnm)
     end
 end

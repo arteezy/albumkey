@@ -8,10 +8,10 @@ class Album
   field :year, type: String
   field :date, type: Date
   field :artwork, type: String
-  field :url, type: String
-  field :score, type: Float
+  field :source, type: String
+  field :rating, type: Float
+  field :reissue, type: Mongoid::Boolean
   field :bnm, type: Mongoid::Boolean
-  field :bnr, type: Mongoid::Boolean
 
   slug :artist, :title
 
@@ -23,8 +23,8 @@ class Album
   validates :year, presence: true
   validates :date, presence: true
   validates :artwork, presence: true
-  validates :url, presence: true
-  validates :score, presence: true
+  validates :source, presence: true
+  validates :rating, presence: true
 
   def self.search_by_artist(artist)
     if artist

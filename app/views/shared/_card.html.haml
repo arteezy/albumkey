@@ -8,12 +8,12 @@
       %h4= link_to card["year"], albums_path(year: card["year"])
       %h4= link_to card["label"], albums_path(label: card["label"])
       %h5= card["date"].strftime('%d %b %Y')
-      %h5= link_to "Read review at Pitchfork", card["url"]
+      %h5= link_to "Read review at Pitchfork", card["source"]
     .col-lg-4
       - if card["bnm"]
-        .score.bnm= card["score"]
+        .score.bnm= card["rating"]
       - else
-        - if card["bnr"]
-          .score.bnr= card["score"]
+        - if card["reissue"]
+          .score.reissue= card["rating"]
         - else
-          .score= card["score"]
+          .score= card["rating"]

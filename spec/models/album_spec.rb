@@ -41,16 +41,16 @@ describe Album, type: :model do
     expect(album.errors[:artwork]).to include("can't be blank")
   end
 
-  it 'is invalid without an URL' do
-    album = build(:album, url: nil)
+  it 'is invalid without a source URL' do
+    album = build(:album, source: nil)
     album.valid?
-    expect(album.errors[:url]).to include("can't be blank")
+    expect(album.errors[:source]).to include("can't be blank")
   end
 
-  it 'is invalid without a score' do
-    album = build(:album, score: nil)
+  it 'is invalid without a rating' do
+    album = build(:album, rating: nil)
     album.valid?
-    expect(album.errors[:score]).to include("can't be blank")
+    expect(album.errors[:rating]).to include("can't be blank")
   end
 
   context 'slug' do
