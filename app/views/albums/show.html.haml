@@ -11,29 +11,29 @@
       %h4= link_to @album["year"], albums_path(year: @album["year"])
       %h4= link_to @album["label"], albums_path(label: @album["label"])
       %h5= @album["date"].strftime('%d %b %Y')
-      %h5= link_to "Read review at Pitchfork", @album["url"]
+      %h5= link_to "Read review at Pitchfork", @album["source"]
       .hidden-lg.hidden-md.hidden-sm
         - if @album["bnm"]
-          .btn.btn-lg.btn-danger= @album["score"]
+          .btn.btn-lg.btn-danger= @album["rating"]
         - else
-          - if @album["bnr"]
-            .btn.btn-lg.btn-success= @album["score"]
+          - if @album["reissue"]
+            .btn.btn-lg.btn-success= @album["rating"]
           - else
-            .btn.btn-lg.btn-primary= @album["score"]
+            .btn.btn-lg.btn-primary= @album["rating"]
     .col-lg-2
       - if current_user
         - if @album.rates.blank?
-          .score.user.dim= 0.0
+          .rating.user.dim= 0.0
         - else
-          .score.user= @album.rates.where(user_id: current_user.id).first["rate"]
+          .rating.user= @album.rates.where(user_id: current_user.id).first["rate"]
     .col-lg-3.col-md-4.col-sm-6.hidden-xs
       - if @album["bnm"]
-        .score.bnm= @album["score"]
+        .rating.bnm= @album["rating"]
       - else
-        - if @album["bnr"]
-          .score.bnr= @album["score"]
+        - if @album["reissue"]
+          .rating.reissue= @album["rating"]
         - else
-          .score= @album["score"]
+          .rating= @album["rating"]
 
 = link_to 'Edit', edit_album_path(@album)
 = link_to 'Destroy', @album, method: :delete, data: { confirm: 'Are you sure?' }

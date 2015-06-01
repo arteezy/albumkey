@@ -11,9 +11,9 @@
       %h5= link_to "Read review at Pitchfork", card["source"]
     .col-lg-4
       - if card["bnm"]
-        .score.bnm= card["rating"]
+        .rating.bnm= card["rating"]
       - else
         - if card["reissue"]
-          .score.reissue= card["rating"]
+          .rating.reissue= card["rating"]
         - else
-          .score= card["rating"]
+          .rating= card["rating"]

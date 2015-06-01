@@ -19,7 +19,7 @@ $(document).on("ready page:load", function() {
   });
 
   $(function () {
-    $(".score.user").mouseenter(function() {
+    $(".rating.user").mouseenter(function() {
       $(this).removeClass("dim");
 
       $(this).mousemove(function(e) {
@@ -32,11 +32,11 @@ $(document).on("ready page:load", function() {
       });
     });
 
-    $(".score.user").mouseleave(function() {
+    $(".rating.user").mouseleave(function() {
       $(this).off("mousemove");
     });
 
-    $(".score.user").mousedown(function() {
+    $(".rating.user").mousedown(function() {
       var rate = $(this).text();
       var album_id = $(this).closest(".card").data("album-id");
       $.ajax({
@@ -49,7 +49,7 @@ $(document).on("ready page:load", function() {
       });
     });
 
-    $(".score.user").mouseup(function() {
+    $(".rating.user").mouseup(function() {
       $(this).off("mousemove");
       $(this).off("mouseleave");
       $(this).removeClass("dim");
