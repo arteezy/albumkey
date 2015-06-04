@@ -1,7 +1,7 @@
 .well.well-sm
   .row.card{ "data-album-id" => card.id }
     .col-lg-4
-      = image_tag(card["artwork"], class: ["artwork", "img-thumbnail", "img-responsive"])
+      = image_tag(card["artwork"], alt: card["title"], class: ["artwork", "img-thumbnail", "img-responsive"])
     .col-lg-4
       %h2= link_to card["title"], album_path(card)
       %h3= link_to card["artist"], albums_path(artist: card["artist"])
