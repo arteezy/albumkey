@@ -49,8 +49,8 @@
               = check_box_tag :bnm, nil, params[:bnm]
               = 'Best New Music'
           .btn-group{ data: { toggle: 'buttons' } }
-            %label.btn.btn-success{ class: ('active' if params[:bnr]) }
-              = check_box_tag :bnr, nil, params[:bnr]
+            %label.btn.btn-success{ class: ('active' if params[:reissue]) }
+              = check_box_tag :reissue, nil, params[:reissue]
               = 'Reissue'
       %button.btn.btn-default.btn-block= 'Search'
 

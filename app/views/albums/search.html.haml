@@ -14,10 +14,10 @@
       %th= 'Year'
       %th= 'Date'
       %th= 'Artwork'
-      %th= 'Url'
-      %th= 'Score'
+      %th= 'Source'
+      %th= 'Rating'
+      %th= 'Reissue'
       %th= 'Bnm'
-      %th= 'Bnr'
       %th{ colspan: '3' }
 
   %tbody
@@ -29,10 +29,10 @@
         %td= album.year
         %td= album.date
         %td= image_tag album.artwork, size: '100'
-        %td= link_to 'Pitchfork Link', album.url
-        %td= album.score
+        %td= link_to 'Pitchfork Link', album.source
+        %td= album.rating
+        %td= album.reissue
         %td= album.bnm
-        %td= album.bnr
         %td= link_to 'Show', album
         %td= link_to 'Edit', edit_album_path(album)
         %td= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' }
