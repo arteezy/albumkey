@@ -13,7 +13,7 @@ $(document).on("ready page:load", function() {
   var rating = 7.5
   var url_rating = document.URL.split("rating=")
   if (url_rating.length > 1)
-    rating = +url_rating[1].match(/\d+.\d/)[0]
+    rating = +url_rating[1].match(/\d+(.\d)?/)[0]
 
   $("#rating").slider({
     min: 0,
