@@ -15,7 +15,7 @@
         = text_field_tag :label, params[:label], class: 'form-control'
       .form-group
         = label_tag nil, 'Minimal Rating'
-        = range_field_tag :rating
+        = range_field_tag :rating, nil, disabled: true
       .form-group
         = label_tag :order
         .btn-group.btn-group-justified{ data: { toggle: 'buttons' } }

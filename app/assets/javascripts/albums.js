@@ -23,6 +23,10 @@ $(document).on("ready page:load", function() {
     handle: 'round'
   });
 
+  $(".slider").mouseenter(function() {
+    $("#rating").removeAttr("disabled");
+  });
+
   $(function () {
     $(".rating.user").mouseenter(function() {
       $(this).removeClass("dim");
