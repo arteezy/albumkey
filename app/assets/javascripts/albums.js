@@ -1,3 +1,12 @@
+function getQueryParams(qs) {
+  qs = qs.split('+').join(' ');
+  var params = {}, tokens, re = /[?&]?([^=]+)=([^&]*)/g;
+  while (tokens = re.exec(qs)) {
+    params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+  }
+  return params;
+}
+
 $(document).on("ready page:load", function() {
   $("#filter").submit(function() {
     $(this).find(":input").filter(function(){ return !this.value; }).attr("disabled", "disabled");
@@ -10,10 +19,9 @@ $(document).on("ready page:load", function() {
     }
   });
 
-  var rating = 7.5
-  var url_rating = document.URL.split("rating=")
-  if (url_rating.length > 1)
-    rating = +url_rating[1].match(/\d+(.\d)?/)[0]
+  var rating = 7.5;
+  var query = getQueryParams(document.location.search);
+  if (query.rating) rating = +query.rating;
 
   $("#rating").slider({
     min: 0,
