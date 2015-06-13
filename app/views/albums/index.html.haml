@@ -6,7 +6,7 @@
     = form_tag albums_path, method: :get, id: 'filter' do
       .form-group
         = label_tag :artist
-        = text_field_tag :artist, params[:artist], class: 'form-control'
+        = text_field_tag :artist, params[:artist], class: 'form-control', id: 'dank', autocomplete: 'off'
       .form-group
         = label_tag :year
         = text_field_tag :year, params[:year], class: 'form-control'

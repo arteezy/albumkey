@@ -13,6 +13,10 @@ $(document).on("ready page:load", function() {
     return true;
   });
 
+  $.get('/artists.json', function(data){
+      $("#dank").typeahead({ source:data });
+  },'json');
+
   $("#dash").affix({
     offset: {
       top: $(".navbar-header").height()
