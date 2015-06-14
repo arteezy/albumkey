@@ -22,6 +22,10 @@ class AlbumsController < ApplicationController
                   .page(params[:page])
   end
 
+  def artists
+    @artists = Album.all.distinct('artist').sort
+  end
+
   def search
     @albums = Album.search_by_artist(params[:search]).page(params[:page])
   end

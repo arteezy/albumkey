@@ -7,5 +7,7 @@ Rails.application.routes.draw do
 
   get '/search', to: 'albums#search', as: 'search'
 
+  get '/artists', to: 'albums#artists', as: 'artists'
+
   post '/rate/:id', to: 'rate#create', as: 'rate'
 end
