@@ -23,7 +23,9 @@ class AlbumsController < ApplicationController
   end
 
   def artists
-    @artists = Album.all.distinct('artist').sort
+    @artists = Rails.cache.fetch 'artists', expires_in: 1.hour do
+      Album.all.distinct('artist').sort
+    end
   end
 
   def search
