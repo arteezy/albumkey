@@ -23,10 +23,6 @@
             %li= link_to "2013", albums_path(year: 2013, order: :rating, dir: :desc)
             %li= link_to "2014", albums_path(year: 2014, order: :rating, dir: :desc)
             %li= link_to "2015", albums_path(year: 2015, order: :rating, dir: :desc)
-        %li= link_to "Interpol", albums_path(artist: "Interpol")
-        %li= link_to "Julia Holter", albums_path(artist: "Julia Holter")
-        %li= link_to "The Flaming Lips", albums_path(artist: "The Flaming Lips")
-        %li= link_to "Various Artists", albums_path(artist: "Various Artists")
 
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
