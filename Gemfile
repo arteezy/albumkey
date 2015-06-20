@@ -30,7 +30,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'kaminari'
 # Use Mongoid Slug as slug generator for beautiful URLs
 gem 'mongoid-slug'
-# Use Gravtastic gem to add Gravatr support
+# Use Gravtastic gem to add Gravatar support
 gem 'gravtastic'
 # Use TZInfo Data as data source for time zones
 gem 'tzinfo-data'
