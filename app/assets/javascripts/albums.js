@@ -13,7 +13,7 @@ $(document).on("ready page:load", function() {
     return true;
   });
 
-  $.get('/artists.json', function(data){
+  $.get('/api/artists.json', function(data){
       $("#dank").typeahead({ source:data });
   },'json');
 
@@ -61,7 +61,7 @@ $(document).on("ready page:load", function() {
       var rate = $(this).text();
       var album_id = $(this).closest(".card").data("album-id");
       $.ajax({
-        url: '/rate/' + album_id,
+        url: '/api/rate/' + album_id,
         type: 'POST',
         data: 'rate=' + rate,
         error: function(e) {

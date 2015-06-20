@@ -6,5 +6,6 @@ class RateController < ApplicationController
     else
       rate.create(rate: params[:rate].to_f)
     end
+    render nothing: true
   end
 end
