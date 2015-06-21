@@ -28,9 +28,9 @@
           %label.btn.btn-primary{ class: ('active' if params[:order] == 'year') }
             = radio_button_tag 'order', 'year', (true if params[:order] == 'year')
             = 'Year'
-          %label.btn.btn-primary{ class: ('active' if params[:order] == 'score') }
-            = radio_button_tag 'order', 'score', (true if params[:order] == 'score')
-            = 'Score'
+          %label.btn.btn-primary{ class: ('active' if params[:order] == 'rating') }
+            = radio_button_tag 'order', 'rating', (true if params[:order] == 'rating')
+            = 'Rating'
       .form-group
         = label_tag :direction
         %br
