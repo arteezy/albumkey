@@ -28,6 +28,12 @@ class AlbumsController < ApplicationController
     end
   end
 
+  def labels
+    @labels = Rails.cache.fetch 'labels', expires_in: 1.hour do
+      Album.all.distinct('label').sort
+    end
+  end
+
   def search
     @albums = Album.search_by_artist(params[:search]).page(params[:page])
   end

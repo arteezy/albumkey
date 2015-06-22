@@ -14,7 +14,11 @@ $(document).on("ready page:load", function() {
   });
 
   $.get('/api/artists.json', function(data){
-      $("#dank").typeahead({ source:data });
+      $("#artists-typeahead").typeahead({ source:data });
+  },'json');
+
+  $.get('/api/labels.json', function(data){
+      $("#labels-typeahead").typeahead({ source:data });
   },'json');
 
   $("#dash").affix({

@@ -2,10 +2,11 @@ Rails.application.routes.draw do
   resources :albums
   root to: 'albums#index'
   devise_for :users
-  get '/search', to: 'albums#search', as: 'search'
+  get '/search', to: 'albums#search'
 
   scope :api do
-    get '/artists', to: 'albums#artists', as: 'artists'
+    get '/artists', to: 'albums#artists'
+    get '/labels', to: 'albums#labels'
     post '/rate/:id', to: 'rate#create', as: 'rate'
   end
 end

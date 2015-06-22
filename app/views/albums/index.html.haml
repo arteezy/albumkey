@@ -6,13 +6,13 @@
     = form_tag albums_path, method: :get, id: 'filter' do
       .form-group
         = label_tag :artist
-        = text_field_tag :artist, params[:artist], class: 'form-control', id: 'dank', autocomplete: 'off'
+        = text_field_tag :artist, params[:artist], class: 'form-control', id: 'artists-typeahead', autocomplete: 'off'
       .form-group
         = label_tag :year
         = text_field_tag :year, params[:year], class: 'form-control'
       .form-group
         = label_tag :label
-        = text_field_tag :label, params[:label], class: 'form-control'
+        = text_field_tag :label, params[:label], class: 'form-control', id: 'labels-typeahead', autocomplete: 'off'
       .form-group
         = label_tag nil, 'Minimal Rating'
         = range_field_tag :rating, nil, disabled: true
