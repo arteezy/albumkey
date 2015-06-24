@@ -1,143 +1,192 @@
 require 'rails_helper'
 
 describe AlbumsController, type: :controller do
-  describe "GET #index" do
-    it "assigns all albums as @albums" do
-      album = create(:album)
-      get :index
-      expect(assigns(:albums)).to match_array([album])
-    end
-
-    it "renders the :index template" do
-      get :index
-      expect(response).to render_template :index
-    end
-  end
-
-  describe "GET #show" do
-    it "assigns the requested album as @album" do
-      album = create(:album)
-      get :show, id: album
-      expect(assigns(:album)).to eq(album)
-    end
-
-    it "renders the :show template" do
-      album = create(:album)
-      get :show, id: album
-      expect(response).to render_template :show
-    end
-  end
-
-  describe "GET #new" do
-    it "assigns a new album as @album" do
-      get :new
-      expect(assigns(:album)).to be_a_new(Album)
-    end
-
-    it "renders the :new template" do
-      get :new
-      expect(response).to render_template :new
-    end
-  end
-
-  describe "GET #edit" do
-    it "assigns the requested album as @album" do
-      album = create(:album)
-      get :edit, id: album
-      expect(assigns(:album)).to eq(album)
-    end
-
-    it "renders the :edit template" do
-      album = create(:album)
-      get :edit, id: album
-      expect(response).to render_template :edit
-    end
-  end
-
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Album" do
-        expect {
-          post :create, album: attributes_for(:album)
-        }.to change(Album, :count).by(1)
+  context "CRUD" do
+    describe "GET #index" do
+      it "assigns all albums as @albums" do
+        album = create(:album)
+        get :index
+        expect(assigns(:albums)).to match_array([album])
       end
 
-      it "assigns a newly created album as @album" do
-        post :create, album: attributes_for(:album)
-        expect(assigns(:album)).to be_a(Album)
-        expect(assigns(:album)).to be_persisted
-      end
-
-      it "redirects to the created album" do
-        post :create, album: attributes_for(:album)
-        expect(response).to redirect_to(Album.last)
+      it "renders the :index template" do
+        get :index
+        expect(response).to render_template :index
       end
     end
 
-    context "with invalid params" do
-      it "assigns a newly created but unsaved album as @album" do
-        post :create, album: attributes_for(:invalid_album)
+    describe "GET #show" do
+      it "assigns the requested album as @album" do
+        album = create(:album)
+        get :show, id: album
+        expect(assigns(:album)).to eq(album)
+      end
+
+      it "renders the :show template" do
+        album = create(:album)
+        get :show, id: album
+        expect(response).to render_template :show
+      end
+    end
+
+    describe "GET #new" do
+      it "assigns a new album as @album" do
+        get :new
         expect(assigns(:album)).to be_a_new(Album)
       end
 
-      it "re-renders the 'new' template" do
-        post :create, album: attributes_for(:invalid_album)
+      it "renders the :new template" do
+        get :new
         expect(response).to render_template :new
       end
     end
-  end
 
-  describe "PATCH #update" do
-    before :each do
-      @album = create(:album, title: "Illmatic", artist: "Nas")
-    end
-
-    context "with valid params" do
-      it "updates the requested album" do
-        patch :update, id: @album, album: attributes_for(:album, title: "Dalmatic", artist: "Pas")
-        @album.reload
-        expect(@album.title).to eq("Dalmatic")
-        expect(@album.artist).to eq("Pas")
-      end
-
+    describe "GET #edit" do
       it "assigns the requested album as @album" do
-        patch :update, id: @album, album: attributes_for(:album)
-        expect(assigns(:album)).to eq(@album)
+        album = create(:album)
+        get :edit, id: album
+        expect(assigns(:album)).to eq(album)
       end
 
-      it "redirects to the album" do
-        patch :update, id: @album, album: attributes_for(:album)
-        @album.reload
-        expect(response).to redirect_to(@album)
+      it "renders the :edit template" do
+        album = create(:album)
+        get :edit, id: album
+        expect(response).to render_template :edit
+      end
+    end
+
+    describe "POST #create" do
+      context "with valid params" do
+        it "creates a new Album" do
+          expect {
+            post :create, album: attributes_for(:album)
+          }.to change(Album, :count).by(1)
+        end
+
+        it "assigns a newly created album as @album" do
+          post :create, album: attributes_for(:album)
+          expect(assigns(:album)).to be_a(Album)
+          expect(assigns(:album)).to be_persisted
+        end
+
+        it "redirects to the created album" do
+          post :create, album: attributes_for(:album)
+          expect(response).to redirect_to(Album.last)
+        end
+      end
+
+      context "with invalid params" do
+        it "assigns a newly created but unsaved album as @album" do
+          post :create, album: attributes_for(:invalid_album)
+          expect(assigns(:album)).to be_a_new(Album)
+        end
+
+        it "re-renders the 'new' template" do
+          post :create, album: attributes_for(:invalid_album)
+          expect(response).to render_template :new
+        end
       end
     end
 
-    context "with invalid params" do
-      it "assigns the album as @album" do
-        patch :update, id: @album, album: attributes_for(:invalid_album)
-        expect(assigns(:album)).to eq(@album)
+    describe "PATCH #update" do
+      before :each do
+        @album = create(:album, title: "Illmatic", artist: "Nas")
       end
 
-      it "re-renders the 'edit' template" do
-        patch :update, id: @album, album: attributes_for(:invalid_album)
-        expect(response).to render_template("edit")
+      context "with valid params" do
+        it "updates the requested album" do
+          patch :update, id: @album, album: attributes_for(:album, title: "Dalmatic", artist: "Pas")
+          @album.reload
+          expect(@album.title).to eq("Dalmatic")
+          expect(@album.artist).to eq("Pas")
+        end
+
+        it "assigns the requested album as @album" do
+          patch :update, id: @album, album: attributes_for(:album)
+          expect(assigns(:album)).to eq(@album)
+        end
+
+        it "redirects to the album" do
+          patch :update, id: @album, album: attributes_for(:album)
+          @album.reload
+          expect(response).to redirect_to(@album)
+        end
+      end
+
+      context "with invalid params" do
+        it "assigns the album as @album" do
+          patch :update, id: @album, album: attributes_for(:invalid_album)
+          expect(assigns(:album)).to eq(@album)
+        end
+
+        it "re-renders the 'edit' template" do
+          patch :update, id: @album, album: attributes_for(:invalid_album)
+          expect(response).to render_template("edit")
+        end
       end
     end
-  end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested album" do
-      album = create(:album)
-      expect {
+    describe "DELETE #destroy" do
+      it "destroys the requested album" do
+        album = create(:album)
+        expect {
+          delete :destroy, id: album
+        }.to change(Album, :count).by(-1)
+      end
+
+      it "redirects to the albums list" do
+        album = create(:album)
         delete :destroy, id: album
-      }.to change(Album, :count).by(-1)
-    end
-
-    it "redirects to the albums list" do
-      album = create(:album)
-      delete :destroy, id: album
-      expect(response).to redirect_to(albums_url)
+        expect(response).to redirect_to(albums_url)
+      end
     end
   end
 
+  context "JSON API" do
+    describe "GET #artists" do
+      render_views
+
+      it "assigns all artists as @artists" do
+        album = create(:album)
+        get :artists, format: :json
+        expect(assigns(:artists)).to match_array([album.artist])
+      end
+
+      it "generates the :artists JSON" do
+        album = create(:album)
+        get :artists, format: :json
+        expect(response).to render_template :artists
+      end
+
+      it "returns an array of artist names" do
+        album1 = create(:album)
+        album2 = create(:album)
+        get :artists, format: :json
+        expect(JSON.parse(response.body)).to match_array([album1.artist, album2.artist])
+      end
+    end
+
+    describe "GET #labels" do
+      render_views
+
+      it "assigns all record labels as @labels" do
+        album = create(:album)
+        get :labels, format: :json
+        expect(assigns(:labels)).to match_array([album.label])
+      end
+
+      it "generates the :labels JSON" do
+        album = create(:album)
+        get :labels, format: :json
+        expect(response).to render_template :labels
+      end
+
+      it "returns an array of record labels" do
+        album1 = create(:album)
+        album2 = create(:album)
+        get :labels, format: :json
+        expect(JSON.parse(response.body)).to match_array([album1.label, album2.label])
+      end
+    end
+  end
 end
