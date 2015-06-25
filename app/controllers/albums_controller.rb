@@ -24,13 +24,13 @@ class AlbumsController < ApplicationController
 
   def artists
     @artists = Rails.cache.fetch 'artists', expires_in: 1.hour do
-      Album.all.distinct('artist').sort
+      Album.distinct('artist').sort
     end
   end
 
   def labels
     @labels = Rails.cache.fetch 'labels', expires_in: 1.hour do
-      Album.all.distinct('label').sort
+      Album.distinct('label').sort
     end
   end
 
