@@ -9,7 +9,7 @@ describe AlbumsController, type: :controller do
         expect(assigns(:albums)).to match_array([album])
       end
 
-      it "renders the :index template" do
+      it "renders the 'index' template" do
         get :index
         expect(response).to render_template :index
       end
@@ -22,7 +22,7 @@ describe AlbumsController, type: :controller do
         expect(assigns(:album)).to eq(album)
       end
 
-      it "renders the :show template" do
+      it "renders the 'show' template" do
         album = create(:album)
         get :show, id: album
         expect(response).to render_template :show
@@ -35,7 +35,7 @@ describe AlbumsController, type: :controller do
         expect(assigns(:album)).to be_a_new(Album)
       end
 
-      it "renders the :new template" do
+      it "renders the 'new' template" do
         get :new
         expect(response).to render_template :new
       end
@@ -48,7 +48,7 @@ describe AlbumsController, type: :controller do
         expect(assigns(:album)).to eq(album)
       end
 
-      it "renders the :edit template" do
+      it "renders the 'edit' template" do
         album = create(:album)
         get :edit, id: album
         expect(response).to render_template :edit
@@ -152,13 +152,13 @@ describe AlbumsController, type: :controller do
         expect(assigns(:artists)).to match_array([album.artist])
       end
 
-      it "generates the :artists JSON" do
+      it "renders the 'artists' JSON" do
         album = create(:album)
         get :artists, format: :json
         expect(response).to render_template :artists
       end
 
-      it "returns an array of artist names" do
+      it "generates an array of artist names" do
         album1 = create(:album)
         album2 = create(:album)
         get :artists, format: :json
@@ -175,13 +175,13 @@ describe AlbumsController, type: :controller do
         expect(assigns(:labels)).to match_array([album.label])
       end
 
-      it "generates the :labels JSON" do
+      it "renders the 'labels' JSON" do
         album = create(:album)
         get :labels, format: :json
         expect(response).to render_template :labels
       end
 
-      it "returns an array of record labels" do
+      it "generates an array of record labels" do
         album1 = create(:album)
         album2 = create(:album)
         get :labels, format: :json
