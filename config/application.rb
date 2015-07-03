@@ -17,7 +17,7 @@ Bundler.require(*Rails.groups)
 module Richfork
   class Application < Rails::Application
     # Precompile font assets
-    config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
+    config.assets.precompile << /\.(?:png|svg|eot|woff|ttf)$/
 
     # Select RSpec tests generators
     config.generators do |g|

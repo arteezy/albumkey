@@ -31,17 +31,17 @@ $(document).on("ready page:load", function() {
   var query = getQueryParams(document.location.search);
   if (query.rating) rating = +query.rating;
 
-  $("#rating").slider({
+  $("#rating").ionRangeSlider({
+    grid: true,
     min: 0,
     max: 10,
-    step: 0.1,
-    value: rating,
-    handle: 'round'
+    from: rating,
+    step: 0.1
   });
 
-  $(".slider").mouseenter(function() {
-    $("#rating").removeAttr("disabled");
-  });
+  // $(".slider").mouseenter(function() {
+  //   $("#rating").removeAttr("disabled");
+  // });
 
   $(function () {
     $(".rating.user").mouseenter(function() {
