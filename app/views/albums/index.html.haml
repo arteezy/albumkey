@@ -14,8 +14,8 @@
         = label_tag :label
         = text_field_tag :label, params[:label], class: 'form-control', id: 'labels-typeahead', autocomplete: 'off'
       .form-group
-        = label_tag nil, 'Rating'
-        = text_field_tag :rating, nil
+        = label_tag nil, 'Minimal Rating'
+        = text_field_tag :rating, nil, hidden: true
       .form-group
         = label_tag :order
         .btn-group.btn-group-justified{ data: { toggle: 'buttons' } }

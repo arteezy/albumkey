@@ -39,10 +39,6 @@ $(document).on("ready page:load", function() {
     step: 0.1
   });
 
-  // $(".slider").mouseenter(function() {
-  //   $("#rating").removeAttr("disabled");
-  // });
-
   $(function () {
     $(".rating.user").mouseenter(function() {
       $(this).removeClass("dim");
