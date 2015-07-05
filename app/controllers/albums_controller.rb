@@ -6,7 +6,11 @@ class AlbumsController < ApplicationController
   def index
     params[:order] ||= 'date'
     params[:dir] ||= 'desc'
-    params[:rating] ||= 0.0
+    params[:rating] ||= '0.0-10.0'
+
+    rating = params[:rating].split('-')
+    min_rating = rating[0].to_i
+    max_rating = rating[1].to_i
 
     selectors = []
     selectors << { artist: params[:artist] } if params[:artist]
@@ -16,7 +20,7 @@ class AlbumsController < ApplicationController
     selectors << { bnm: false } if params[:bnm]
 
     @albums = Album.all_of(*selectors)
-                  .gte(rating: params[:rating])
+                  .between(rating: Range.new(min_rating, max_rating, true))
                   .order_by(params[:order] => params[:dir])
                   .includes(:rates)
                   .page(params[:page])

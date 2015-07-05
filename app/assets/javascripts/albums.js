@@ -10,6 +10,9 @@ function getQueryParams(qs) {
 $(document).on("ready page:load", function() {
   $("#filter").submit(function() {
     $(this).find(":input").filter(function(){ return !this.value; }).attr("disabled", "disabled");
+    $("#rating").val(function(index, value) {
+      return value.replace(";","-");
+    });
     return true;
   });
 
@@ -27,16 +30,23 @@ $(document).on("ready page:load", function() {
     }
   });
 
-  var rating = 7.5;
+  var from_rating = 0.0;
+  var to_rating = 10.0;
   var query = getQueryParams(document.location.search);
-  if (query.rating) rating = +query.rating;
+  if (query.rating) {
+    from_rating = +query.rating.split("-")[0];
+    to_rating = +query.rating.split("-")[1];
+  }
 
   $("#rating").ionRangeSlider({
-    grid: true,
+    type: "double",
+    grid: false,
     min: 0,
     max: 10,
-    from: rating,
-    step: 0.1
+    from: from_rating,
+    to: to_rating,
+    step: 0.1,
+    hide_min_max: true
   });
 
   $(function () {
