@@ -26,12 +26,14 @@ class AlbumsController < ApplicationController
                   .page(params[:page])
   end
 
+  # GET /api/artists.json
   def artists
     @artists = Rails.cache.fetch 'artists', expires_in: 1.hour do
       Album.distinct('artist').sort
     end
   end
 
+  # GET /api/labels.json
   def labels
     @labels = Rails.cache.fetch 'labels', expires_in: 1.hour do
       Album.distinct('label').sort
