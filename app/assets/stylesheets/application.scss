@@ -12,7 +12,6 @@
  *
  *= require_tree .
  *= require bootstrap
- *= require bootstrap-slider
  *= require ion.rangeSlider
  *= require ion.rangeSlider.skinFlat
  *= require_self
@@ -26,17 +25,3 @@
     font-url(asset-path('glyphicons-halflings-regular.ttf')) format('truetype'),
     font-url(asset-path('glyphicons-halflings-regular.svg#glyphicons_halflingsregular')) format('svg');
 }
-
-
-.slider.slider-horizontal {
-  width: 242.5px;
-}
-
-.slider-selection {
-	background: lightgrey;
-}
-
-/*.slider-handle {
-  width: 15px;
-  height: 15px;
-}*/

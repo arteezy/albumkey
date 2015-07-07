@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
-//= require bootstrap-slider
 //= require bootstrap3-typeahead
 //= require ion.rangeSlider
 //= require_tree .
