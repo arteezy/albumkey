@@ -1,4 +1,4 @@
-class RateController < ApplicationController
+class RatesController < ApplicationController
   def create
     rate = Rate.where(user_id: current_user.id, album_id: params[:id])
     if rate.exists?

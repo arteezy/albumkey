@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   scope :api do
     get '/artists', to: 'albums#artists'
     get '/labels', to: 'albums#labels'
-    post '/rate/:id', to: 'rate#create', as: 'rate'
+    post '/rate/:id', to: 'rates#create', as: 'rate'
   end
 end
