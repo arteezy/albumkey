@@ -1,4 +1,6 @@
 class RatesController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     rate = Rate.where(user_id: current_user.id, album_id: params[:id])
     if rate.exists?
