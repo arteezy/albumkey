@@ -31,19 +31,19 @@
     %br
     = f.text_field :artwork
   .field
-    = f.label :url
+    = f.label :source
     %br
-    = f.text_field :url
+    = f.text_field :source
   .field
-    = f.label :score
+    = f.label :rating
     %br
-    = f.text_field :score
+    = f.text_field :rating
+  .field
+    = f.label :reissue
+    %br
+    = f.check_box :reissue
   .field
     = f.label :bnm
     %br
     = f.check_box :bnm
-  .field
-    = f.label :bnr
-    %br
-    = f.check_box :bnr
   .actions= f.submit
