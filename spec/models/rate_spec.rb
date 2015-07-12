@@ -10,4 +10,10 @@ describe Rate, type: :model do
     rate.valid?
     expect(rate.errors[:rate]).to include("can't be blank")
   end
+
+  it 'is invalid with a rate not in range' do
+    rate = build(:invalid_rate)
+    rate.valid?
+    expect(rate.errors[:rate]).to include(a_string_matching /than or equal to/)
+  end
 end
