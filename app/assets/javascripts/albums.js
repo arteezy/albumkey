@@ -74,8 +74,8 @@ $(document).on("ready page:load", function() {
         url: '/api/rate/' + album_id,
         type: 'POST',
         data: 'rate=' + rate,
-        error: function(e) {
-          console.log("Can't rate album: " + e.message);
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          console.log("Can't rate album: " + errorThrown);
         }
       });
     });
