@@ -2,12 +2,12 @@ class RatesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    rate = Rate.where(user_id: current_user.id, album_id: params[:id])
-    if rate.exists?
-      rate.update(rate: params[:rate].to_f)
+    rate = Rate.new(user_id: current_user.id, album_id: params[:id], rate: params[:rate].to_f)
+    if rate.valid?
+      rate.upsert
+      render nothing: true, status: 201
     else
-      rate.create(rate: params[:rate].to_f)
+      render nothing: true, status: 400
     end
-    render nothing: true
   end
 end
