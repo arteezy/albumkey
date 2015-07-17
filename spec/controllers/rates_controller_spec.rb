@@ -2,17 +2,26 @@ require 'rails_helper'
 
 describe RatesController, type: :controller do
   describe "POST #create" do
-    login_user
-
     before :each do
       @album = create(:album)
+      @user = create(:user)
+      sign_in @user
     end
 
     context "with valid params" do
-      it "creates a new Rate" do
+      it "creates a new Rate if it doesn't exist" do
         expect {
           post :create, attributes_for(:rate, album_id: @album)
         }.to change(Rate, :count).by(1)
+      end
+
+      it "updates an existing Rate" do
+        dummy = create(:rate, rate: 7.8, album: @album, user: @user)
+        expect {
+          post :create, attributes_for(:rate, rate: 9.1, album_id: @album.id, user_id: @user)
+        }.to_not change(Rate, :count)
+        dummy.reload
+        expect(dummy.rate).to eq(9.1)
       end
 
       it "responds with HTTP 201 Created" do
