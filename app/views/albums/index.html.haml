@@ -3,56 +3,7 @@
 
 .col-lg-3
   .well.well-sm#dash
-    = form_tag albums_path, method: :get, id: 'filter' do
-      .form-group
-        = label_tag :artist
-        = text_field_tag :artist, params[:artist], class: 'form-control', id: 'artists-typeahead', autocomplete: 'off'
-      .form-group
-        = label_tag :year
-        = text_field_tag :year, params[:year], class: 'form-control', autocomplete: 'off'
-      .form-group
-        = label_tag :label
-        = text_field_tag :label, params[:label], class: 'form-control', id: 'labels-typeahead', autocomplete: 'off'
-      .form-group
-        = label_tag :rating
-        = text_field_tag :rating, nil, hidden: true
-      .form-group
-        = label_tag :order
-        .btn-group.btn-group-justified{ data: { toggle: 'buttons' } }
-          %label.btn.btn-primary{ class: ('active' if params[:order] == 'date') }
-            = radio_button_tag 'order', 'date', (true if params[:order] == 'date')
-            = 'Date'
-          %label.btn.btn-primary{ class: ('active' if params[:order] == 'artist') }
-            = radio_button_tag 'order', 'artist', (true if params[:order] == 'artist')
-            = 'Artist'
-          %label.btn.btn-primary{ class: ('active' if params[:order] == 'year') }
-            = radio_button_tag 'order', 'year', (true if params[:order] == 'year')
-            = 'Year'
-          %label.btn.btn-primary{ class: ('active' if params[:order] == 'rating') }
-            = radio_button_tag 'order', 'rating', (true if params[:order] == 'rating')
-            = 'Rating'
-      .form-group
-        = label_tag :direction
-        %br
-        .btn-group.btn-group-justified{ data: { toggle: 'buttons' } }
-          %label.btn.btn-sm.btn-primary{ class: ('active' if params[:dir] == 'desc') }
-            = radio_button_tag 'dir', 'desc', (true if params[:dir] == 'desc')
-            %span.glyphicon.glyphicon-sort-by-attributes-alt
-          %label.btn.btn-sm.btn-primary{ class: ('active' if params[:dir] == 'asc') }
-            = radio_button_tag 'dir', 'asc', (true if params[:dir] == 'asc')
-            %span.glyphicon.glyphicon-sort-by-attributes
-      .form-group
-        = label_tag :exclude
-        .btn-toolbar
-          .btn-group{ data: { toggle: 'buttons' } }
-            %label.btn.btn-danger{ class: ('active' if params[:bnm]) }
-              = check_box_tag :bnm, nil, params[:bnm]
-              = 'Best New Music'
-          .btn-group{ data: { toggle: 'buttons' } }
-            %label.btn.btn-success{ class: ('active' if params[:reissue]) }
-              = check_box_tag :reissue, nil, params[:reissue]
-              = 'Reissue'
-      %button.btn.btn-default.btn-block= 'Search'
+    = render 'dash'
 
 .col-lg-9
   = render partial: 'shared/card', collection: @albums
