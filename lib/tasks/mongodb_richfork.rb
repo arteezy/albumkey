@@ -25,7 +25,7 @@ class Parser
       artwork    = doc.xpath('//div[@id = "main"]/*/*/div[@class = "artwork"]/img/@src').first.content.strip
       bnm        = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/div[@class = "bnm-label"]').first.content.include?("Best New Music")
       reissue    = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/div[@class = "bnm-label"]').first.content.include?("Best New Reissue")
-    rescue Exception => e
+    rescue => e
       puts "Failed to parse: #{url}"
       puts e.message
       puts e.backtrace
