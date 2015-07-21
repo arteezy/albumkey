@@ -11,20 +11,19 @@ class Parser
   end
 
   def parse_review(url)
-    doc = Nokogiri::HTML(Net::HTTP.get(URI(url)))
+    document = Nokogiri::HTML(Net::HTTP.get(URI(url)))
+    review = document.at_css('#main .review-meta .info')
 
     begin
-      artist     = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/h1').first.content.strip
-      title      = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/h2').first.content.strip
-      label_year = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/h3').first.content.split(';')
-      label      = label_year[0].strip
-      year       = label_year[1].strip
-      date_raw   = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/h4/span').first.content.strip
-      date       = DateTime.strptime(date_raw, "%B %d, %Y")
-      rating     = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/span').first.content.strip
-      artwork    = doc.xpath('//div[@id = "main"]/*/*/div[@class = "artwork"]/img/@src').first.content.strip
-      bnm        = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/div[@class = "bnm-label"]').first.content.include?("Best New Music")
-      reissue    = doc.xpath('//div[@id = "main"]/*/*/div[@class = "info"]/div[@class = "bnm-label"]').first.content.include?("Best New Reissue")
+      artist      = review.css('> h1').text
+      title       = review.css('> h2').text
+      label, year = review.css('> h3').text.split(';').map(&:strip)
+      date_raw    = review.css('> h4 > span').text
+      date        = DateTime.strptime(date_raw, "%B %d, %Y")
+      rating      = review.css('> span').text
+      artwork     = review.parent.css('.artwork > img').attr('src').text
+      reissue     = review.text.include?("Best New Reissue")
+      bnm         = review.text.include?("Best New Music")
     rescue => e
       puts "Failed to parse: #{url}"
       puts e.message
@@ -32,8 +31,8 @@ class Parser
     end
 
     review = {
-      id:      url.match('/\d{1,5}-')[0][1..-2],
       source:  url,
+      p4k_id:  url.match('/\d{1,6}-')[0][1..-2],
       artist:  artist,
       title:   title,
       label:   label,
@@ -44,15 +43,6 @@ class Parser
       reissue: reissue,
       bnm:     bnm
     }
-  end
-
-  def test
-    puts parse_review('http://pitchfork.com/reviews/albums/18703-the-rise-fall-of-paramount-records-volume-one-1917-1932/')
-    puts parse_review('http://pitchfork.com/reviews/albums/17675-how-to-destroy-angels-welcome-oblivion/')
-    puts parse_review('http://pitchfork.com/reviews/albums/17253-good-kid-maad-city/')
-    puts parse_review('http://pitchfork.com/reviews/albums/17272-iii/')
-    puts parse_review('http://pitchfork.com/reviews/albums/18779-death-grips-government-plates/')
-    puts parse_review('http://pitchfork.com/reviews/albums/2099-just-say-sire/')
   end
 
   def scan_pages(first_page, last_page)
@@ -69,22 +59,6 @@ class Parser
       page << parse_review("http://pitchfork.com#{review}")
     end
     @db[@collection].insert_many(page)
-  end
-
-  def parallel_scan(threads, pages)
-    unless pages % threads == 0
-      puts "Can't split pages to threads! Number of pages should be evenly divisible by threads."
-      return
-    end
-
-    x = pages / threads
-    pool = []
-
-    for t in 1..threads
-      pool << Thread.new { scan_pages(((t - 1) * x) + 1, t * x) }
-    end
-
-    pool.map(&:join)
   end
 
   def find_last_page
@@ -113,4 +87,4 @@ class Parser
 end
 
 p = Parser.new
-puts p.find_last_page
+p.fullscan
