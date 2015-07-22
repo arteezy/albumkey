@@ -19,11 +19,11 @@ class Parser
       title       = review.css('> h2').text
       label, year = review.css('> h3').text.split(';').map(&:strip)
       date_raw    = review.css('> h4 > span').text
-      date        = DateTime.strptime(date_raw, "%B %d, %Y")
+      date        = DateTime.strptime(date_raw, '%B %d, %Y')
       rating      = review.css('> span').text
-      artwork     = review.parent.css('.artwork > img').attr('src').text
-      reissue     = review.text.include?("Best New Reissue")
-      bnm         = review.text.include?("Best New Music")
+      artwork     = review.parent.at_css('.artwork > img').attr('src')
+      reissue     = review.text.include?('Best New Reissue')
+      bnm         = review.text.include?('Best New Music')
     rescue => e
       puts "Failed to parse: #{url}"
       puts e.message
@@ -45,20 +45,25 @@ class Parser
     }
   end
 
-  def scan_pages(first_page, last_page)
-    for page in first_page..last_page
+  def parse_pages(first_page, last_page)
+    (first_page...last_page).each do |page|
       parse_review_links("http://pitchfork.com/reviews/albums/#{page}/")
     end
   end
 
   def parse_review_links(url)
-    page = []
-    doc = Nokogiri::HTML(Net::HTTP.get(URI(url)))
-    doc.xpath('//div[@id = "main"]/ul[@class = "object-grid "]/li/ul/li/a/@href').each do |review|
-      next if review.to_s == '/reviews/albums/1365-no-more-shall-we-part/'
-      page << parse_review("http://pitchfork.com#{review}")
+    document = Nokogiri::HTML(Net::HTTP.get(URI(url)))
+    grid = document.css('#main .object-grid > li a').map do |review|
+      review = review.attr('href')
+      next if review == '/reviews/albums/1365-no-more-shall-we-part/'
+      parse_review("http://pitchfork.com#{review}")
     end
-    @db[@collection].insert_many(page)
+    @db[@collection].insert_many(grid)
+  end
+
+  def fullscan
+    @db[@collection].drop
+    parse_pages(1, find_last_page)
   end
 
   def find_last_page
@@ -71,20 +76,15 @@ class Parser
 
     mid = (start + fin) / 2
     url = "http://pitchfork.com/reviews/albums/#{mid}/"
-    res = Net::HTTP.get_response(URI(url)).code
+    response = Net::HTTP.get_response(URI(url))
 
-    if res == "200"
+    if response.code == '200'
       binsearch(mid, fin)
     else
       binsearch(start, mid)
     end
   end
-
-  def fullscan
-    @db[@collection].drop
-    scan_pages(1, find_last_page)
-  end
 end
 
-p = Parser.new
-p.fullscan
+parser = Parser.new
+parser.fullscan
