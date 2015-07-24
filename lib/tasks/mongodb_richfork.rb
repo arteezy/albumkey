@@ -5,9 +5,9 @@ require 'mongo'
 class Parser
   include Mongo
 
-  def initialize
-    @db = Mongo::Client.new(['localhost'], database: 'richfork')
-    @collection = 'albums'
+  def initialize(db, collection)
+    @db = Mongo::Client.new(['localhost'], database: db)
+    @collection = collection
   end
 
   def parse_review(url)
@@ -86,5 +86,5 @@ class Parser
   end
 end
 
-parser = Parser.new
+parser = Parser.new('richfork', 'albums')
 parser.fullscan
