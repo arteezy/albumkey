@@ -24,25 +24,25 @@ class Parser
       artwork     = review.parent.at_css('.artwork > img').attr('src')
       reissue     = review.text.include?('Best New Reissue')
       bnm         = review.text.include?('Best New Music')
+
+      review = {
+        source:  url,
+        p4k_id:  url.match('/\d{1,6}-')[0][1..-2],
+        artist:  artist,
+        title:   title,
+        label:   label,
+        year:    year.empty? ? date.year.to_s : year,
+        date:    date.to_time,
+        rating:  rating.to_f,
+        artwork: artwork,
+        reissue: reissue,
+        bnm:     bnm
+      }
     rescue => e
       puts "Failed to parse: #{url}"
       puts e.message
       puts e.backtrace
     end
-
-    review = {
-      source:  url,
-      p4k_id:  url.match('/\d{1,6}-')[0][1..-2],
-      artist:  artist,
-      title:   title,
-      label:   label,
-      year:    year.empty? ? date.year.to_s : year,
-      date:    date.to_time,
-      rating:  rating.to_f,
-      artwork: artwork,
-      reissue: reissue,
-      bnm:     bnm
-    }
   end
 
   def parse_pages(first_page, last_page)
