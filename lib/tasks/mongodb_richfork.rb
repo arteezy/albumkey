@@ -15,28 +15,18 @@ class Parser
     review = document.at_css('#main .review-meta .info')
 
     begin
-      artist      = review.css('> h1').text
-      title       = review.css('> h2').text
-      label, year = review.css('> h3').text.split(';').map(&:strip)
-      date_raw    = review.css('> h4 > span').text
-      date        = DateTime.strptime(date_raw, '%B %d, %Y')
-      rating      = review.css('> span').text
-      artwork     = review.parent.at_css('.artwork > img').attr('src')
-      reissue     = review.text.include?('Best New Reissue')
-      bnm         = review.text.include?('Best New Music')
-
       review = {
         source:  url,
         p4k_id:  url.match('/\d{1,6}-')[0][1..-2],
-        artist:  artist,
-        title:   title,
-        label:   label,
-        year:    year.empty? ? date.year.to_s : year,
-        date:    date.to_time,
-        rating:  rating.to_f,
-        artwork: artwork,
-        reissue: reissue,
-        bnm:     bnm
+        artist:  review.css('> h1').text,
+        title:   review.css('> h2').text,
+        label:   review.css('> h3').text.split(';').first.strip,
+        year:    review.css('> h3').text.split(';').last.strip,
+        date:    DateTime.strptime(review.css('> h4 > span').text, '%B %d, %Y').to_time,
+        rating:  review.css('> span').text.to_f,
+        artwork: review.parent.at_css('.artwork > img').attr('src'),
+        reissue: review.text.include?('Best New Reissue'),
+        bnm:     review.text.include?('Best New Music')
       }
     rescue => e
       puts "Failed to parse: #{url}"
