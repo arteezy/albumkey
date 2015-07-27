@@ -14,6 +14,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # Use HAML for templates
 gem 'haml'
+# Use Mongo gem as Ruby driver for MongoDB
+gem 'mongo'
 # Use Mongoid as ODM for MongoDB
 gem 'mongoid', '~> 4.0.0'
 # Use Devise as auth library
@@ -26,6 +28,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+# Use Nokogiri as HTML parser
+gem 'nokogiri'
 # Use Kaminari gem for pagination
 gem 'kaminari'
 # Use Mongoid Slug as slug generator for beautiful URLs

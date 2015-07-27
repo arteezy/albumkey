@@ -1,7 +1,3 @@
-require 'net/http'
-require 'nokogiri'
-require 'mongo'
-
 class Parser
   include Mongo
 
