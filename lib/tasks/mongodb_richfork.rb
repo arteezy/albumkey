@@ -1,4 +1,4 @@
-class Parser
+class PitchforkParser
   include Mongo
 
   def initialize(db, collection)
