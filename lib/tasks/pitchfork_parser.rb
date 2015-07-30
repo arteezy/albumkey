@@ -52,6 +52,10 @@ class PitchforkParser
     parse_pages(1, find_last_page)
   end
 
+  def footprint
+    Album.first.date
+  end
+
   def find_last_page
     max = 2**16
     binsearch(1, max)
@@ -72,5 +76,5 @@ class PitchforkParser
   end
 end
 
-parser = Parser.new('richfork', 'albums')
+parser = PitchforkParser.new('richfork', 'albums')
 parser.fullscan
