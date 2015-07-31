@@ -75,6 +75,3 @@ class PitchforkParser
     end
   end
 end
-
-parser = PitchforkParser.new('richfork', 'albums')
-parser.fullscan
