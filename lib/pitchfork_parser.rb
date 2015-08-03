@@ -53,7 +53,7 @@ class PitchforkParser
   end
 
   def footprint
-    Album.first.date
+    Album.desc(:date).limit(1).first.date
   end
 
   def find_last_page
