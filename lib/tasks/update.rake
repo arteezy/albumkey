@@ -1,7 +1,7 @@
 require 'pitchfork_parser'
 
 desc "Get latest Pitchfork album reviews"
-task refresh: :environment do
+task update: :environment do
   parser = PitchforkParser.new('richfork', 'albums')
-  puts parser.footprint
+  parser.footprint
 end

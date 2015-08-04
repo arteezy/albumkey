@@ -53,7 +53,15 @@ class PitchforkParser
   end
 
   def footprint
-    Album.desc(:date).limit(1).first.date
+    if Date.today > Album.desc(:date).limit(1).first.date
+      update
+    else
+      puts 'Album database is synced with Pitchfork'
+    end
+  end
+
+  def update
+
   end
 
   def find_last_page
