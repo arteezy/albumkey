@@ -8,19 +8,26 @@ class PitchforkParser
   def parse_review(url)
     document = Nokogiri::HTML(Net::HTTP.get(URI(url)))
     review = document.at_css('#main .review-meta .info')
-    album = {
-      source:  url,
-      p4k_id:  url.match('/\d{1,6}-')[0][1..-2],
-      artist:  review.css('> h1').text,
-      title:   review.css('> h2').text,
-      label:   review.css('> h3').text.split(';').first.strip,
-      year:    review.css('> h3').text.split(';').last.strip,
-      date:    DateTime.strptime(review.css('> h4 > span').text, '%B %d, %Y').to_time,
-      rating:  review.css('> span').text.to_f,
-      artwork: review.parent.at_css('.artwork > img').attr('src'),
-      reissue: review.text.include?('Best New Reissue'),
-      bnm:     review.text.include?('Best New Music')
-    }
+
+    begin
+      album = {
+        source:  url,
+        p4k_id:  url.match('/\d{1,6}-')[0][1..-2],
+        artist:  review.css('> h1').text,
+        title:   review.css('> h2').text,
+        label:   review.css('> h3').text.split(';').first.strip,
+        year:    review.css('> h3').text.split(';').last.strip,
+        date:    DateTime.strptime(review.css('> h4 > span').text, '%B %d, %Y').to_time,
+        rating:  review.css('> span').text.to_f,
+        artwork: review.parent.at_css('.artwork > img').attr('src'),
+        reissue: review.text.include?('Best New Reissue'),
+        bnm:     review.text.include?('Best New Music')
+      }
+    rescue => e
+      puts "Failed to parse: #{url}"
+      puts e.message
+      puts e.backtrace
+    end
   end
 
   def parse_review_links(url)
