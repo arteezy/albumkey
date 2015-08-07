@@ -2,7 +2,8 @@ class PitchforkParser
   include Mongo
 
   def initialize(db, collection)
-    @collection = Mongo::Client.new(['localhost'], database: db)[collection]
+    client = Mongo::Client.new(['localhost'], database: db)
+    @collection = client[collection]
   end
 
   def parse_review(url)
@@ -38,6 +39,13 @@ class PitchforkParser
     end
   end
 
+  def get_page_links(url)
+    document = Nokogiri::HTML(Net::HTTP.get(URI(url)))
+    grid = document.css('#main .object-grid > li a').map do |review|
+      review_url = "http://pitchfork.com#{review.attr('href')}"
+    end
+  end
+
   def fullscan
     @collection.drop
     (1...find_last_page).each do |page|
@@ -47,15 +55,23 @@ class PitchforkParser
   end
 
   def footprint
-    if Date.today > Album.desc(:date).limit(1).first.date
-      update
+    fresh = Album.desc(:date).limit(1).first
+    if Date.today > fresh.date
+      update(fresh.source)
     else
       puts 'Album database is synced with Pitchfork'
     end
   end
 
-  def update
-    puts 'WIP'
+  def update(url)
+    i = 1
+    begin
+      array = get_page_links("http://pitchfork.com/reviews/albums/#{i}/")
+      array.each do |album|
+        json = parse_review(album)
+        @collection.update_one(json, json, upsert: true)
+      end
+    end until array.include?(url)
   end
 
   def find_last_page
