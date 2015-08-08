@@ -2,7 +2,7 @@ class PitchforkParser
   include Mongo
 
   def initialize(db, collection)
-    client = Mongo::Client.new(['localhost'], database: db)
+    client = Mongo::Client.new(db)
     @collection = client[collection]
   end
 
