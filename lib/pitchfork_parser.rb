@@ -71,6 +71,7 @@ class PitchforkParser
         json = parse_review(album)
         @collection.update_one(json, json, upsert: true)
       end
+      i += 1
     end until array.include?(url)
   end
 
