@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.1.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.0'
+gem 'rails', '~> 4.2.1'
 # Use Puma as application server
 gem 'puma', '~> 2.11.3'
 # Use SCSS for stylesheets
@@ -15,7 +15,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # Use HAML for templates
 gem 'haml'
 # Use Mongo gem as Ruby driver for MongoDB
-gem 'mongo'
+gem 'mongo', '~> 2.1.0'
 # Use Mongoid as ODM for MongoDB
 gem 'mongoid', '~> 4.0.0'
 # Use Devise as auth library
@@ -23,17 +23,17 @@ gem 'devise'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+gem 'turbolinks', '~> 2.5.3'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc', '~> 0.4.1', group: :doc
 # Use Nokogiri as HTML parser
-gem 'nokogiri'
+gem 'nokogiri', '~> 1.6.6'
 # Use Kaminari gem for pagination
 gem 'kaminari'
 # Use Mongoid Slug as slug generator for beautiful URLs
-gem 'mongoid-slug'
+gem 'mongoid-slug', '~> 4.0.0'
 # Use Gravtastic gem to add Gravatar support
 gem 'gravtastic'
 # Use TZInfo Data as data source for time zones
@@ -52,7 +52,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.2.1'
   # Use Factory Girl as factories generator for specs
   gem 'factory_girl_rails', '~> 4.5.0'
-  # Use this gem for profiling
+  # Use this gem for performance profiling
   gem 'rack-mini-profiler'
   # Use Pry as Rails console replacement
   gem 'pry-rails'
