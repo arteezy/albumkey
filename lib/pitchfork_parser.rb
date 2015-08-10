@@ -55,9 +55,10 @@ class PitchforkParser
   end
 
   def footprint
-    fresh = Album.desc(:date).limit(1).first
-    if Date.today > fresh.date
-      update(fresh.source)
+    latest = Album.desc(:date).limit(1).first
+    if Date.today > latest.date
+      update(latest.source)
+      puts 'Successfully updated album database'
     else
       puts 'Album database is synced with Pitchfork'
     end
