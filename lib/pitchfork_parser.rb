@@ -54,26 +54,26 @@ class PitchforkParser
     end
   end
 
-  def footprint
+  def update
     latest = Album.desc(:date).limit(1).first
     if Date.today > latest.date
-      update(latest.source)
+      catch_up_to(latest.source)
       puts 'Successfully updated album database'
     else
       puts 'Album database is synced with Pitchfork'
     end
   end
 
-  def update(url)
-    i = 1
+  def catch_up_to(url)
+    page = 1
     begin
-      array = get_page_links("http://pitchfork.com/reviews/albums/#{i}/")
-      array.each do |album|
+      links = get_page_links("http://pitchfork.com/reviews/albums/#{page}/")
+      links.each do |album|
         json = parse_review(album)
         @collection.update_one(json, json, upsert: true)
       end
-      i += 1
-    end until array.include?(url)
+      page += 1
+    end until links.include?(url)
   end
 
   def find_last_page
