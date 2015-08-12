@@ -31,17 +31,9 @@ class PitchforkParser
     end
   end
 
-  def parse_review_links(url)
-    document = Nokogiri::HTML(Net::HTTP.get(URI(url)))
-    grid = document.css('#main .object-grid > li a').map do |review|
-      review_url = "http://pitchfork.com#{review.attr('href')}"
-      parse_review(review_url)
-    end
-  end
-
   def get_page_links(url)
     document = Nokogiri::HTML(Net::HTTP.get(URI(url)))
-    grid = document.css('#main .object-grid > li a').map do |review|
+    document.css('#main .object-grid > li a').map do |review|
       review_url = "http://pitchfork.com#{review.attr('href')}"
     end
   end
@@ -49,8 +41,9 @@ class PitchforkParser
   def fullscan
     @collection.drop
     (1...find_last_page).each do |page|
-      page = parse_review_links("http://pitchfork.com/reviews/albums/#{page}/")
-      @collection.insert_many(page)
+      links = get_page_links("http://pitchfork.com/reviews/albums/#{page}/")
+      links.map! { |review| parse_review(review) }
+      @collection.insert_many(links)
     end
   end
 
@@ -68,8 +61,8 @@ class PitchforkParser
     page = 1
     begin
       links = get_page_links("http://pitchfork.com/reviews/albums/#{page}/")
-      links.each do |album|
-        json = parse_review(album)
+      links.each do |review|
+        json = parse_review(review)
         @collection.update_one(json, json, upsert: true)
       end
       page += 1
