@@ -34,7 +34,7 @@ class PitchforkParser
   def get_page_links(url)
     document = Nokogiri::HTML(Net::HTTP.get(URI(url)))
     document.css('#main .object-grid > li a').map do |review|
-      review_url = "http://pitchfork.com#{review.attr('href')}"
+      "http://pitchfork.com#{review.attr('href')}"
     end
   end
 
@@ -61,7 +61,7 @@ class PitchforkParser
     page = 1
     begin
       links = get_page_links("http://pitchfork.com/reviews/albums/#{page}/")
-      links.each do |review|
+      links.reverse.each do |review|
         json = parse_review(review)
         @collection.update_one(json, json, upsert: true)
       end
