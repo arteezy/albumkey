@@ -1,5 +1,3 @@
-require 'pitchfork_parser'
-
 desc 'Perform the fullscan of all Pitchfork album reviews'
 task fullscan: :environment do
   puts 'Parsing Pitchfork...'
