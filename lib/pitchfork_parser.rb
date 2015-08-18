@@ -40,7 +40,7 @@ class PitchforkParser
 
   def fullscan
     @collection.drop
-    (1...find_last_page).each do |page|
+    (1..find_last_page).each do |page|
       links = get_page_links("http://pitchfork.com/reviews/albums/#{page}/")
       links.map! { |review| parse_review(review) }
       @collection.insert_many(links)
@@ -61,7 +61,7 @@ class PitchforkParser
     page = 1
     begin
       links = get_page_links("http://pitchfork.com/reviews/albums/#{page}/")
-      links.reverse.each do |review|
+      links.reverse_each do |review|
         json = parse_review(review)
         @collection.update_one(json, json, upsert: true)
       end
