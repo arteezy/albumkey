@@ -1,3 +1,5 @@
+require 'pitchfork_parser'
+
 namespace :albums do
   desc 'Update album database with latest Pitchfork reviews'
   task update: :environment do

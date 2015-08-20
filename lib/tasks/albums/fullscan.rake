@@ -1,3 +1,5 @@
+require 'pitchfork_parser'
+
 namespace :albums do
   desc 'Perform the fullscan of all Pitchfork album reviews'
   task fullscan: :environment do
