@@ -50,11 +50,22 @@ class PitchforkParser
   def update
     latest = Album.desc(:date).limit(1).first
     if Date.today > latest.date
-      catch_up_to(latest.source)
+      opt_update
       puts 'Successfully updated album database'
     else
       puts 'Album database is synced with Pitchfork'
     end
+  end
+
+  def opt_update
+    page = 1
+    last_20 = Album.desc(:date).limit(20).map(&:source)
+    begin
+      links = get_page_links("http://pitchfork.com/reviews/albums/#{page}/") - last_20
+      links.map! { |review| parse_review(review) }
+      @collection.insert_many(links)
+      page += 1
+    end until links.size < 20
   end
 
   def catch_up_to(url)
