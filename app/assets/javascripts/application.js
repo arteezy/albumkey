@@ -16,4 +16,5 @@
 //= require bootstrap
 //= require bootstrap3-typeahead
 //= require ion.rangeSlider
+//= require d3
 //= require_tree .
