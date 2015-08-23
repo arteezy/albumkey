@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'albums#index'
   devise_for :users
   get '/search', to: 'albums#search'
+  get '/stats', to: 'albums#stats'
 
   scope :api do
     get '/artists', to: 'albums#artists'
