@@ -20,10 +20,10 @@ class AlbumsController < ApplicationController
     selectors << { bnm: false } if params[:bnm]
 
     @albums = Album.all_of(*selectors)
-                  .gte(rating: min_rating).lte(rating: max_rating)
-                  .order_by(params[:order] => params[:dir])
-                  .includes(:rates)
-                  .page(params[:page])
+              .gte(rating: min_rating).lte(rating: max_rating)
+              .order_by(params[:order] => params[:dir])
+              .includes(:rates)
+              .page(params[:page])
   end
 
   # GET /api/artists.json
@@ -99,11 +99,12 @@ class AlbumsController < ApplicationController
   end
 
   private
-    def set_album
-      @album = Album.find(params[:id])
-    end
 
-    def album_params
-      params.require(:album).permit(:title, :artist, :label, :year, :date, :artwork, :source, :rating, :reissue, :bnm)
-    end
+  def set_album
+    @album = Album.find(params[:id])
+  end
+
+  def album_params
+    params.require(:album).permit(:title, :artist, :label, :year, :date, :artwork, :source, :rating, :reissue, :bnm)
+  end
 end
