@@ -44,6 +44,21 @@ class AlbumsController < ApplicationController
     @albums = Album.search_by_artist(params[:search]).page(params[:page])
   end
 
+  # GET /stats
+  # GET /stats.json
+  def stats
+    @stats = Album.collection.aggregate(
+      '$group' => {
+        '_id' => '$date',
+        'avg_rating' => { '$avg' => '$rating' }
+      }).first(20)
+
+    respond_to do |format|
+      format.html { render :stats }
+      format.json { render json: @stats }
+    end
+  end
+
   # GET /albums/1
   # GET /albums/1.json
   def show
