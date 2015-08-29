@@ -51,7 +51,9 @@ class AlbumsController < ApplicationController
       '$group' => {
         '_id' => '$date',
         'avg_rating' => { '$avg' => '$rating' }
-      }).first(20)
+      })
+
+    @stats = @stats.first(20) if params[:year]
 
     respond_to do |format|
       format.html { render :stats }
