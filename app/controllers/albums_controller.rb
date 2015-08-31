@@ -47,17 +47,15 @@ class AlbumsController < ApplicationController
   # GET /stats
   # GET /stats.json
   def stats
-    @stats = Album.collection.aggregate({
-      '$match' => { 'year' => params[:year] }
-    },
-    {
+    year = { '$match' => { 'year' => params[:year] } }
+    group = {
       '$group' => {
         '_id' => '$date',
         'avg_rating' => { '$avg' => '$rating' }
       }
-    })
+    }
 
-    @stats = @stats.first(20) if params[:year]
+    @stats = Album.collection.aggregate([year, group])
 
     respond_to do |format|
       format.html { render :stats }
