@@ -17,7 +17,7 @@ gem 'haml'
 # Use Mongo gem as Ruby driver for MongoDB
 gem 'mongo', '~> 2.1.0'
 # Use Mongoid as ODM for MongoDB
-gem 'mongoid', '~> 4.0.0'
+gem 'mongoid', '~> 5.0.0'
 # Use Devise as auth library
 gem 'devise'
 # Use jquery as the JavaScript library
@@ -33,7 +33,7 @@ gem 'nokogiri', '~> 1.6.6'
 # Use Kaminari gem for pagination
 gem 'kaminari'
 # Use Mongoid Slug as slug generator for beautiful URLs
-gem 'mongoid-slug', '~> 4.0.0'
+gem 'mongoid-slug', '~> 5.0.0'
 # Use Gravtastic gem to add Gravatar support
 gem 'gravtastic'
 # Use TZInfo Data as data source for time zones
@@ -68,7 +68,7 @@ group :test do
   # Use Capybara for integration specs
   gem 'capybara', '~> 2.4.4'
   # Use DatabaseCleaner to wipe DB before tests
-  gem 'database_cleaner', '~> 1.4.1'
+  gem 'database_cleaner', '~> 1.5'
   # Use Launchy as helper to Capybara specs
   gem 'launchy', '~> 2.4.3'
   # Use Code Climate to measure test coverage and code quality
