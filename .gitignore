@@ -13,3 +13,6 @@
 
 # Ignore local enviroment variables config
 .env
+
+# Ignore Code Climate test coverage reports
+/coverage
