@@ -1,17 +1,18 @@
 $(document).on("ready page:load", function() {
-  $.ajax({
-    type: "GET",
-    contentType: "application/json; charset=utf-8",
-    url: 'stats.json',
-    dataType: 'json',
-    success: function (data) {
-      var avg_rating = data.map(function(d) { return d.avg_rating; });
-      draw(avg_rating);
-    },
-    error: function (result) {
-      error();
-    }
-  });
+  if (document.location.pathname.startsWith("/stats"))
+    $.ajax({
+      type: "GET",
+      contentType: "application/json; charset=utf-8",
+      url: document.location.pathname,
+      dataType: "json",
+      success: function (data) {
+        var avg_rating = data.map(function(d) { return d.avg_rating; });
+        draw(avg_rating);
+      },
+      error: function (result) {
+        error();
+      }
+    });
 
   function draw(data) {
     var color = d3.scale.category20b();
