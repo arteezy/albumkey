@@ -16,19 +16,21 @@ $(document).on("ready page:load", function() {
     return true;
   });
 
-  $.get('/api/artists.json', function(data){
-      $("#artists-typeahead").typeahead({ source:data });
-  },'json');
+  if ($("#dash").length) {
+    $.get('/api/artists.json', function(data){
+        $("#artists-typeahead").typeahead({ source:data });
+    },'json');
 
-  $.get('/api/labels.json', function(data){
-      $("#labels-typeahead").typeahead({ source:data });
-  },'json');
+    $.get('/api/labels.json', function(data){
+        $("#labels-typeahead").typeahead({ source:data });
+    },'json');
 
-  $("#dash").affix({
-    offset: {
-      top: $(".navbar-header").height()
-    }
-  });
+    $("#dash").affix({
+      offset: {
+        top: $(".navbar-header").height()
+      }
+    });
+  }
 
   var from_rating = 0.0;
   var to_rating = 10.0;
