@@ -22,6 +22,7 @@ class AlbumsController < ApplicationController
     @albums = Album.all_of(*selectors)
               .gte(rating: min_rating).lte(rating: max_rating)
               .order_by(params[:order] => params[:dir])
+              .search(params[:search])
               .includes(:rates)
               .page(params[:page])
   end
@@ -41,7 +42,7 @@ class AlbumsController < ApplicationController
   end
 
   def search
-    @albums = Album.search_by_artist(params[:search]).page(params[:page])
+    @albums = Album.search(params[:search]).page(params[:page])
   end
 
   # GET /stats

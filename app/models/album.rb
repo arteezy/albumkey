@@ -26,9 +26,13 @@ class Album
   validates :source, presence: true
   validates :rating, presence: true
 
-  def self.search_by_artist(artist)
-    if artist
-      where(artist: Regexp.new("#{artist}", true))
+  def self.search(query)
+    if query
+      any_of([
+        { artist: Regexp.new("#{query}", true) },
+        { title:  Regexp.new("#{query}", true) },
+        { label:  Regexp.new("#{query}", true) }
+      ])
     else
       all
     end
