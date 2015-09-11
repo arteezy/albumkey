@@ -1,9 +1,10 @@
-%h1= 'Search Albums'
+%h3= 'Search Albums'
 
-= form_tag search_path, method: 'get' do
-  %p
-    = text_field_tag :search, params[:search]
-    = submit_tag 'Search', name: nil
+.row
+  .col-lg-8
+    = form_tag search_path, method: 'get', class: 'input-group' do
+      = text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search for...'
+      %span.input-group-btn= submit_tag 'Search', name: nil, class: 'btn btn-primary'
 
 %table
   %thead
