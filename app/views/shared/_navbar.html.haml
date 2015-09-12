@@ -29,3 +29,7 @@
         - else
           %li= link_to "Log In", new_user_session_path
           %li= link_to "Sign Up", new_user_registration_path
+
+      %ul.navbar-form.navbar-right
+        = form_tag search_path, method: 'get' do
+          = text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search for...'
