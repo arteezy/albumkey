@@ -49,7 +49,14 @@ class AlbumsController < ApplicationController
   # GET /stats.json
   def stats
     pipeline = []
-    pipeline << { '$match' => { 'year' => params[:year] } } if params[:year]
+    pipeline << {
+      '$match' => {
+        'date' => {
+          '$gte' => Date.new(params[:year].to_i, 1, 1),
+          '$lte' => Date.new(params[:year].to_i, 12, 31)
+        }
+      }
+    } if params[:year]
     pipeline << {
       '$group' => {
         '_id' => '$date',
