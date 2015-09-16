@@ -63,6 +63,7 @@ class AlbumsController < ApplicationController
         'avg_rating' => { '$avg' => '$rating' }
       }
     }
+    pipeline << { '$sort' => { '_id' => 1 } }
 
     @stats = Album.collection.aggregate(pipeline)
 
