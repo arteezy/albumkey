@@ -26,6 +26,11 @@ class Album
   validates :source, presence: true
   validates :rating, presence: true
 
+  index title: 1
+  index artist: 1
+  index label: 1
+  index date: 1
+
   def self.search(query)
     if query
       any_of([
