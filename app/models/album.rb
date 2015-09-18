@@ -3,6 +3,7 @@ class Album
   include Mongoid::Slug
 
   field :title, type: String
+  field :p4k_id, type: Integer
   field :artist, type: String
   field :label, type: String
   field :year, type: String
@@ -10,8 +11,8 @@ class Album
   field :artwork, type: String
   field :source, type: String
   field :rating, type: Float
-  field :reissue, type: Mongoid::Boolean
-  field :bnm, type: Mongoid::Boolean
+  field :reissue, type: Boolean
+  field :bnm, type: Boolean
 
   slug :artist, :title
 
@@ -30,6 +31,7 @@ class Album
   index artist: 1
   index label: 1
   index date: 1
+  index({ p4k_id: 1 }, unique: true, sparse: true)
 
   def self.search(query)
     if query

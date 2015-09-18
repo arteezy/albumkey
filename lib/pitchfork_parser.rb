@@ -13,7 +13,7 @@ class PitchforkParser
     begin
       album = {
         source:  url,
-        p4k_id:  url.match('/\d{1,6}-')[0][1..-2],
+        p4k_id:  url.match('/\d{1,6}-')[0][1..-2].to_i,
         artist:  review.css('> h1').text,
         title:   review.css('> h2').text,
         label:   review.css('> h3').text.split(';').first.strip,
