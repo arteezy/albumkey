@@ -12,6 +12,8 @@ $(document).on("ready page:load", function() {
             "categoryField": "_id",
             "dataDateFormat": "YYYY-MM-DD",
             "theme": "dark",
+            "path": "",
+            "pathToImages": "assets/",
             "categoryAxis": {
               "parseDates": true
             },
