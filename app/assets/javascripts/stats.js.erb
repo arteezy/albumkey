@@ -13,17 +13,18 @@ $(document).on("ready page:load", function() {
             "dataDateFormat": "YYYY-MM-DD",
             "theme": "dark",
             "path": "",
-            "pathToImages": "assets/",
+            "pathToImages": "",
             "categoryAxis": {
               "parseDates": true
             },
             "chartCursor": {},
             "chartScrollbar": {
               "backgroundColor": "#9400D3",
-              "dragIcon": "dragIconRectBigBlack",
+              "dragIcon": "<%= image_path("dragIconRectBigBlack") %>",
               "dragIconHeight": 30,
               "dragIconWidth": 30
             },
+            "zoomOutButtonImage": "<%= image_path("lensWhite") %>",
             "trendLines": [],
             "graphs": [
               {
@@ -114,6 +115,6 @@ $(document).on("ready page:load", function() {
   }
 
   function error() {
-    console.log("error drawing d3 graph")
+    console.log("Error: can't draw d3 chart")
   }
 });
