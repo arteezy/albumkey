@@ -1,3 +1,29 @@
-%h3 Stats
+.row
+  %h2 Stats
 
-#chartid{ style: "width: 100%; height: 400px; background-color: #282828;"}
+  #chartid{ style: "width: 100%; height: 400px; background-color: #282828;"}
+
+%br
+
+.row
+  .col-lg-4
+    .panel.panel-default
+      .panel-body
+        .text-center
+          %strong
+            Total albums:
+          = @total[:album]
+  .col-lg-4
+    .panel.panel-default
+      .panel-body
+        .text-center
+          %strong
+            Total BNMs:
+          = @total[:bnm]
+  .col-lg-4
+    .panel.panel-default
+      .panel-body
+        .text-center
+          %strong
+            Total reissues:
+          = @total[:reissue]

@@ -67,6 +67,12 @@ class AlbumsController < ApplicationController
 
     @stats = Album.collection.aggregate(pipeline)
 
+    @total = {
+      album: Album.count,
+      bnm: Album.where(bnm: true).count,
+      reissue: Album.where(reissue: true).count
+    }
+
     respond_to do |format|
       format.html { render :stats }
       format.json { render json: @stats }
