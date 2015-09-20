@@ -40,6 +40,8 @@ gem 'mongoid-slug', '~> 5.1.0'
 gem 'gravtastic'
 # Use TZInfo Data as data source for time zones
 gem 'tzinfo-data'
+# Use New Relic as monitoring service
+gem 'newrelic_rpm'
 
 group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
@@ -83,6 +85,4 @@ end
 group :production do
   # 12 Factor gem for Heroku
   gem 'rails_12factor'
-  # Use New Relic as monitoring service
-  gem 'newrelic_rpm'
 end
