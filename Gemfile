@@ -18,8 +18,10 @@ gem 'haml'
 gem 'mongo', '~> 2.1.0'
 # Use Mongoid as ODM for MongoDB
 gem 'mongoid', '~> 5.0.0'
-# Use Devise as auth library
-gem 'devise'
+# Use Devise as authentication library
+gem 'devise', '~> 3.5.2'
+# Use Pundit for role-based authorization
+gem 'pundit', '~> 1.0.1'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -33,7 +35,7 @@ gem 'nokogiri', '~> 1.6.6'
 # Use Kaminari gem for pagination
 gem 'kaminari'
 # Use Mongoid Slug as slug generator for beautiful URLs
-gem 'mongoid-slug', '~> 5.0.0'
+gem 'mongoid-slug', '~> 5.1.0'
 # Use Gravtastic gem to add Gravatar support
 gem 'gravtastic'
 # Use TZInfo Data as data source for time zones

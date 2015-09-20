@@ -126,7 +126,7 @@ GEM
     mongoid-compatibility (0.3.1)
       activesupport
       mongoid (>= 2.0)
-    mongoid-slug (5.0.0)
+    mongoid-slug (5.1.0)
       mongoid (>= 3.0)
       mongoid-compatibility
       stringex (~> 2.0)
@@ -143,6 +143,8 @@ GEM
     pry-rails (0.3.4)
       pry (>= 0.9.10)
     puma (2.14.0)
+    pundit (1.0.1)
+      activesupport (>= 3.0.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
@@ -256,7 +258,7 @@ DEPENDENCIES
   codeclimate-test-reporter
   coffee-rails (~> 4.1.0)
   database_cleaner!
-  devise
+  devise (~> 3.5.2)
   factory_girl_rails (~> 4.5.0)
   faker (~> 1.4.3)
   gravtastic
@@ -267,11 +269,12 @@ DEPENDENCIES
   launchy (~> 2.4.3)
   mongo (~> 2.1.0)
   mongoid (~> 5.0.0)
-  mongoid-slug (~> 5.0.0)
+  mongoid-slug (~> 5.1.0)
   newrelic_rpm
   nokogiri (~> 1.6.6)
   pry-rails
   puma (~> 2.14.0)
+  pundit (~> 1.0.1)
   quiet_assets
   rack-mini-profiler
   rails (~> 4.2.1)
