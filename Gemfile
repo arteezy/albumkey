@@ -24,10 +24,10 @@ gem 'devise', '~> 3.5.2'
 gem 'pundit', '~> 1.0.1'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+# Turbolinks makes following links in your web application faster
 gem 'turbolinks', '~> 2.5.3'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder', '~> 2.3'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.1', group: :doc
 # Use Nokogiri as HTML parser
@@ -35,16 +35,14 @@ gem 'nokogiri', '~> 1.6.6'
 # Use Kaminari gem for pagination
 gem 'kaminari'
 # Use Mongoid Slug as slug generator for beautiful URLs
-gem 'mongoid-slug', '~> 5.1.0'
+gem 'mongoid-slug', '~> 5.1'
 # Use Gravtastic gem to add Gravatar support
 gem 'gravtastic'
 # Use TZInfo Data as data source for time zones
 gem 'tzinfo-data'
-# Use New Relic as monitoring service
-gem 'newrelic_rpm'
 
 group :development, :test do
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  # Spring speeds up development by keeping your application running in the background
   gem 'spring'
   # Use RSpec for advanced testing
   gem 'rspec-rails', '~> 3.2.1'
@@ -85,4 +83,6 @@ end
 group :production do
   # 12 Factor gem for Heroku
   gem 'rails_12factor'
+  # Use New Relic as monitoring service
+  gem 'newrelic_rpm'
 end

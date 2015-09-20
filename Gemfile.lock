@@ -265,13 +265,13 @@ DEPENDENCIES
   faker (~> 1.4.3)
   gravtastic
   haml
-  jbuilder (~> 2.0)
+  jbuilder (~> 2.3)
   jquery-rails
   kaminari
   launchy (~> 2.4.3)
   mongo (~> 2.1.2)
   mongoid (~> 5.0.0)
-  mongoid-slug (~> 5.1.0)
+  mongoid-slug (~> 5.1)
   newrelic_rpm
   nokogiri (~> 1.6.6)
   pry-rails
