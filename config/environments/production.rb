@@ -48,6 +48,9 @@ Rails.application.configure do
   # when problems arise.
   config.log_level = :debug
 
+  # Set MongoDB logging level to WARN
+  Mongo::Logger.logger.level = Logger::WARN
+
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
 
