@@ -5,16 +5,15 @@ production:
       # Use environment variables or a config file to keep your credentials safe.
       uri: <%= ENV["RICHFORKDB"] %>
       options:
+        write:
+          w: 1
+
         # The default timeout is 5, which is the time in seconds for an operation to time out.
         # We recommend 15 because it allows for plenty of time in most operating environments.
         # Mongoid doubles the configured value (known issue) so 15 results in a timeout of 30s.
         # Note that if you have a long-running query (over 30 seconds), it will time out.
         # See our example for long-running queries in the blog post referenced above.
-        timeout: 15
-
-        # refresh_interval specifies the number of seconds to cache server information.
-        # Lowering this number will help the driver recover more quickly from changes to replica set reconfiguration
-        refresh_interval: 10
+        connect_timeout: 15
 
 development:
   # Configure available database sessions. (required)
@@ -112,4 +111,4 @@ test:
       hosts:
         - localhost:27017
       options:
-        timeout: 5
+        connect_timeout: 5
