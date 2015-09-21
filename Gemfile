@@ -15,7 +15,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # Use HAML for templates
 gem 'haml'
 # Use Mongo gem as Ruby driver for MongoDB
-gem 'mongo', '~> 2.1.0'
+gem 'mongo', '~> 2.1.2'
 # Use Mongoid as ODM for MongoDB
 gem 'mongoid', '~> 5.0.0'
 # Use Devise as authentication library
@@ -40,26 +40,29 @@ gem 'mongoid-slug', '~> 5.1.0'
 gem 'gravtastic'
 # Use TZInfo Data as data source for time zones
 gem 'tzinfo-data'
-# Use New Relic as monitoring service
-gem 'newrelic_rpm'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   # Use RSpec for advanced testing
   gem 'rspec-rails', '~> 3.2.1'
   # Use Factory Girl as factories generator for specs
   gem 'factory_girl_rails', '~> 4.5.0'
-  # Use this gem for performance profiling
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug'
+end
+
+group :development do
+  # Use Rack Mini Profiler for advanced performance profiling
   gem 'rack-mini-profiler'
   # Use Pry as Rails console replacement
   gem 'pry-rails'
+  # Use Awesome Print to make debugging more visually comprehensive
+  gem 'awesome_print'
   # Use Better Errors gem to replace errors page
   gem 'better_errors'
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
   # Use Quiest Assets to supress assets console logging
   gem 'quiet_assets'
 end
@@ -77,5 +80,9 @@ group :test do
   gem 'codeclimate-test-reporter', require: nil
 end
 
-# 12 Factor gem for Heroku
-gem 'rails_12factor', group: :production
+group :production do
+  # 12 Factor gem for Heroku
+  gem 'rails_12factor'
+  # Use New Relic as monitoring service
+  gem 'newrelic_rpm'
+end
