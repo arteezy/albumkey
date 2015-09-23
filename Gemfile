@@ -36,6 +36,8 @@ gem 'nokogiri', '~> 1.6.6'
 gem 'kaminari'
 # Use Mongoid Slug as slug generator for beautiful URLs
 gem 'mongoid-slug', '~> 5.1'
+# Use Mongoid Enum for enum support
+gem 'mongoid-enum', git: 'https://github.com/arteezy/mongoid-enum.git'
 # Use Gravtastic gem to add Gravatar support
 gem 'gravtastic'
 # Use TZInfo Data as data source for time zones
