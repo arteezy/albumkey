@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  resources :albums
   root to: 'albums#index'
+
   devise_for :users
+  resources :users
+  resources :albums
+
   get 'search', to: 'albums#search'
   get 'stats(/:year)', to: 'albums#stats', as: 'stats'
 
