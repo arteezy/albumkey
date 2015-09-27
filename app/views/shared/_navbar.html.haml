@@ -11,7 +11,9 @@
     .collapse.navbar-collapse#navbar-collapse-button
       %ul.nav.navbar-nav.navbar-left
         %li= link_to "Albums", albums_path
-        %li= link_to "Search", search_path
+        - if user_signed_in?
+          - if current_user.try(:admin?)
+            %li= link_to "Search", search_path
         %li.dropdown
           = link_to "#", class: "dropdown-toggle", data: {toggle: "dropdown"}, role: "button" do
             = precede "Top Albums" do
