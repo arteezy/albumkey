@@ -20,6 +20,7 @@
             - 10.years.ago.year.upto Time.now.year do |year|
               %li= link_to year, albums_path(year: year, order: :rating, dir: :desc, reissue: 'on')
         %li= link_to "Stats", stats_path
+        %li= link_to "Users", users_path
 
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
