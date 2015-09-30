@@ -2,8 +2,12 @@
   .row
     %h3
       Users
-    .column
-      %table{ class: "table" }
-        %tbody
-          - @users.each do |user|
-            %tr= render user
+    %table.table
+      %thead
+        %tr
+          %th= 'Email'
+          %th= 'Role'
+          %th= 'Action'
+      %tbody
+        - @users.each do |user|
+          %tr= render user
