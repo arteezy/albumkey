@@ -2,12 +2,12 @@
   .row
     %h3
       Users
-    %table.table
+    %table.table.table-bordered.table-hover
       %thead
         %tr
           %th= 'Email'
           %th= 'Role'
           %th= 'Action'
-      %tbody
+      %tbody.text-center
         - @users.each do |user|
           %tr= render user

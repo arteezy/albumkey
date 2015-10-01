@@ -1,12 +1,14 @@
 %h3= 'Search Albums'
 
 .row
-  .col-lg-8
+  .col-lg-offset-2.col-lg-8
     = form_tag search_path, method: 'get', class: 'input-group' do
       = text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search for...'
       %span.input-group-btn= submit_tag 'Search', name: nil, class: 'btn btn-primary'
 
-%table
+%br
+
+%table.table.table-bordered.table-hover
   %thead
     %tr
       %th= 'Title'
@@ -19,9 +21,9 @@
       %th= 'Rating'
       %th= 'Reissue'
       %th= 'Bnm'
-      %th{ colspan: '3' }
+      %th{ colspan: '3' }= 'Actions'
 
-  %tbody
+  %tbody.text-center
     - @albums.each do |album|
       %tr
         %td= link_to album.title, album_path(album)
@@ -37,8 +39,6 @@
         %td= link_to 'Show', album
         %td= link_to 'Edit', edit_album_path(album)
         %td= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
 
 = paginate @albums
 
