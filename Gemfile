@@ -44,8 +44,6 @@ gem 'gravtastic'
 gem 'tzinfo-data'
 
 group :development, :test do
-  # Spring speeds up development by keeping your application running in the background
-  gem 'spring'
   # Use RSpec for advanced testing
   gem 'rspec-rails', '~> 3.2.1'
   # Use Factory Girl as factories generator for specs
@@ -55,6 +53,8 @@ group :development, :test do
 end
 
 group :development do
+  # Spring speeds up development by keeping your application running in the background
+  gem 'spring'
   # Use Rack Mini Profiler for advanced performance profiling
   gem 'rack-mini-profiler'
   # Use Pry as Rails console replacement
