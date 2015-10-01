@@ -25,3 +25,11 @@
     font-url(asset-path('glyphicons-halflings-regular.ttf')) format('truetype'),
     font-url(asset-path('glyphicons-halflings-regular.svg#glyphicons_halflingsregular')) format('svg');
 }
+
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+
+.table > thead > tr > th {
+  text-align: center;
+}
