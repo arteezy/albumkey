@@ -2,13 +2,28 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.container {
+  font-family: 'Lato', 'Helvetica', sans-serif;
+  font-weight: 400;
+}
+
 .card {
   font-family: 'Crete Round', 'Georgia', serif;
 }
 
+.artwork {
+  min-height: 250px;
+  min-width: 250px;
+}
+
+.affix {
+  top: 15px;
+  width: 262.5px;
+}
+
 .rating {
-  font-family: sans-serif;
-  font-weight: bold;
+  font-family: 'Lato', 'Helvetica', sans-serif;
+  font-weight: 900;
   font-size: 64px;
   line-height: 130px;
   text-align: center;
@@ -33,14 +48,4 @@
 .dim {
   color: grey;
   border: 10px solid grey;
-}
-
-.artwork {
-  min-height: 250px;
-  min-width: 250px;
-}
-
-.affix {
-  top: 15px;
-  width: 262.5px;
 }

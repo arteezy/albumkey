@@ -2,28 +2,29 @@
 
 %html
   %head
-    %meta{ charset: "utf-8" }
+    %meta{ charset: 'utf-8' }
 
-    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
 
-    %meta{ name: "google-site-verification", content: yield_meta_tag(:gwt, ENV["GWT_TAG"]) }
+    %meta{ name: 'google-site-verification', content: yield_meta_tag(:gwt, ENV['GWT_TAG']) }
 
-    %title= content_for?(:title) ? yield(:title) : "Richfork"
+    %title= content_for?(:title) ? yield(:title) : 'Richfork'
 
-    = stylesheet_link_tag "application"
-    = stylesheet_link_tag "https://fonts.googleapis.com/css?family=Crete+Round"
+    = stylesheet_link_tag 'application'
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Crete+Round'
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Lato:400,700,900'
     = csrf_meta_tag
-    = javascript_include_tag "application", defer: true
+    = javascript_include_tag 'application', defer: true
 
   %body
-    = render "shared/navbar"
+    = render 'shared/navbar'
 
     .container
       .row
         .col-lg-12.col-md-12
           - unless notice.blank?
-            .alert.alert-info{role: "alert"}= notice
+            .alert.alert-info{ role: 'alert' }= notice
           - unless alert.blank?
-            .alert.alert-danger{role: "alert"}= alert
+            .alert.alert-danger{ role: 'alert' }= alert
       .row
         = yield
