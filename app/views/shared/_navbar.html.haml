@@ -1,38 +1,38 @@
 %nav.navbar.navbar-default.navbar-inverse.navbar-static-top
   .container
     .navbar-header
-      = button_tag type: "button", class: ["navbar-toggle", "collapsed"], data: { toggle: "collapse", target: "#navbar-collapse-button" } do
+      = button_tag type: 'button', class: ['navbar-toggle', 'collapsed'], data: { toggle: 'collapse', target: '#navbar-collapse-button' } do
         %span.sr-only<
           Toggle navigation
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to "Home", root_path, class: "navbar-brand"
+      = link_to 'Home', root_path, class: 'navbar-brand'
     .collapse.navbar-collapse#navbar-collapse-button
       %ul.nav.navbar-nav.navbar-left
-        %li= link_to "Albums", albums_path
-        - if user_signed_in?
-          - if current_user.try(:admin?)
-            %li= link_to "Search", search_path
+        %li= link_to 'Albums', albums_path
         %li.dropdown
-          = link_to "#", class: "dropdown-toggle", data: {toggle: "dropdown"}, role: "button" do
-            = precede "Top Albums" do
+          = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button' do
+            = precede 'Top Albums' do
               %span.caret
-          %ul.dropdown-menu{role: "menu"}
+          %ul.dropdown-menu{ role: 'menu' }
             - 10.years.ago.year.upto Time.now.year do |year|
               %li= link_to year, albums_path(year: year, order: :rating, dir: :desc, reissue: 'on')
-        %li= link_to "Stats", stats_path
-        %li= link_to "Users", users_path
+        - if user_signed_in?
+          - if current_user.try(:admin?)
+            %li= link_to 'Search', search_path
+        %li= link_to 'Stats', stats_path
+        %li= link_to 'Users', users_path
 
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
-          %li= image_tag current_user.gravatar_url, size: "50"
-          %li= link_to "Edit Profile", edit_user_registration_path
-          %li= link_to "Log Out", destroy_user_session_path, method: "delete"
+          %li= image_tag current_user.gravatar_url, size: '65'
+          %li= link_to 'Edit Profile', edit_user_registration_path
+          %li= link_to 'Log Out', destroy_user_session_path, method: 'delete'
         - else
-          %li= link_to "Log In", new_user_session_path
-          %li= link_to "Sign Up", new_user_registration_path
+          %li= link_to 'Log In', new_user_session_path
+          %li= link_to 'Sign Up', new_user_registration_path
 
       %ul.navbar-form.navbar-right
         = form_tag search_path, method: 'get' do
-          = text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search for...'
+          = text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search'
