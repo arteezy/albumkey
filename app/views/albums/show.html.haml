@@ -1,39 +1,38 @@
-- content_for :title do
-  = "#{@album['artist']} - #{@album['title']}"
+- content_for :title, "#{@album['artist']} - #{@album['title']}"
 
 .well.well-sm
-  .row.card{ "data-album-id" => @album.id }
+  .row.card{ 'data-album-id' => @album.id }
     .col-lg-3.col-md-4.col-sm-6.col-xs-12
-      = image_tag(@album["artwork"], alt: @album["title"], class: ["artwork", "img-thumbnail", "img-responsive", "center-block"])
+      = image_tag(@album['artwork'], alt: @album['title'], class: ['artwork', 'img-thumbnail', 'img-responsive', 'center-block'])
     .col-lg-4.col-md-4.col-sm-6.col-xs-12
-      %h2= link_to @album["title"], album_path(@album)
-      %h3= link_to @album["artist"], albums_path(artist: @album["artist"])
-      %h4= link_to @album["year"], albums_path(year: @album["year"])
-      %h4= link_to @album["label"], albums_path(label: @album["label"])
-      %h5= @album["date"].strftime('%d %b %Y')
-      %h5= link_to "Read review at Pitchfork", @album["source"]
+      %h3= link_to @album['title'], album_path(@album)
+      %h4= link_to @album['artist'], albums_path(artist: @album['artist'])
+      %h5= link_to @album['year'], albums_path(year: @album['year'])
+      %h5= link_to @album['label'], albums_path(label: @album['label'])
+      %h6= @album['date'].strftime('%d %b %Y')
+      %h6= link_to 'Read review at Pitchfork', @album['source']
       .hidden-lg.hidden-md.hidden-sm
-        - if @album["bnm"]
-          .btn.btn-lg.btn-danger= @album["rating"]
+        - if @album['bnm']
+          .btn.btn-lg.btn-danger= @album['rating']
         - else
-          - if @album["reissue"]
-            .btn.btn-lg.btn-success= @album["rating"]
+          - if @album['reissue']
+            .btn.btn-lg.btn-success= @album['rating']
           - else
-            .btn.btn-lg.btn-primary= @album["rating"]
+            .btn.btn-lg.btn-primary= @album['rating']
     .col-lg-2
       - if current_user
         - if @album.rates.blank?
           .rating.user.dim= 0.0
         - else
-          .rating.user= @album.rates.where(user_id: current_user.id).first["rate"]
+          .rating.user= @album.rates.where(user_id: current_user.id).first['rate']
     .col-lg-3.col-md-4.col-sm-6.hidden-xs
-      - if @album["bnm"]
-        .rating.bnm= @album["rating"]
+      - if @album['bnm']
+        .rating.bnm= @album['rating']
       - else
-        - if @album["reissue"]
-          .rating.reissue= @album["rating"]
+        - if @album['reissue']
+          .rating.reissue= @album['rating']
         - else
-          .rating= @album["rating"]
+          .rating= @album['rating']
 
 - if user_signed_in?
   - if current_user.try(:admin?)
