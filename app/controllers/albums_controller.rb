@@ -82,6 +82,9 @@ class AlbumsController < ApplicationController
   # GET /albums/1
   # GET /albums/1.json
   def show
+    if @album.rates.where(user_id: current_user.id).exists?
+      @rate = @album.rates.find_by(user_id: current_user.id).rate
+    end
   end
 
   # GET /albums/new

@@ -20,11 +20,11 @@
           - else
             .btn.btn-lg.btn-primary= @album['rating']
     .col-lg-2
-      - if current_user
-        - if @album.rates.blank?
-          .rating.user.dim= 0.0
+      - if user_signed_in?
+        - if @rate
+          .rating.user= @rate
         - else
-          .rating.user= @album.rates.where(user_id: current_user.id).first['rate']
+          .rating.user.dim= 0.0
     .col-lg-3.col-md-4.col-sm-6.hidden-xs
       - if @album['bnm']
         .rating.bnm= @album['rating']
