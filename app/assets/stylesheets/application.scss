@@ -33,3 +33,18 @@
 .table > thead > tr > th {
   text-align: center;
 }
+
+.affix {
+  top: 15px;
+  width: 262.5px;
+
+  @media (max-width: 1199px) {
+    width: 293.328px;
+  }
+
+  @media (max-width: 991px) {
+    position: static;
+    width: auto;
+    top: 0;
+  }
+}
