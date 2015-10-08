@@ -1,9 +1,10 @@
-// Place all the styles related to the Albums controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$font-stack: 'Lato', 'Helvetica', sans-serif;
+$red: #c9302c;
+$green: #5cb85c;
+$grey: #808080;
 
 .container {
-  font-family: 'Lato', 'Helvetica', sans-serif;
+  font-family: $font-stack;
   font-weight: 400;
 }
 
@@ -13,24 +14,21 @@
 }
 
 .rating {
-  font-family: 'Lato', 'Helvetica', sans-serif;
-  font-weight: 900;
+  border: 10px solid;
+  border-radius: 50%;
+  font-family: $font-stack;
   font-size: 64px;
+  font-weight: 900;
+  height: 150px;
   line-height: 130px;
+  margin: 50px;
   text-align: center;
   vertical-align: middle;
-  border-radius: 50%;
-  border: 10px solid;
-  margin: 50px;
-  height: 150px;
   width: 150px;
 
   @media (max-width: 1199px) {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 25px;
-    margin-bottom: 10px;
+    margin: 25px auto 10px;
   }
 }
 
@@ -41,16 +39,16 @@
 }
 
 .bnm {
-  color: #c9302c;
-  border: 10px solid #c9302c;
+  border: 10px solid $red;
+  color: $red;
 }
 
 .reissue {
-  color: #5cb85c;
-  border: 10px solid #5cb85c;
+  border: 10px solid $green;
+  color: $green;
 }
 
 .dim {
-  color: grey;
-  border: 10px solid grey;
+  border: 10px solid $grey;
+  color: $grey;
 }
