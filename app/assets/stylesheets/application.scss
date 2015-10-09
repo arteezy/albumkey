@@ -1,21 +1,7 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require bootstrap
- *= require ion.rangeSlider
- *= require ion.rangeSlider.skinFlat
- *= require_self
- */
+@import 'bootstrap';
+@import 'ion.rangeSlider';
+@import 'ion.rangeSlider.skinFlat';
+@import 'albums';
 
 @font-face {
   font-family: 'Glyphicons Halflings';
@@ -24,27 +10,4 @@
     font-url(asset-path('glyphicons-halflings-regular.woff')) format('woff'),
     font-url(asset-path('glyphicons-halflings-regular.ttf')) format('truetype'),
     font-url(asset-path('glyphicons-halflings-regular.svg#glyphicons_halflingsregular')) format('svg');
-}
-
-.table > tbody > tr > td {
-  vertical-align: middle;
-}
-
-.table > thead > tr > th {
-  text-align: center;
-}
-
-.affix {
-  top: 15px;
-  width: 262.5px;
-
-  @media (max-width: 1199px) {
-    width: 293.328px;
-  }
-
-  @media (max-width: 991px) {
-    position: static;
-    width: auto;
-    top: 0;
-  }
 }

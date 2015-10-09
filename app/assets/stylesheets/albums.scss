@@ -52,3 +52,26 @@ $grey: #808080;
   border: 10px solid $grey;
   color: $grey;
 }
+
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+
+.table > thead > tr > th {
+  text-align: center;
+}
+
+.affix {
+  top: 15px;
+  width: 262.5px;
+
+  @media (max-width: 1199px) {
+    width: 293.328px;
+  }
+
+  @media (max-width: 991px) {
+    position: static;
+    top: 0;
+    width: auto;
+  }
+}
