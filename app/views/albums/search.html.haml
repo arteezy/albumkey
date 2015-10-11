@@ -11,12 +11,12 @@
 %table.table.table-bordered.table-hover
   %thead
     %tr
+      %th= 'Artwork'
       %th= 'Title'
       %th= 'Artist'
       %th= 'Label'
       %th= 'Year'
       %th= 'Date'
-      %th= 'Artwork'
       %th= 'Source'
       %th= 'Rating'
       %th= 'Reissue'
@@ -26,12 +26,12 @@
   %tbody.text-center
     - @albums.each do |album|
       %tr
+        %td= image_tag album.artwork, size: '100'
         %td= link_to album.title, album_path(album)
         %td= album.artist
         %td= album.label
         %td= album.year
         %td= album.date
-        %td= image_tag album.artwork, size: '100'
         %td= link_to 'Pitchfork Link', album.source
         %td= album.rating
         %td= album.reissue
