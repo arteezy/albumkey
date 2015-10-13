@@ -13,19 +13,12 @@
     = text_field_tag :rating, nil, hidden: true
   .form-group
     = label_tag :order
-    .btn-group.btn-group-justified{ data: { toggle: 'buttons' } }
-      %label.btn.btn-primary{ class: ('active' if params[:order] == 'date') }
-        = radio_button_tag 'order', 'date', (true if params[:order] == 'date')
-        = 'Date'
-      %label.btn.btn-primary{ class: ('active' if params[:order] == 'artist') }
-        = radio_button_tag 'order', 'artist', (true if params[:order] == 'artist')
-        = 'Artist'
-      %label.btn.btn-primary{ class: ('active' if params[:order] == 'year') }
-        = radio_button_tag 'order', 'year', (true if params[:order] == 'year')
-        = 'Year'
-      %label.btn.btn-primary{ class: ('active' if params[:order] == 'rating') }
-        = radio_button_tag 'order', 'rating', (true if params[:order] == 'rating')
-        = 'Rating'
+    = select_tag 'order', options_for_select([['Review Date', :date],
+                                              ['Rating', :rating],
+                                              ['Year of Release', :year],
+                                              ['Artist', :artist],
+                                              ['Label', :label]],
+                                              params[:order]), class: 'form-control'
   .form-group
     = label_tag :direction
     %br
