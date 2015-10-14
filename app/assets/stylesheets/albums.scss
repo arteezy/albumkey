@@ -79,3 +79,13 @@ $grey: #808080;
 .pagination {
   margin: 5px 0;
 }
+
+.dir {
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+  margin-left: 5px;
+}
+
+.toggler .active {
+  display: none;
+}

@@ -13,22 +13,22 @@
     = text_field_tag :rating, nil, hidden: true
   .form-group
     = label_tag :order
-    = select_tag 'order', options_for_select([['Review Date', :date],
-                                              ['Rating', :rating],
-                                              ['Year of Release', :year],
-                                              ['Artist', :artist],
-                                              ['Label', :label]],
-                                              params[:order]), class: 'form-control'
-  .form-group
-    = label_tag :direction
-    %br
-    .btn-group.btn-group-justified{ data: { toggle: 'buttons' } }
-      %label.btn.btn-sm.btn-primary{ class: ('active' if params[:dir] == 'desc') }
-        = radio_button_tag 'dir', 'desc', (true if params[:dir] == 'desc')
-        %span.glyphicon.glyphicon-sort-by-attributes-alt
-      %label.btn.btn-sm.btn-primary{ class: ('active' if params[:dir] == 'asc') }
-        = radio_button_tag 'dir', 'asc', (true if params[:dir] == 'asc')
-        %span.glyphicon.glyphicon-sort-by-attributes
+    .input-group
+      = select_tag 'order', options_for_select([['Review Date', :date],
+                                                ['Rating', :rating],
+                                                ['Year of Release', :year],
+                                                ['Artist', :artist],
+                                                ['Label', :label]],
+                                                params[:order]),
+                                                class: 'form-control'
+      .input-group-btn
+        .toggler{ data: { toggle: 'buttons' } }
+          .btn.btn-primary.dir{ class: ('active' if params[:dir] == 'desc') }
+            = radio_button_tag 'dir', 'desc', (true if params[:dir] == 'desc')
+            %span.glyphicon.glyphicon-sort-by-attributes
+          .btn.btn-primary.dir{ class: ('active' if params[:dir] == 'asc') }
+            = radio_button_tag 'dir', 'asc', (true if params[:dir] == 'asc')
+            %span.glyphicon.glyphicon-sort-by-attributes-alt
   .form-group
     = label_tag :exclude
     .btn-toolbar
