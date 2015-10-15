@@ -23,12 +23,8 @@
                                                 class: 'form-control'
       .input-group-btn
         .toggler{ data: { toggle: 'buttons' } }
-          .btn.btn-primary.dir{ class: ('active' if params[:dir] == 'desc') }
-            = radio_button_tag 'dir', 'desc', (true if params[:dir] == 'desc')
-            %span.glyphicon.glyphicon-sort-by-attributes
-          .btn.btn-primary.dir{ class: ('active' if params[:dir] == 'asc') }
-            = radio_button_tag 'dir', 'asc', (true if params[:dir] == 'asc')
-            %span.glyphicon.glyphicon-sort-by-attributes-alt
+          - toggle_button(:dir, 'desc')
+          - toggle_button(:dir, 'asc')
   .form-group
     = label_tag :exclude
     .btn-toolbar
