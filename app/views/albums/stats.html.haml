@@ -1,7 +1,17 @@
 .row
-  %h2 Stats
+  %h2
+    %p.pull-left
+      != 'Stats&nbsp;'
+    .dropdown
+      = button_tag class: 'btn btn-default dropdown-toggle', data: { toggle: 'dropdown' } do
+        = params[:year] ||= 'overall'
+        %span.caret
+      %ul.dropdown-menu
+        %li= link_to 'overall', stats_path
+        - Time.now.year.downto 1999 do |year|
+          %li= link_to year, stats_path(year)
 
-  #chartid{ style: "width: 100%; height: 400px; background-color: #282828;"}
+  #chartid{ style: 'width: 100%; height: 400px; background-color: #282828;' }
 
 %br
 
