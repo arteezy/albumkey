@@ -42,6 +42,8 @@ gem 'mongoid-enum', git: 'https://github.com/arteezy/mongoid-enum.git'
 gem 'gravtastic'
 # Use TZInfo Data as data source for time zones
 gem 'tzinfo-data'
+# Generate sitemap and ping Google
+gem 'sitemap_generator'
 
 group :development, :test do
   # Use RSpec for advanced testing
