@@ -40,10 +40,12 @@ gem 'mongoid-slug', '~> 5.1'
 gem 'mongoid-enum', git: 'https://github.com/arteezy/mongoid-enum.git'
 # Use Gravtastic gem to add Gravatar support
 gem 'gravtastic'
+# Use this gem to generate sitemap and ping search engines
+gem 'sitemap_generator'
+# Use fog-aws as an interface to Amazon Web Services
+gem 'fog-aws'
 # Use TZInfo Data as data source for time zones
 gem 'tzinfo-data'
-# Generate sitemap and ping Google
-gem 'sitemap_generator'
 
 group :development, :test do
   # Use RSpec for advanced testing
