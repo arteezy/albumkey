@@ -13,4 +13,6 @@ Rails.application.routes.draw do
     get 'labels', to: 'albums#labels'
     post 'rate/:album_id', to: 'rates#create', as: 'rate'
   end
+
+  get '/robots.:format', to: 'pages#robots'
 end
