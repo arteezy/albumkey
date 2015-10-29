@@ -1,5 +1,4 @@
-- content_for :title do
-  = params[:artist]
+- title params[:artist] ? params[:artist] : 'Albums'
 
 .col-lg-3.col-md-4
   .well.well-sm#dash
