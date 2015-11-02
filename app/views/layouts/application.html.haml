@@ -1,17 +1,15 @@
 !!! 5
 
-%html
+%html{ lang: 'en' }
   %head
     %meta{ charset: 'utf-8' }
-
-    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
-
+    %meta{ http: { equiv: 'X-UA-Compatible' }, content: 'IE=edge' }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1' }
     %meta{ name: 'google-site-verification', content: yield_meta_tag(:gwt, ENV['GWT_TAG']) }
 
     %title= content_for?(:title) ? yield(:title) : 'Richfork'
 
     = stylesheet_link_tag 'application'
-    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Lato:400,700,900'
     = csrf_meta_tag
     = javascript_include_tag 'application', defer: true
 
@@ -20,7 +18,7 @@
 
     .container
       .row
-        .col-lg-12.col-md-12
+        .col-md-12
           - unless notice.blank?
             .alert.alert-info{ role: 'alert' }= notice
           - unless alert.blank?

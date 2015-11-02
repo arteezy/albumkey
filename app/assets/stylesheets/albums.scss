@@ -1,12 +1,7 @@
-$font-stack: 'Lato', 'Helvetica', sans-serif;
+$font-stack: 'Raleway', 'Helvetica', sans-serif;
 $red: #c9302c;
 $green: #5cb85c;
 $grey: #808080;
-
-.container {
-  font-family: $font-stack;
-  font-weight: 400;
-}
 
 .artwork {
   min-height: 250px;
@@ -16,7 +11,6 @@ $grey: #808080;
 .rating {
   border: 10px solid;
   border-radius: 50%;
-  font-family: $font-stack;
   font-size: 64px;
   font-weight: 900;
   height: 150px;
@@ -33,6 +27,15 @@ $grey: #808080;
 }
 
 .card {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: $font-stack;
+  }
+
   @media (max-width: 1199px) {
     text-align: center;
   }
@@ -91,5 +94,5 @@ $grey: #808080;
 }
 
 .toggler span {
-  top: 3px;
+  top: 2px;
 }
