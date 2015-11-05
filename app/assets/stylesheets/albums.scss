@@ -20,7 +20,7 @@ $grey: #808080;
   vertical-align: middle;
   width: 150px;
 
-  @media (max-width: 1199px) {
+  @media (max-width: $screen-md-max) {
     display: block;
     margin: 25px auto 10px;
   }
@@ -36,7 +36,7 @@ $grey: #808080;
     font-family: $font-stack;
   }
 
-  @media (max-width: 1199px) {
+  @media (max-width: $screen-md-max) {
     text-align: center;
   }
 }
@@ -68,11 +68,11 @@ $grey: #808080;
   top: 15px;
   width: 262.5px;
 
-  @media (max-width: 1199px) {
+  @media (max-width: $screen-md-max) {
     width: 293.328px;
   }
 
-  @media (max-width: 991px) {
+  @media (max-width: $screen-sm-max) {
     position: static;
     top: 0;
     width: auto;
@@ -95,4 +95,8 @@ $grey: #808080;
 
 .toggler span {
   top: 2px;
+}
+
+.dropdown-menu {
+  min-width: 100px;
 }
