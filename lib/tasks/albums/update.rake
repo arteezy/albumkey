@@ -1,11 +1,7 @@
-require 'pitchfork_parser'
-
 namespace :albums do
-  desc 'Update album database with latest Pitchfork reviews'
+  desc 'Update albums from Pitchfork and update their slugs'
   task update: :environment do
-    puts 'Updating latest albums'
-    parser = PitchforkParser.new(ENV['RICHFORKDB'], 'albums')
-    parser.update
-    puts 'Done'
+    Rake::Task['albums:getlatest'].invoke
+    Rake::Task['slugs:update'].invoke
   end
 end
