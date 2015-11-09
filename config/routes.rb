@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
-  root to: 'albums#index'
+  root 'albums#index'
 
   devise_for :users
+
   resources :users
-  resources :albums
+
+  resources :albums do
+    resources :comments
+  end
 
   get 'search', to: 'albums#search'
   get 'stats(/:year)', to: 'albums#stats', as: 'stats'

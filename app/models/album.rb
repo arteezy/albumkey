@@ -17,6 +17,7 @@ class Album
   slug :artist, :title
 
   has_many :rates, dependent: :destroy
+  embeds_many :comments
 
   validates :title, presence: true
   validates :artist, presence: true
