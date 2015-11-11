@@ -5,5 +5,5 @@ class Comment
   field :body, type: String
 
   belongs_to :user
-  belongs_to :album
+  embedded_in :album
 end

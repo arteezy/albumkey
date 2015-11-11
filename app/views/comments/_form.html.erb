@@ -1,4 +1,4 @@
-<%= form_for(@comment) do |f| %>
+<%= form_for([@comment.album, @comment]) do |f| %>
   <% if @comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
@@ -13,19 +13,11 @@
 
   <div class="field">
     <%= f.label :user_email %><br>
-    <%= f.text_field :user_email %>
+    <%= f.text_field :user_email, value: current_user.email %>
   </div>
   <div class="field">
     <%= f.label :body %><br>
     <%= f.text_area :body %>
-  </div>
-  <div class="field">
-    <%= f.label :album_id %><br>
-    <%= f.text_field :album_id %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

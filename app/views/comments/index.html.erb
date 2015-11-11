@@ -1,6 +1,6 @@
 <h1>Listing Comments</h1>
 
-<table>
+<table class="table table-bordered table-hover">
   <thead>
     <tr>
       <th>User email</th>
@@ -16,11 +16,9 @@
       <tr>
         <td><%= comment.user_email %></td>
         <td><%= comment.body %></td>
-        <td><%= comment.album_id %></td>
-        <td><%= comment.user_id %></td>
-        <td><%= link_to 'Show', comment %></td>
-        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', album_comment_path(comment.album, comment) %></td>
+        <td><%= link_to 'Edit', edit_album_comment_path(comment.album, comment) %></td>
+        <td><%= link_to 'Destroy', album_comment_path(comment.album, comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
