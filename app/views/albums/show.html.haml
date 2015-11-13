@@ -39,3 +39,13 @@
     = link_to 'Edit', edit_album_path(@album)
     = link_to 'Destroy', @album, method: :delete, data: { confirm: 'Are you sure?' }
 = link_to 'Back', :back
+
+%h3 Comments
+- @comments.each do |comment|
+  .well.well-sm
+    = image_tag comment.user_avatar, size: '33'
+    %strong= comment.user_email
+    = comment.body
+
+- if user_signed_in?
+  = render 'comments/form'
