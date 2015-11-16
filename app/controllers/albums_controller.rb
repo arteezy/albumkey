@@ -82,7 +82,10 @@ class AlbumsController < ApplicationController
   # GET /albums/1
   # GET /albums/1.json
   def show
+    @comments = @album.comments.all
     return unless user_signed_in?
+    @comment = @album.comments.build
+
     if @album.rates.where(user_id: current_user.id).exists?
       @rate = @album.rates.find_by(user_id: current_user.id).rate
     end
