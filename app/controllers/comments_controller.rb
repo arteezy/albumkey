@@ -19,10 +19,12 @@ class CommentsController < ApplicationController
   def create
     @comment = @album.comments.new(comment_params)
     @comment.user_id = current_user.id
+    @comment.user_email = current_user.email
+    @comment.user_avatar = current_user.gravatar_url
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to album_comments_path, notice: 'Comment was successfully created.' }
+        format.html { redirect_to @album, notice: 'Comment was successfully added' }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { render :new }
@@ -34,7 +36,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to album_comments_path, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to @album, notice: 'Comment was successfully updated' }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit }
@@ -62,6 +64,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:user_email, :body)
+    params.require(:comment).permit(:body)
   end
 end
