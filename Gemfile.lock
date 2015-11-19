@@ -253,6 +253,8 @@ GEM
     simplecov-html (0.10.0)
     sitemap_generator (5.1.0)
       builder
+    skylight (0.10.1)
+      activesupport (>= 3.0.0)
     slop (3.6.0)
     spring (1.6.2)
     sprockets (3.5.2)
@@ -324,6 +326,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.1)
   sitemap_generator
+  skylight
   spring
   turbolinks (~> 2.5.3)
   tzinfo-data

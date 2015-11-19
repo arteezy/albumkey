@@ -93,4 +93,6 @@ group :production do
   gem 'rails_12factor'
   # Use New Relic as monitoring service
   gem 'newrelic_rpm'
+  # Use Skylight as alternative monitoring service
+  gem 'skylight'
 end
