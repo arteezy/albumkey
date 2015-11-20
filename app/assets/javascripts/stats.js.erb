@@ -73,48 +73,4 @@ $(document).on("ready page:load", function() {
         error();
       }
     });
-
-  function draw(data) {
-    var color = d3.scale.category10();
-    var height = 300, barWidht = 2;
-
-    var x = d3.scale.linear()
-      .range([height, 0])
-      .domain([0, 10]);
-
-    var xAxis = d3.svg.axis()
-      .scale(x)
-      .orient('bottom');
-
-    var chart = d3.select("#graph")
-      .attr("height", height)
-      .attr("width", barWidht * data.length);
-
-    var bar = chart.selectAll("g")
-      .data(data)
-      .enter().append("g")
-      .attr("transform", function (d, i) {
-        return "translate(" + i * barWidht + ",0)";
-      });
-
-    bar.append("rect")
-      .attr("height", function(d) {
-        return height - x(d);
-      })
-      .attr("width", barWidht - 1)
-      .attr("y", x)
-      .attr("class", "bar")
-      .style("fill", function (d) {
-        return color(d)
-      })
-
-    chart.append('g')
-      .attr('class', 'x axis')
-      .attr("transform", "translate(0," + (height - 40) + ")")
-      .call(xAxis);
-  }
-
-  function error() {
-    console.log("Error: can't draw d3 chart")
-  }
 });
