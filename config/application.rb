@@ -1,14 +1,14 @@
 require File.expand_path('../boot', __FILE__)
 
 # Pick the frameworks you want:
-require "active_model/railtie"
-require "active_job/railtie"
-# require "active_record/railtie"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "action_view/railtie"
-require "sprockets/railtie"
-# require "rails/test_unit/railtie"
+require 'active_model/railtie'
+require 'active_job/railtie'
+# require 'active_record/railtie'
+require 'action_controller/railtie'
+require 'action_mailer/railtie'
+require 'action_view/railtie'
+require 'sprockets/railtie'
+# require 'rails/test_unit/railtie'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -19,6 +19,9 @@ module Richfork
     # Precompile font assets
     config.assets.precompile << /\.(?:png|svg|eot|woff|ttf)$/
 
+    # Add extra probes for Skylight monitoring
+    config.skylight.probes += %w(mongo)
+
     # Select RSpec tests generators
     config.generators do |g|
       g.test_framework :rspec,
@@ -28,7 +31,7 @@ module Richfork
         routing_specs: false,
         controller_specs: true,
         request_specs: false
-      g.fixture_replacement :factory_girl, dir: "spec/factories"
+      g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
   end
 end
