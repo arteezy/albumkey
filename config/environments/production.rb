@@ -51,6 +51,9 @@ Rails.application.configure do
   # Set MongoDB logging level to WARN
   Mongo::Logger.logger.level = Logger::WARN
 
+  # Add extra probes for Skylight monitoring
+  config.skylight.probes += %w(mongo)
+
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
 

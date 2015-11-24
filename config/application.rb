@@ -19,9 +19,6 @@ module Richfork
     # Precompile font assets
     config.assets.precompile << /\.(?:png|svg|eot|woff|ttf)$/
 
-    # Add extra probes for Skylight monitoring
-    config.skylight.probes += %w(mongo)
-
     # Select RSpec tests generators
     config.generators do |g|
       g.test_framework :rspec,
