@@ -141,6 +141,7 @@ GEM
       activesupport (>= 3.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
+    le (2.6.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -309,6 +310,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   launchy (~> 2.4.3)
+  le
   mongo (~> 2.1.2)
   mongoid (~> 5.0.0)
   mongoid-enum!

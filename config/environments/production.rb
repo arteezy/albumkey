@@ -51,6 +51,9 @@ Rails.application.configure do
   # Set MongoDB logging level to WARN
   Mongo::Logger.logger.level = Logger::WARN
 
+  # Setup LogEntries logging token
+  Rails.logger = Le.new(ENV['LOGENTRIES_TOKEN'])
+
   # Add extra probes for Skylight monitoring
   config.skylight.probes += %w(mongo)
 

@@ -91,6 +91,8 @@ end
 group :production do
   # 12 Factor gem for Heroku
   gem 'rails_12factor'
+  # Add LogEntries log monitoring
+  gem 'le'
   # Use New Relic as monitoring service
   gem 'newrelic_rpm'
   # Use Skylight as alternative monitoring service
