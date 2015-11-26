@@ -5,5 +5,8 @@
     = render 'dash'
 
 .col-lg-9.col-md-8
-  = render partial: 'shared/card', collection: @albums
-  = paginate @albums
+  - if @albums.size > 0
+    = render partial: 'shared/card', collection: @albums
+    = paginate @albums
+  - else
+    %h5.text-muted Nothing Found

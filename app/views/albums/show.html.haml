@@ -41,11 +41,14 @@
 = link_to 'Back', :back
 
 %h3 Comments
-- @comments.each do |comment|
-  .well.well-sm
-    = image_tag comment.user_avatar, size: '33'
-    %strong= comment.user_email
-    = comment.body
+- if @comments.size > 0
+  - @comments.each do |comment|
+    .well.well-sm
+      = image_tag comment.user_avatar, size: '33'
+      %strong= comment.user_email
+      = comment.body
+- else
+  %h5.text-muted The comments section is empty
 
 - if user_signed_in?
   = render 'comments/form'
