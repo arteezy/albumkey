@@ -1,6 +1,4 @@
 class PitchforkParser
-  include Mongo
-
   def initialize(db, collection)
     client = Mongo::Client.new(db)
     @collection = client[collection]
@@ -12,17 +10,18 @@ class PitchforkParser
 
     begin
       album = {
-        source:  url,
-        p4k_id:  url.match('/\d{1,6}-')[0][1..-2].to_i,
-        artist:  review.css('> h1').text,
-        title:   review.css('> h2').text,
-        label:   review.css('> h3').text.split(';').first.strip,
-        year:    review.css('> h3').text.split(';').last.strip,
-        date:    DateTime.strptime(review.css('> h4 > span').text, '%B %d, %Y').to_time,
-        rating:  review.css('> span').text.to_f,
-        artwork: review.parent.at_css('.artwork > img').attr('src'),
-        reissue: review.text.include?('Best New Reissue'),
-        bnm:     review.text.include?('Best New Music')
+        source:     url,
+        created_at: Time.now,
+        p4k_id:     url.match('/\d{1,6}-')[0][1..-2].to_i,
+        artist:     review.css('> h1').text,
+        title:      review.css('> h2').text,
+        label:      review.css('> h3').text.split(';').first.strip,
+        year:       review.css('> h3').text.split(';').last.strip,
+        date:       DateTime.strptime(review.css('> h4 > span').text, '%B %d, %Y').to_time,
+        rating:     review.css('> span').text.to_f,
+        artwork:    review.parent.at_css('.artwork > img').attr('src'),
+        reissue:    review.text.include?('Best New Reissue'),
+        bnm:        review.text.include?('Best New Music')
       }
     rescue => e
       puts "Failed to parse: #{url}"
@@ -65,18 +64,6 @@ class PitchforkParser
       @collection.insert_many(links)
       page += 1
     end until links.size < 20
-  end
-
-  def catch_up_to(url)
-    page = 1
-    begin
-      links = get_page_links("http://pitchfork.com/reviews/albums/#{page}/")
-      links.reverse_each do |review|
-        json = parse_review(review)
-        @collection.update_one(json, json, upsert: true)
-      end
-      page += 1
-    end until links.include?(url)
   end
 
   def find_last_page
