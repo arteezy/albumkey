@@ -32,7 +32,7 @@ class Album
   index title: 1
   index artist: 1
   index label: 1
-  index date: 1
+  index({ date: -1, created_at: 1 })
   index({ p4k_id: 1 }, unique: true, sparse: true)
 
   def self.search(query)
