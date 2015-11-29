@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :find_parent_album
+  before_action :get_parent_album
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -48,14 +48,14 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to album_comments_url, alert: 'Comment was successfully destroyed.' }
+      format.html { redirect_to @album, alert: 'Comment was successfully deleted' }
       format.json { head :no_content }
     end
   end
 
   private
 
-  def find_parent_album
+  def get_parent_album
     @album = Album.find(params[:album_id])
   end
 
