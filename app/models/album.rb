@@ -15,11 +15,6 @@ class Album
   field :reissue, type: Boolean
   field :bnm, type: Boolean
 
-  slug :artist, :title
-
-  has_many :rates, dependent: :destroy
-  embeds_many :comments
-
   validates :title, presence: true
   validates :artist, presence: true
   validates :label, presence: true
@@ -29,11 +24,17 @@ class Album
   validates :source, presence: true
   validates :rating, presence: true
 
+  has_many :rates, dependent: :destroy
+  embeds_many :comments
+
   index title: 1
   index artist: 1
   index label: 1
+  index rating: 1
   index({ date: -1, created_at: 1 })
   index({ p4k_id: 1 }, unique: true, sparse: true)
+
+  slug :artist, :title
 
   def self.search(query)
     if query
