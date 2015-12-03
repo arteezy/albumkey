@@ -1,5 +1,4 @@
 $font-stack: 'Raleway', 'Helvetica', sans-serif;
-$footer-height: 3em;
 $footer-color: #f7f7f7;
 $red: #c9302c;
 $green: #5cb85c;
@@ -11,17 +10,17 @@ html {
 }
 
 body {
-  margin-bottom: $footer-height;
+  margin-bottom: 4em;
 }
 
-.footer {
+footer {
   background-color: $footer-color;
   bottom: 0;
-  height: $footer-height;
+  height: 3em;
   position: absolute;
   width: 100%;
 
-  .kappa {
+  .footer-text {
     line-height: 1em;
     margin: 1em 0;
   }
