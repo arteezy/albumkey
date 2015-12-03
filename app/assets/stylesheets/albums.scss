@@ -1,7 +1,31 @@
 $font-stack: 'Raleway', 'Helvetica', sans-serif;
+$footer-height: 3em;
+$footer-color: #f7f7f7;
 $red: #c9302c;
 $green: #5cb85c;
 $grey: #808080;
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  margin-bottom: $footer-height;
+}
+
+.footer {
+  background-color: $footer-color;
+  bottom: 0;
+  height: $footer-height;
+  position: absolute;
+  width: 100%;
+
+  .kappa {
+    line-height: 1em;
+    margin: 1em 0;
+  }
+}
 
 .artwork {
   min-height: 250px;
