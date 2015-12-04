@@ -7,6 +7,6 @@
 .col-lg-9.col-md-8
   - if @albums.size > 0
     = render partial: 'shared/card', collection: @albums
-    = paginate @albums, total_pages: @albums.size
+    = paginate @albums
   - else
     %h5.text-muted Nothing Found

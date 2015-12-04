@@ -35,7 +35,7 @@ gem 'sdoc', '~> 0.4.1', group: :doc
 # Use Nokogiri as HTML parser
 gem 'nokogiri', '~> 1.6.6'
 # Use Kaminari gem for pagination
-gem 'kaminari'
+gem 'kaminari', git: 'https://github.com/amatsuda/kaminari.git'
 # Use Mongoid Slug as slug generator for beautiful URLs
 gem 'mongoid-slug', '~> 5.1'
 # Use Mongoid Enum for enum support

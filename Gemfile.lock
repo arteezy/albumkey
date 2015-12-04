@@ -5,6 +5,14 @@ GIT
     database_cleaner (1.5.1)
 
 GIT
+  remote: https://github.com/amatsuda/kaminari.git
+  revision: 282b2125292d8f4c721dba89510ee4360c071eb0
+  specs:
+    kaminari (1.0.0.alpha)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+
+GIT
   remote: https://github.com/arteezy/mongoid-enum.git
   revision: fe97eec059fb3c35d8d6d5ce209fdacb6da6dd0f
   specs:
@@ -136,9 +144,6 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
-    kaminari (0.16.3)
-      actionpack (>= 3.0.0)
-      activesupport (>= 3.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     le (2.6.2)
@@ -308,7 +313,7 @@ DEPENDENCIES
   haml
   jbuilder (~> 2.3)
   jquery-rails
-  kaminari
+  kaminari!
   launchy (~> 2.4.3)
   le
   mongo (~> 2.2.1)
