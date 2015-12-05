@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   end
 
   get '/robots.:format', to: 'pages#robots'
+  get '/sitemap.xml.gz', to: 'pages#sitemap'
 end
