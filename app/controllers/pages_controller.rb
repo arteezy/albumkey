@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   def robots
     respond_to :text
-    expires_in 12.hours, public: true
+    expires_in 1.days, public: true
   end
 
   def sitemap
