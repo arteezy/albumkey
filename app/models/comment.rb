@@ -6,6 +6,10 @@ class Comment
   field :user_avatar, type: String
   field :body, type: String
 
+  validates :user_email, presence: true
+  validates :user_avatar, presence: true
+  validates :body, presence: true
+
   belongs_to :user
   embedded_in :album
 end
