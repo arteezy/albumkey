@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :get_parent_album
+  before_action :set_parent_album
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
         format.html { redirect_to @album, notice: 'Comment was successfully added' }
         format.json { render :show, status: :created, location: @comment }
       else
-        format.html { render :new }
+        format.html { redirect_to @album, alert: 'Unable to add comment' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
@@ -48,14 +48,14 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to @album, alert: 'Comment was successfully deleted' }
+      format.html { redirect_to @album, alert: 'Comment was deleted' }
       format.json { head :no_content }
     end
   end
 
   private
 
-  def get_parent_album
+  def set_parent_album
     @album = Album.find(params[:album_id])
   end
 
