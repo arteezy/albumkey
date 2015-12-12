@@ -5,5 +5,9 @@ FactoryGirl.define do
     body { Faker::Lorem.sentence }
     association :user, factory: :user
     association :album, factory: :album
+
+    factory :invalid_comment do
+      body nil
+    end
   end
 end
