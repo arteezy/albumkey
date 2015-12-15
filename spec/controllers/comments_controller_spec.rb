@@ -68,35 +68,35 @@ describe CommentsController, type: :controller do
 
   describe 'PUT #update' do
     context 'with valid params' do
-      let(:new_attributes) { { body: 'Good vibes' } }
+      let(:new_params) { { body: 'Good vibes' } }
 
       it 'updates the requested comment' do
-        put :update, { album_id: comment.album, id: comment, comment: new_attributes }, valid_session
+        put :update, { album_id: comment.album, id: comment, comment: new_params }, valid_session
         comment.reload
         expect(comment.body).to eq('Good vibes')
       end
 
       it 'assigns the requested comment as @comment' do
-        put :update, { album_id: comment.album, id: comment, comment: new_attributes }, valid_session
+        put :update, { album_id: comment.album, id: comment, comment: new_params }, valid_session
         expect(assigns(:comment)).to eq(comment)
       end
 
       it 'redirects to album page' do
-        put :update, { album_id: comment.album, id: comment, comment: new_attributes }, valid_session
+        put :update, { album_id: comment.album, id: comment, comment: new_params }, valid_session
         expect(response).to redirect_to(comment.album)
       end
     end
 
     context 'with invalid params' do
-      let(:invalid_attributes) { { body: '' } }
+      let(:invalid_params) { { body: '' } }
 
       it 'assigns the comment as @comment' do
-        put :update, { album_id: comment.album, id: comment, comment: invalid_attributes }, valid_session
+        put :update, { album_id: comment.album, id: comment, comment: invalid_params }, valid_session
         expect(assigns(:comment)).to eq(comment)
       end
 
       it 're-renders the edit template' do
-        put :update, { album_id: comment.album, id: comment, comment: invalid_attributes }, valid_session
+        put :update, { album_id: comment.album, id: comment, comment: invalid_params }, valid_session
         expect(response).to render_template('edit')
       end
     end
