@@ -2,9 +2,10 @@ require 'rails_helper'
 
 describe AlbumsController, type: :controller do
   context 'CRUD' do
+    let(:album) { create(:album) }
+
     describe 'GET #index' do
       it 'assigns all albums as @albums' do
-        album = create(:album)
         get :index
         expect(assigns(:albums)).to match_array([album])
       end
@@ -17,13 +18,11 @@ describe AlbumsController, type: :controller do
 
     describe 'GET #show' do
       it 'assigns the requested album as @album' do
-        album = create(:album)
         get :show, id: album
         expect(assigns(:album)).to eq(album)
       end
 
       it 'renders the show template' do
-        album = create(:album)
         get :show, id: album
         expect(response).to render_template :show
       end
@@ -43,13 +42,11 @@ describe AlbumsController, type: :controller do
 
     describe 'GET #edit' do
       it 'assigns the requested album as @album' do
-        album = create(:album)
         get :edit, id: album
         expect(assigns(:album)).to eq(album)
       end
 
       it 'renders the edit template' do
-        album = create(:album)
         get :edit, id: album
         expect(response).to render_template :edit
       end
@@ -128,14 +125,13 @@ describe AlbumsController, type: :controller do
 
     describe 'DELETE #destroy' do
       it 'destroys the requested album' do
-        album = create(:album)
+        album
         expect {
           delete :destroy, id: album
         }.to change(Album, :count).by(-1)
       end
 
       it 'redirects to the albums list' do
-        album = create(:album)
         delete :destroy, id: album
         expect(response).to redirect_to(albums_url)
       end
@@ -143,49 +139,43 @@ describe AlbumsController, type: :controller do
   end
 
   context 'JSON API' do
-    describe 'GET #artists' do
-      render_views
+    let!(:album) { create(:album) }
 
+    render_views
+
+    describe 'GET #artists' do
       it 'assigns all artists as @artists' do
-        album = create(:album)
         get :artists, format: :json
         expect(assigns(:artists)).to match_array([album.artist])
       end
 
       it 'renders the artists JSON' do
-        create(:album)
         get :artists, format: :json
         expect(response).to render_template :artists
       end
 
       it 'generates an array of artist names' do
-        album1 = create(:album)
-        album2 = create(:album)
+        another_album = create(:album)
         get :artists, format: :json
-        expect(JSON.parse(response.body)).to match_array([album1.artist, album2.artist])
+        expect(JSON.parse(response.body)).to match_array([album.artist, another_album.artist])
       end
     end
 
     describe 'GET #labels' do
-      render_views
-
       it 'assigns all record labels as @labels' do
-        album = create(:album)
         get :labels, format: :json
         expect(assigns(:labels)).to match_array([album.label])
       end
 
       it 'renders the labels JSON' do
-        create(:album)
         get :labels, format: :json
         expect(response).to render_template :labels
       end
 
       it 'generates an array of record labels' do
-        album1 = create(:album)
-        album2 = create(:album)
+        another_album = create(:album)
         get :labels, format: :json
-        expect(JSON.parse(response.body)).to match_array([album1.label, album2.label])
+        expect(JSON.parse(response.body)).to match_array([album.label, another_album.label])
       end
     end
   end
