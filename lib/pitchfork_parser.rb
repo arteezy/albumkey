@@ -1,7 +1,7 @@
 class PitchforkParser
   def initialize(db, collection)
-    client = Mongo::Client.new(db)
-    @collection = client[collection]
+    @collection = Mongo::Client.new(db)[collection]
+    @logger = Rails.logger
   end
 
   def parse_review(url)
@@ -24,9 +24,9 @@ class PitchforkParser
         bnm:        review.text.include?('Best New Music')
       }
     rescue => e
-      puts "Failed to parse: #{url}"
-      puts e.message
-      puts e.backtrace
+      @logger.error "Failed to parse: #{url}"
+      @logger.error e.message
+      @logger.error e.backtrace
     end
   end
 
@@ -49,19 +49,24 @@ class PitchforkParser
   def update
     latest = Album.desc(:date).limit(1).first
     if Date.today > latest.date
-      opt_update
+      incremental_update
     else
-      puts 'Album database is already synced with Pitchfork'
+      @logger.info 'Album database is already synced with Pitchfork'
     end
   end
 
-  def opt_update
-    page = 1
+  def incremental_update(page = 1)
     last_20 = Album.desc(:date).limit(20).map(&:source)
     begin
       links = get_page_links("http://pitchfork.com/reviews/albums/#{page}/") - last_20
-      links.map! { |review| parse_review(review) }
-      @collection.insert_many(links)
+      unless links.empty?
+        @logger.info 'Found new reviews! Staging them for adding:'
+        links.map! do |link|
+          @logger.info link
+          parse_review(link)
+        end
+        @collection.insert_many(links)
+      end
       page += 1
     end until links.size < 20
   end
