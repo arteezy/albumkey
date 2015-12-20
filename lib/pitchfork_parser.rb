@@ -26,7 +26,7 @@ class PitchforkParser
     rescue => e
       @logger.error "Failed to parse: #{url}"
       @logger.error e.message
-      @logger.error e.backtrace
+      @logger.error e.backtrace.join('\n')
     end
   end
 
