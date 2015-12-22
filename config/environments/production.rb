@@ -48,8 +48,9 @@ Rails.application.configure do
   # when problems arise.
   config.log_level = :debug
 
-  # Set MongoDB logging level to WARN
-  Mongo::Logger.logger.level = Logger::WARN
+  # Set MongoDB logging level
+  Mongoid.logger.level       = Logger::INFO
+  Mongo::Logger.logger.level = Logger::INFO
 
   # Setup LogEntries logging token
   Rails.logger = Le.new(ENV['LOGENTRIES_TOKEN'])

@@ -34,7 +34,8 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
-  # Set MongoDB logging level to INFO
+  # Set MongoDB logging level
+  Mongoid.logger.level       = Logger::INFO
   Mongo::Logger.logger.level = Logger::INFO
 
   # Raises error for missing translations
