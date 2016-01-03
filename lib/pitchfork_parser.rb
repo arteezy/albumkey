@@ -6,22 +6,22 @@ class PitchforkParser
 
   def parse_review(url)
     document = Nokogiri::HTML(Net::HTTP.get(URI(url)))
-    review = document.at_css('#main .review-meta .info')
+    review = document.at_css('.tombstone')
 
     begin
       album = {
         source:     url,
         created_at: Time.now,
         p4k_id:     url.match('/\d{1,6}-')[0][1..-2].to_i,
-        artist:     review.css('> h1').text,
-        title:      review.css('> h2').text,
-        label:      review.css('> h3').text.split(';').first.strip,
-        year:       review.css('> h3').text.split(';').last.strip,
-        date:       DateTime.strptime(review.css('> h4 > span').text, '%B %d, %Y').to_time,
-        rating:     review.css('> span').text.to_f,
-        artwork:    review.parent.at_css('.artwork > img').attr('src'),
-        reissue:    review.text.include?('Best New Reissue'),
-        bnm:        review.text.include?('Best New Music')
+        artist:     review.css('.artists > ul > li').map(&:text).join(' / '),
+        title:      review.css('.review-title').text,
+        label:      review.css('.label-list > li').map(&:text).join(' / '),
+        year:       review.css('.year > span:last-child').text,
+        date:       Date.parse(document.css('.pub-date').attr('title')).to_datetime,
+        rating:     review.css('.score').text.to_f,
+        artwork:    review.parent.at_css('.album-art > img').attr('src'),
+        reissue:    review.text.include?('Best new reissue'),
+        bnm:        review.text.include?('Best new music')
       }
     rescue => e
       @logger.error "Failed to parse: #{url}"
@@ -32,7 +32,7 @@ class PitchforkParser
 
   def get_page_links(url)
     document = Nokogiri::HTML(Net::HTTP.get(URI(url)))
-    document.css('#main .object-grid > li a').map do |review|
+    document.css('.fragment-list > .review > a').map do |review|
       "http://pitchfork.com#{review.attr('href')}"
     end
   end
@@ -56,9 +56,9 @@ class PitchforkParser
   end
 
   def incremental_update(page = 1)
-    last_20 = Album.desc(:date).limit(20).map(&:source)
+    last_24 = Album.desc(:date).limit(24).map(&:source)
     begin
-      links = get_page_links("http://pitchfork.com/reviews/albums/#{page}/") - last_20
+      links = get_page_links("http://pitchfork.com/reviews/albums/?page=#{page}") - last_24
       unless links.empty?
         @logger.info 'Found new reviews! Staging them for adding:'
         links.map! do |link|
@@ -68,7 +68,7 @@ class PitchforkParser
         @collection.insert_many(links)
       end
       page += 1
-    end until links.size < 20
+    end until links.size < 24
   end
 
   def find_last_page
