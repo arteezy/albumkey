@@ -55,20 +55,21 @@ class PitchforkParser
     end
   end
 
-  def incremental_update(page = 1)
-    last_24 = Album.desc(:date).limit(24).map(&:source)
+  def incremental_update(page = 1, batch_size = 24)
+    latest_albums_links = Album.desc(:date).limit(batch_size).pluck(:source)
     begin
-      links = get_page_links("http://pitchfork.com/reviews/albums/?page=#{page}") - last_24
+      links = get_page_links("http://pitchfork.com/reviews/albums/?page=#{page}") - latest_albums_links
       unless links.empty?
-        @logger.info 'Found new reviews! Staging them for adding:'
+        @logger.info 'Found new reviews! Staging them for parsing:'
         links.map! do |link|
           @logger.info link
           parse_review(link)
         end
         @collection.insert_many(links)
       end
+      batch_size = 12
       page += 1
-    end until links.size < 24
+    end until links.size < batch_size
   end
 
   def find_last_page
