@@ -63,6 +63,8 @@ group :development do
   gem 'spring'
   # Use Rack Mini Profiler for advanced performance profiling
   gem 'rack-mini-profiler'
+  # Use Bullet gem to find slow queries and unused eager loading
+  gem 'bullet'
   # Use Pry as Rails console replacement
   gem 'pry-rails'
   # Use Awesome Print to make debugging more visually comprehensive
