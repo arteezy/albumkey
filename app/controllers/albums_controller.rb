@@ -20,11 +20,10 @@ class AlbumsController < ApplicationController
     selectors << { bnm: false } if params[:bnm]
 
     @albums = Album.all_of(*selectors)
-              .gte(rating: min_rating).lte(rating: max_rating)
-              .order_by(params[:order] => params[:dir], created_at: 1)
-              .search(params[:search])
-              .includes(:rates)
-              .page(params[:page])
+                   .rating_range(min_rating, max_rating)
+                   .albums_order(params[:order], params[:dir])
+                   .search(params[:search])
+                   .page(params[:page])
   end
 
   # GET /api/artists.json

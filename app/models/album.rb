@@ -24,24 +24,27 @@ class Album
   validates :source, presence: true
   validates :rating, presence: true
 
+  index(title: 1)
+  index(artist: 1)
+  index(label: 1)
+  index(rating: 1)
+  index(date: -1, created_at: 1)
+  index({ p4k_id: 1 }, unique: true, sparse: true)
+
   has_many :rates, dependent: :destroy
   embeds_many :comments
 
-  index title: 1
-  index artist: 1
-  index label: 1
-  index rating: 1
-  index({ date: -1, created_at: 1 })
-  index({ p4k_id: 1 }, unique: true, sparse: true)
-
   slug :artist, :title
+
+  scope :rating_range, -> (min, max) { gte(rating: min).lte(rating: max) }
+  scope :albums_order, -> (order, dir) { order_by(order => dir, created_at: :asc) }
 
   def self.search(query)
     if query
       any_of([
-        { artist: Regexp.new("#{query}", true) },
-        { title:  Regexp.new("#{query}", true) },
-        { label:  Regexp.new("#{query}", true) }
+        { artist: Regexp.new(query, true) },
+        { title:  Regexp.new(query, true) },
+        { label:  Regexp.new(query, true) }
       ])
     else
       all
