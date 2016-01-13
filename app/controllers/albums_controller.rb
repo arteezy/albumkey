@@ -4,22 +4,19 @@ class AlbumsController < ApplicationController
   # GET /albums
   # GET /albums.json
   def index
-    params[:order] ||= 'date'
-    params[:dir] ||= 'desc'
+    params[:order]  ||= 'date'
+    params[:dir]    ||= 'desc'
     params[:rating] ||= '0.0-10.0'
 
     rating = params[:rating].split('-')
     min_rating = rating[0]
     max_rating = rating[1]
 
-    selectors = []
-    selectors << { artist: params[:artist] } if params[:artist]
-    selectors << { year: params[:year] } if params[:year]
-    selectors << { label: params[:label] } if params[:label]
-    selectors << { reissue: false } if params[:reissue]
-    selectors << { bnm: false } if params[:bnm]
-
-    @albums = Album.all_of(*selectors)
+    @albums = Album.artist(params[:artist])
+                   .year(params[:year])
+                   .label(params[:label])
+                   .reissue(params[:reissue])
+                   .bnm(params[:bnm])
                    .rating_range(min_rating, max_rating)
                    .albums_order(params[:order], params[:dir])
                    .search(params[:search])

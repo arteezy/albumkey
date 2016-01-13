@@ -36,11 +36,16 @@ class Album
 
   slug :artist, :title
 
+  scope :artist, -> (artist) { where(artist: artist) if artist.present? }
+  scope :year, -> (year) { where(year: year) if year.present? }
+  scope :label, -> (label) { where(label: label) if label.present? }
+  scope :reissue, -> (reissue) { where(reissue: false) if reissue.present? }
+  scope :bnm, -> (bnm) { where(bnm: false) if bnm.present? }
   scope :rating_range, -> (min, max) { gte(rating: min).lte(rating: max) }
   scope :albums_order, -> (order, dir) { order_by(order => dir, created_at: :asc) }
 
   def self.search(query)
-    if query
+    if query.present?
       any_of([
         { artist: Regexp.new(query, true) },
         { title:  Regexp.new(query, true) },
