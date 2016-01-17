@@ -14,21 +14,6 @@ describe AlbumsController, type: :controller do
         get :index
         expect(response).to render_template :index
       end
-
-      context 'with search' do
-        let(:search_album1) { create(:album, title: 'Foo', artist: 'Bar', label: 'Lorem') }
-        let(:search_album2) { create(:album, title: 'Boo', artist: 'Far', label: 'Ipsum') }
-
-        it 'matches albums with valid query' do
-          get :index, search: 'ar'
-          expect(assigns(:albums)).to match_array([search_album1, search_album2])
-        end
-
-        it 'doesnt match albums with invalid query' do
-          get :index, search: 'Ipsum'
-          expect(assigns(:albums)).to match_array([search_album2])
-        end
-      end
     end
 
     describe 'GET #show' do
