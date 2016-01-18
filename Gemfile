@@ -61,6 +61,8 @@ end
 group :development do
   # Spring speeds up development by keeping your application running in the background
   gem 'spring'
+  # This gem implements the rspec command for Spring
+  gem 'spring-commands-rspec'
   # Use Rack Mini Profiler for advanced performance profiling
   gem 'rack-mini-profiler'
   # Use Bullet gem to find slow queries and unused eager loading
