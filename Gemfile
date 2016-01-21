@@ -23,7 +23,7 @@ gem 'mongoid', '~> 5.0.0'
 # Use Devise as authentication library
 gem 'devise', '~> 3.5.2'
 # Use Pundit for role-based authorization
-gem 'pundit', '~> 1.0.1'
+gem 'pundit', '~> 1.1'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster
