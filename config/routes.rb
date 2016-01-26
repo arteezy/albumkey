@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users
 
   resources :albums do
-    resources :comments
+    resources :comments, only: [:create, :update, :destroy]
   end
 
   get 'search', to: 'albums#search'

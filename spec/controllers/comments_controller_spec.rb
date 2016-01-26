@@ -5,34 +5,6 @@ describe CommentsController, type: :controller do
   let(:album) { create(:album) }
   let(:comment) { create(:comment) }
 
-  describe 'GET #index' do
-    it 'assigns all comments as @comments' do
-      get :index, { album_id: comment.album }, valid_session
-      expect(assigns(:comments)).to match_array([comment])
-    end
-  end
-
-  describe 'GET #show' do
-    it 'assigns the requested comment as @comment' do
-      get :show, { id: comment, album_id: comment.album }, valid_session
-      expect(assigns(:comment)).to eq(comment)
-    end
-  end
-
-  describe 'GET #new' do
-    it 'assigns a new comment as @comment' do
-      get :new, { album_id: album }, valid_session
-      expect(assigns(:comment)).to be_a_new(Comment)
-    end
-  end
-
-  describe 'GET #edit' do
-    it 'assigns the requested comment as @comment' do
-      get :edit, { id: comment, album_id: comment.album }, valid_session
-      expect(assigns(:comment)).to eq(comment)
-    end
-  end
-
   describe 'POST #create' do
     context 'with valid params' do
       it 'creates a new Comment' do

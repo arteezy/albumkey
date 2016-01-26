@@ -1,20 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_parent_album
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
-
-  def index
-    @comments = @album.comments.all
-  end
-
-  def show
-  end
-
-  def new
-    @comment = @album.comments.build
-  end
-
-  def edit
-  end
+  before_action :set_comment, except: :create
 
   def create
     @comment = @album.comments.new(comment_params)
