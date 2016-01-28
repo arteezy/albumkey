@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @album, notice: 'Comment was successfully added' }
-        format.json { render :show, status: :created, location: @comment }
+        format.json { render json: @comment, status: :created }
       else
         format.html { redirect_to @album, alert: 'Unable to add comment' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -23,9 +23,9 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.update(comment_params)
         format.html { redirect_to @album, notice: 'Comment was successfully updated' }
-        format.json { render :show, status: :ok, location: @comment }
+        format.json { render json: @comment, status: :ok }
       else
-        format.html { render :edit }
+        format.html { redirect_to @album, alert: 'Unable to update comment' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
