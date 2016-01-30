@@ -31,9 +31,10 @@ describe CommentsController, type: :controller do
         expect(assigns(:comment)).to be_a_new(Comment)
       end
 
-      it 'redirects to album page' do
+      it 'redirects to album page with alert' do
         post :create, { comment: attributes_for(:invalid_comment), album_id: album }, valid_session
         expect(response).to redirect_to(album)
+        expect(flash[:alert]).to be_present
       end
     end
   end
@@ -67,9 +68,10 @@ describe CommentsController, type: :controller do
         expect(assigns(:comment)).to eq(comment)
       end
 
-      it 're-renders the edit template' do
+      it 'redirects to album page with alert' do
         put :update, { album_id: comment.album, id: comment, comment: invalid_params }, valid_session
-        expect(response).to render_template('edit')
+        expect(response).to redirect_to(comment.album)
+        expect(flash[:alert]).to be_present
       end
     end
   end
@@ -81,9 +83,10 @@ describe CommentsController, type: :controller do
       }.to change { comment.album.reload.comments.count }.by(-1)
     end
 
-    it 'redirects to album page' do
+    it 'redirects to album page with alert' do
       delete :destroy, { album_id: comment.album, id: comment }, valid_session
       expect(response).to redirect_to(comment.album)
+      expect(flash[:alert]).to be_present
     end
   end
 end
