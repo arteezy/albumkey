@@ -20,9 +20,15 @@
       .row
         .col-md-12
           - unless notice.blank?
-            .alert.alert-info{ role: 'alert' }= notice
+            .alert.alert-info.alert-dismissible{ role: 'alert' }
+              %button.close{ type: 'button', data: { dismiss: 'alert' }, aria: { label: 'Close' } }
+                %span{ aria: { hidden: 'true' } }= '×'
+              = notice
           - unless alert.blank?
-            .alert.alert-danger{ role: 'alert' }= alert
+            .alert.alert-danger.alert-dismissible{ role: 'alert' }
+              %button.close{ type: 'button', data: { dismiss: 'alert' }, aria: { label: 'Close' } }
+                %span{ aria: { hidden: 'true' } }= '×'
+              = alert
       .row
         = yield
 
