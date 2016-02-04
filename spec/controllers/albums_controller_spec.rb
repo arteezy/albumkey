@@ -22,9 +22,30 @@ describe AlbumsController, type: :controller do
         expect(assigns(:album)).to eq(album)
       end
 
+      it 'assigns album comments as @comments' do
+        comment = create(:comment, album: album)
+        get :show, id: album
+        expect(assigns(:comments)).to match_array([comment])
+      end
+
       it 'renders the show template' do
         get :show, id: album
         expect(response).to render_template :show
+      end
+
+      context 'with user logged in' do
+        login_user
+
+        it 'assigns a new comment as @comment' do
+          get :show, id: album
+          expect(assigns(:comment)).to be_a_new(Comment)
+        end
+
+        it 'assigns the user rate of album as @rate' do
+          rate = create(:rate, album: album, user: subject.current_user)
+          get :show, id: album
+          expect(assigns(:rate)).to eq(rate)
+        end
       end
     end
 

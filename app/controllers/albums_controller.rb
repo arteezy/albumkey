@@ -83,7 +83,7 @@ class AlbumsController < ApplicationController
     @comment = @album.comments.build
 
     if @album.rates.where(user_id: current_user.id).exists?
-      @rate = @album.rates.find_by(user_id: current_user.id).rate
+      @rate = @album.rates.find_by(user_id: current_user.id)
     end
   end
 
