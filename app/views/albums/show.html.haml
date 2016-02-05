@@ -1,54 +1,54 @@
 - title "#{@album['artist']} - #{@album['title']}"
-
-.well.well-sm
-  .row.card{ 'data-album-id' => @album.id }
-    .col-lg-3.col-md-4.col-sm-6.col-xs-12
-      = image_tag(@album['artwork'], alt: @album['title'], class: ['artwork', 'img-thumbnail', 'img-responsive', 'center-block'])
-    .col-lg-4.col-md-4.col-sm-6.col-xs-12
-      %h3= link_to @album['title'], album_path(@album)
-      %h4= link_to @album['artist'], albums_path(artist: @album['artist'])
-      %h5= link_to @album['year'], albums_path(year: @album['year'])
-      %h5= link_to @album['label'], albums_path(label: @album['label'])
-      %h6= @album['date'].strftime('%d %b %Y')
-      %h6= link_to 'Read review at Pitchfork', @album['source']
-      .hidden-lg.hidden-md.hidden-sm
+.col-xs-12
+  .well.well-sm
+    .row.card{ 'data-album-id' => @album.id }
+      .col-lg-3.col-md-4.col-sm-6.col-xs-12
+        = image_tag(@album['artwork'], alt: @album['title'], class: ['artwork', 'img-thumbnail', 'img-responsive', 'center-block'])
+      .col-lg-4.col-md-4.col-sm-6.col-xs-12
+        %h3= link_to @album['title'], album_path(@album)
+        %h4= link_to @album['artist'], albums_path(artist: @album['artist'])
+        %h5= link_to @album['year'], albums_path(year: @album['year'])
+        %h5= link_to @album['label'], albums_path(label: @album['label'])
+        %h6= @album['date'].strftime('%d %b %Y')
+        %h6= link_to 'Read review at Pitchfork', @album['source']
+        .hidden-lg.hidden-md.hidden-sm
+          - if @album['bnm']
+            .btn.btn-lg.btn-danger= @album['rating']
+          - else
+            - if @album['reissue']
+              .btn.btn-lg.btn-success= @album['rating']
+            - else
+              .btn.btn-lg.btn-primary= @album['rating']
+      .col-lg-2
+        - if user_signed_in?
+          - if @rate
+            .rating.user= @rate.rate
+          - else
+            .rating.user.dim= 0.0
+      .col-lg-3.col-md-4.col-sm-6.hidden-xs
         - if @album['bnm']
-          .btn.btn-lg.btn-danger= @album['rating']
+          .rating.bnm= @album['rating']
         - else
           - if @album['reissue']
-            .btn.btn-lg.btn-success= @album['rating']
+            .rating.reissue= @album['rating']
           - else
-            .btn.btn-lg.btn-primary= @album['rating']
-    .col-lg-2
-      - if user_signed_in?
-        - if @rate
-          .rating.user= @rate.rate
-        - else
-          .rating.user.dim= 0.0
-    .col-lg-3.col-md-4.col-sm-6.hidden-xs
-      - if @album['bnm']
-        .rating.bnm= @album['rating']
-      - else
-        - if @album['reissue']
-          .rating.reissue= @album['rating']
-        - else
-          .rating= @album['rating']
+            .rating= @album['rating']
 
-- if user_signed_in?
-  - if current_user.try(:admin?)
-    = link_to 'Edit', edit_album_path(@album)
-    = link_to 'Destroy', @album, method: :delete, data: { confirm: 'Are you sure?' }
-= link_to 'Back', :back
+  - if user_signed_in?
+    - if current_user.try(:admin?)
+      = link_to 'Edit', edit_album_path(@album)
+      = link_to 'Destroy', @album, method: :delete, data: { confirm: 'Are you sure?' }
+  = link_to 'Back', :back
 
-%h3 Comments
-- if @comments.size > 0
-  - @comments.each do |comment|
-    .well.well-sm
-      = image_tag comment.user_avatar, size: '33'
-      %strong= comment.user_email
-      = comment.body
-- else
-  %h5.text-muted The comments section is empty
+  %h3 Comments
+  - if @comments.size > 0
+    - @comments.each do |comment|
+      .well.well-sm
+        = image_tag comment.user_avatar, size: '33'
+        %strong= comment.user_email
+        = comment.body
+  - else
+    %h5.text-muted The comments section is empty
 
-- if user_signed_in?
-  = render 'comments/form'
+  - if user_signed_in?
+    = render 'comments/form'

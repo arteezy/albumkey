@@ -1,15 +1,16 @@
 - title 'Users'
 
-.container
+.col-xs-12
   .row
-    %h3
-      Users
-    %table.table.table-bordered.table-hover
-      %thead
-        %tr
-          %th= 'Email'
-          %th= 'Role'
-          %th= 'Action'
-      %tbody.text-center
-        - @users.each do |user|
-          %tr= render user
+    .col-xs-12
+      %h3<
+        Users
+      %table.table.table-bordered.table-hover
+        %thead
+          %tr
+            %th= 'Email'
+            %th= 'Role'
+            %th= 'Action'
+        %tbody.text-center
+          - @users.each do |user|
+            %tr= render user
