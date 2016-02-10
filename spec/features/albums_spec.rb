@@ -26,7 +26,7 @@ feature 'Site Browsing' do
     click_link 'Log In'
     fill_in 'Email', with: admin.email
     fill_in 'Password', with: admin.password
-    click_button 'Log in'
+    click_button 'Log In'
 
     click_link 'Users'
     expect(page).to have_content 'Admin'
