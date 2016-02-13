@@ -34,16 +34,16 @@ module Features
       expect(page).to have_link 'Log In'
     end
 
-    # def reset_password_for(email)
-    #   visit new_password_path
-    #   fill_in 'password_email', with: email
-    #   click_button I18n.t('helpers.submit.password.submit')
-    # end
-    #
-    # def user_with_reset_password
-    #   user = FactoryGirl.create(:user)
-    #   reset_password_for user.email
-    #   user.reload
-    # end
+    def reset_password_for(email)
+      visit new_user_password_path
+      fill_in 'user_email', with: email
+      click_button 'Send me reset password instructions'
+    end
+
+    def user_with_reset_password
+      user = FactoryGirl.create(:user)
+      reset_password_for user.email
+      user.reload
+    end
   end
 end
