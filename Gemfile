@@ -24,6 +24,8 @@ gem 'mongoid', '~> 5.0.0'
 gem 'devise', '~> 3.5.2'
 # Use Pundit for role-based authorization
 gem 'pundit', '~> 1.1'
+# Use Sidekiq as job queue for background processing
+gem 'sidekiq', '~> 4.1.1'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster
@@ -35,7 +37,7 @@ gem 'sdoc', '~> 0.4.1', group: :doc
 # Use Nokogiri as HTML parser
 gem 'nokogiri', '~> 1.6.6'
 # Use Kaminari gem for pagination
-gem 'kaminari'
+gem 'kaminari', '~> 0.17'
 # Use Mongoid Slug as slug generator for beautiful URLs
 gem 'mongoid-slug', '~> 5.1'
 # Use Mongoid Enum for enum support
@@ -51,9 +53,9 @@ gem 'tzinfo-data'
 
 group :development, :test do
   # Use RSpec for advanced testing
-  gem 'rspec-rails', '~> 3.2.1'
+  gem 'rspec-rails', '~> 3.2'
   # Use Factory Girl as factories generator for specs
-  gem 'factory_girl_rails', '~> 4.5.0'
+  gem 'factory_girl_rails', '~> 4.5'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 end
@@ -81,13 +83,13 @@ end
 
 group :test do
   # Use Faker gem to generate fake test data
-  gem 'faker', '~> 1.4.3'
+  gem 'faker', '~> 1.4'
   # Use Capybara for integration specs
-  gem 'capybara', '~> 2.4.4'
+  gem 'capybara', '~> 2.4'
   # Use DatabaseCleaner to wipe DB before tests
   gem 'database_cleaner', git: 'https://github.com/DatabaseCleaner/database_cleaner.git'
   # Use Launchy as helper to Capybara specs
-  gem 'launchy', '~> 2.4.3'
+  gem 'launchy', '~> 2.4'
   # Use Code Climate to measure test coverage and code quality
   gem 'codeclimate-test-reporter'
 end

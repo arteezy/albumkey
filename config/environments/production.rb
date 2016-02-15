@@ -44,6 +44,17 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 
+  # Set queuing backend
+  config.active_job.queue_adapter = :sidekiq
+
+  Sidekiq.configure_server do |config|
+    config.redis = { url: ENV['REDIS_URL'] }
+  end
+
+  Sidekiq.configure_client do |config|
+    config.redis = { url: ENV['REDIS_URL'] }
+  end
+
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
   config.log_level = :debug
