@@ -24,8 +24,24 @@ RSpec.describe UpdateUserDetailsInCommentsJob, type: :job do
     end
 
     comment.reload
-    expect(comment.user_email).to eq 'example@gmail.com'
-    expect(comment.user_avatar).to eq 'https://example.com/avatar.jpg'
+    expect(comment.user_email).to eq new_email
+    expect(comment.user_avatar).to eq new_avatar
+  end
+
+  it 'doesn\'t updates user details in comments with invalid input' do
+    comment = create(:comment)
+    old_email = comment.user_email
+    new_email = ''
+    new_avatar = 'https://example.com/avatar.jpg'
+
+    expect(Rails.logger).to receive(:error).with(/Failed to update/)
+
+    perform_enqueued_jobs do
+      described_class.perform_later(old_email, new_email, new_avatar)
+    end
+
+    comment.reload
+    expect(comment.user_email).to eq old_email
   end
 
   after do

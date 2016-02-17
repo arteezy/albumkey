@@ -8,7 +8,7 @@ class UpdateUserDetailsInCommentsJob < ActiveJob::Base
           comment.user_email = new_email
           comment.user_avatar = new_avatar
           unless comment.save
-            Rails.logger.debug('Failed to update user details in comments')
+            Rails.logger.error('Failed to update user details in comments')
           end
         end
       end
