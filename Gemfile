@@ -46,6 +46,8 @@ gem 'mongoid-enum', git: 'https://github.com/arteezy/mongoid-enum.git'
 gem 'gravtastic'
 # Use this gem to generate sitemap and ping search engines
 gem 'sitemap_generator'
+# Use Discogs Wrapper gem to easily interact with the Discogs API
+gem 'discogs-wrapper'
 # Use fog-aws as an interface to Amazon Web Services
 gem 'fog-aws'
 # Use TZInfo Data as data source for time zones

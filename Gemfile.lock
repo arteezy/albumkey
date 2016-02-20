@@ -98,6 +98,9 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    discogs-wrapper (2.1.4)
+      hashie (~> 3.0)
+      oauth (~> 0.4.7)
     docile (1.1.5)
     erubis (2.7.0)
     excon (0.51.0)
@@ -130,6 +133,7 @@ GEM
     gravtastic (3.2.6)
     haml (4.0.7)
       tilt
+    hashie (3.4.4)
     i18n (0.7.0)
     ipaddress (0.8.3)
     jbuilder (2.5.0)
@@ -175,10 +179,11 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
+    oauth (0.4.7)
     origin (2.2.0)
     orm_adapter (0.5.0)
     pkg-config (1.1.7)
-    pry (0.10.3)
+    pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
@@ -324,6 +329,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   database_cleaner!
   devise (~> 3.5.2)
+  discogs-wrapper
   factory_girl_rails (~> 4.5)
   faker (~> 1.4)
   fog-aws
