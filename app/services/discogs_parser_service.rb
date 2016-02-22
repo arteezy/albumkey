@@ -5,16 +5,16 @@ class DiscogsParserService
   end
 
   def parse(year)
+    Rails.logger.info "Parsing #{year} year!"
     Album.where(discogs: nil, year: year).each do |album|
       search = @wrapper.search("#{album[:artist]} #{album[:title]}")
-      unless search[:results].blank?
-        search[:results].each do |result|
-          if result[:type] == 'master' && result[:year] == album[:year]
-            album[:discogs] = result
-            puts "#{album[:artist]} - #{album[:title]}"
-            album.save!
-            break
-          end
+      next if search[:results].blank?
+      search[:results].each do |result|
+        if result[:type] == 'master' && result[:year] == album[:year].split('/').sort.last
+          album[:discogs] = result
+          Rails.logger.info "#{album[:artist]} - #{album[:title]}"
+          album.save!
+          break
         end
       end
     end
@@ -42,7 +42,6 @@ class DiscogsParserService
     years = Album.where(discogs: nil).distinct(:year)
     years.each do |year|
       pool.post do
-        puts "Parsing #{year} year!"
         parse(year)
       end
     end
