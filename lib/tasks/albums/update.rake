@@ -3,5 +3,6 @@ namespace :albums do
   task update: :verbose do
     Rake::Task['albums:getlatest'].invoke
     Rake::Task['slugs:update'].invoke
+    Rake::Task['discogs:update'].invoke
   end
 end
