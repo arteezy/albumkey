@@ -89,7 +89,7 @@ group :test do
   # Use Capybara for integration specs
   gem 'capybara', '~> 2.4'
   # Use DatabaseCleaner to wipe DB before tests
-  gem 'database_cleaner', git: 'https://github.com/DatabaseCleaner/database_cleaner.git'
+  gem 'database_cleaner', '~> 1.5'
   # Use Launchy as helper to Capybara specs
   gem 'launchy', '~> 2.4'
   # Use Code Climate to measure test coverage and code quality
