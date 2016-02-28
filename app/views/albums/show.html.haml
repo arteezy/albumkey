@@ -4,7 +4,7 @@
     .row.card{ 'data-album-id' => @album.id }
       .col-lg-3.col-md-4.col-sm-6.col-xs-12
         = image_tag(@album['artwork'], alt: @album['title'], class: ['artwork', 'img-thumbnail', 'img-responsive', 'center-block'])
-      .col-lg-4.col-md-4.col-sm-6.col-xs-12
+      .col-lg-5.col-md-4.col-sm-6.col-xs-12
         %h3= link_to @album['title'], album_path(@album)
         %h4= link_to @album['artist'], albums_path(artist: @album['artist'])
         %h5= link_to @album['year'], albums_path(year: @album['year'])
@@ -19,13 +19,13 @@
               .btn.btn-lg.btn-success= @album['rating']
             - else
               .btn.btn-lg.btn-primary= @album['rating']
-      .col-lg-2
+      .col-lg-2.col-md-4.col-sm-6.hidden-xs
         - if user_signed_in?
           - if @rate
             .rating.user= @rate.rate
           - else
             .rating.user.dim= 0.0
-      .col-lg-3.col-md-4.col-sm-6.hidden-xs
+      .col-lg-2.col-md-4.col-sm-6.hidden-xs
         - if @album['bnm']
           .rating.bnm= @album['rating']
         - else
