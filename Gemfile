@@ -19,7 +19,7 @@ gem 'haml'
 # Use Mongo gem as Ruby driver for MongoDB
 gem 'mongo', '~> 2.2.1'
 # Use Mongoid as ODM for MongoDB
-gem 'mongoid', '~> 5.0.0'
+gem 'mongoid', '~> 5.1'
 # Use Devise as authentication library
 gem 'devise', '~> 3.5.2'
 # Use Pundit for role-based authorization
@@ -41,7 +41,7 @@ gem 'kaminari', '~> 0.17'
 # Use Mongoid Slug as slug generator for beautiful URLs
 gem 'mongoid-slug', '~> 5.1'
 # Use Mongoid Enum for enum support
-gem 'mongoid-enum', git: 'https://github.com/arteezy/mongoid-enum.git'
+gem 'mongoid-enum', github: 'arteezy/mongoid-enum'
 # Use Gravtastic gem to add Gravatar support
 gem 'gravtastic'
 # Use this gem to generate sitemap and ping search engines
