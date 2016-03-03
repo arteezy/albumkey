@@ -38,6 +38,8 @@ gem 'sdoc', '~> 0.4.1', group: :doc
 gem 'nokogiri', '~> 1.6.6'
 # Use Kaminari gem for pagination
 gem 'kaminari', '~> 0.17'
+# Kaminari adapter for Mongoid
+gem 'kaminari-mongoid'
 # Use Mongoid Slug as slug generator for beautiful URLs
 gem 'mongoid-slug', '~> 5.1'
 # Use Mongoid Enum for enum support

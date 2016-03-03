@@ -142,6 +142,8 @@ GEM
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    kaminari-mongoid (0.1.2)
+      kaminari
     launchy (2.4.3)
       addressable (~> 2.3)
     le (2.7.2)
@@ -334,6 +336,7 @@ DEPENDENCIES
   jbuilder (~> 2.3)
   jquery-rails
   kaminari (~> 0.17)
+  kaminari-mongoid
   launchy (~> 2.4)
   le
   mongo (~> 2.2.1)
