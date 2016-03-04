@@ -52,7 +52,7 @@ Rails.application.configure do
   end
 
   Sidekiq.configure_client do |config|
-    config.redis = { url: ENV['REDIS_URL'], size: 1 }
+    config.redis = { url: ENV['REDIS_URL'], size: 3 }
   end
 
   # Use the lowest log level to ensure availability of diagnostic information
