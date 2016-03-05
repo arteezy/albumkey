@@ -60,8 +60,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.2'
   # Use Factory Girl as factories generator for specs
   gem 'factory_girl_rails', '~> 4.5'
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  # Call 'binding.pry' anywhere in the code to stop execution and get a debugger console
+  gem 'pry-byebug'
 end
 
 group :development do
@@ -79,8 +79,8 @@ group :development do
   gem 'awesome_print'
   # Use Better Errors gem to replace errors page
   gem 'better_errors'
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  # Use binding_of_caller gem to enable live REPL on error pages
+  gem 'binding_of_caller'
   # Use Quiest Assets to supress assets console logging
   gem 'quiet_assets'
 end
