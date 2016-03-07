@@ -17,6 +17,44 @@ $(document).on('ready page:load', function() {
     return true;
   });
 
+  // Triple-state button for BNM selection
+  $('#bnm-btn').click(function() {
+    input = $('#bnm');
+    switch (input.val()) {
+      case '1':
+        $(this).find('span').text('No Best New Music');
+        input.val(0);
+        break;
+      case '0':
+        $(this).find('span').text('Include Best New Music');
+        input.val('');
+        break;
+      default:
+        $(this).find('span').text('Only Best New Music');
+        input.val(1);
+        break;
+    }
+  });
+
+  // Triple-state button for reissue selection
+  $('#reissue-btn').click(function() {
+    input = $('#reissue');
+    switch (input.val()) {
+      case '1':
+        $(this).find('span').text('No Reissues');
+        input.val(0);
+        break;
+      case '0':
+        $(this).find('span').text('Include Reissues');
+        input.val('');
+        break;
+      default:
+        $(this).find('span').text('Only Reissues');
+        input.val(1);
+        break;
+    }
+  });
+
   // Send API requests for typeahead inputs
   if ($('#dash').length) {
     $.get('/api/artists.json', function(data){

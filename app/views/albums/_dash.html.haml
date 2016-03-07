@@ -26,14 +26,33 @@
           - toggle_button(:dir, 'desc')
           - toggle_button(:dir, 'asc')
   .form-group
-    = label_tag :exclude
-    .btn-toolbar
-      .btn-group{ data: { toggle: 'buttons' } }
-        %label.btn.btn-danger{ class: ('active' if params[:bnm]) }
-          = check_box_tag :bnm, nil, params[:bnm]
-          = 'Best New Music'
-      .btn-group{ data: { toggle: 'buttons' } }
-        %label.btn.btn-success{ class: ('active' if params[:reissue]) }
-          = check_box_tag :reissue, nil, params[:reissue]
-          = 'Reissue'
+    %label.btn.btn-danger#bnm-btn
+      - if params[:bnm].present?
+        - if params[:bnm] == '1'
+          = hidden_field_tag :bnm, 1
+          %span<
+            Only Best New Music
+        - elsif params[:bnm] == '0'
+          = hidden_field_tag :bnm, 0
+          %span<
+            No Best New Music
+      - else
+        = hidden_field_tag :bnm, nil
+        %span<
+          Include Best New Music
+  .form-group
+    %label.btn.btn-success#reissue-btn
+      - if params[:reissue].present?
+        - if params[:reissue] == '1'
+          = hidden_field_tag :reissue, 1
+          %span<
+            Only Reissues
+        - elsif params[:reissue] == '0'
+          = hidden_field_tag :reissue, 0
+          %span<
+            No Reissues
+      - else
+        = hidden_field_tag :reissue, nil
+        %span<
+          Include Reissues
   %button.btn.btn-default.btn-block= 'Search'
