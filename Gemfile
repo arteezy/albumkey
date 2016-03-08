@@ -11,11 +11,11 @@ gem 'sass-rails', '~> 5.0'
 # Use Bootstrap as CSS framework
 gem 'bootstrap-sass', '~> 3.3.5'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '~> 3.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
-# Use HAML for templates
-gem 'haml'
+gem 'coffee-rails', '~> 4.1'
+# Use HAMLit for faster templates
+gem 'hamlit', '~> 2.5'
 # Use Mongo gem as Ruby driver for MongoDB
 gem 'mongo', '~> 2.2.1'
 # Use Mongoid as ODM for MongoDB
@@ -43,7 +43,7 @@ gem 'kaminari-mongoid'
 # Use Mongoid Slug as slug generator for beautiful URLs
 gem 'mongoid-slug', '~> 5.1'
 # Use Mongoid Enum for enum support
-gem 'mongoid-enum', github: 'arteezy/mongoid-enum'
+gem 'mongoid-enum', git: 'https://github.com/arteezy/mongoid-enum.git'
 # Use Gravtastic gem to add Gravatar support
 gem 'gravtastic'
 # Use this gem to generate sitemap and ping search engines
