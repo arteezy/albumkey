@@ -7,6 +7,7 @@ class PitchforkParser
   def parse_review(url)
     document = Nokogiri::HTML(Net::HTTP.get(URI(url)))
     review = document.at_css('.tombstone')
+    meta = document.at_css('.article-meta')
 
     begin
       album = {
@@ -17,7 +18,9 @@ class PitchforkParser
         title:      review.css('.review-title').text,
         label:      review.css('.label-list > li').map(&:text).join(' / '),
         year:       review.css('.year > span:last-child').text,
-        date:       Date.parse(document.css('.pub-date').attr('title')).to_datetime,
+        date:       Date.parse(meta.css('.pub-date').attr('title')).to_datetime,
+        genre:      meta.css('.genre-list > li > a').map(&:text).join(' / '),
+        reviewer:   meta.css('.authors-detail > li > div > a').text,
         rating:     review.css('.score').text.to_f,
         artwork:    review.parent.at_css('.album-art > img').attr('src'),
         reissue:    review.text.include?('Best new reissue'),

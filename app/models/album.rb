@@ -11,6 +11,8 @@ class Album
   field :date, type: Date
   field :artwork, type: String
   field :source, type: String
+  field :genre, type: String
+  field :reviewer, type: String
   field :rating, type: Float
   field :reissue, type: Boolean
   field :bnm, type: Boolean
@@ -23,6 +25,8 @@ class Album
   validates :artwork, presence: true
   validates :source, presence: true
   validates :rating, presence: true
+  validates :reissue, presence: true
+  validates :bnm, presence: true
 
   index(title: 1)
   index(artist: 1)
@@ -46,10 +50,11 @@ class Album
 
   def self.search(query)
     if query.present?
+      re = Regexp.new(query, true)
       any_of([
-        { artist: Regexp.new(query, true) },
-        { title:  Regexp.new(query, true) },
-        { label:  Regexp.new(query, true) }
+        { artist: re },
+        { title: re },
+        { label: re }
       ])
     else
       all
