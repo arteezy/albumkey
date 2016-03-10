@@ -2,19 +2,19 @@
   .row.card{ 'data-album-id' => card.id }
     .col-lg-4
       = link_to album_path(card) do
-        = image_tag(card['artwork'], alt: card['title'], class: ['artwork', 'img-thumbnail', 'img-responsive'])
+        = image_tag card.artwork, alt: card.title, class: %w(artwork img-thumbnail img-responsive)
     .col-lg-5
-      %h3= link_to card['title'], album_path(card)
-      %h4= link_to card['artist'], albums_path(artist: card['artist'])
-      %h5= link_to card['year'], albums_path(year: card['year'])
-      %h5= link_to card['label'], albums_path(label: card['label'])
-      %h6= card['date'].strftime('%d %b %Y')
-      %h6= link_to 'Read review at Pitchfork', card['source']
+      %h3= link_to card.title, album_path(card)
+      %h4= link_to card.artist, albums_path(artist: card.artist)
+      %h5= link_to card.year, albums_path(year: card.year)
+      %h5= card.genre
+      %h5= link_to card.label, albums_path(label: card.label)
+      %h6= card.date.strftime('%d %b %Y')
+      %h6= link_to 'Read review at Pitchfork', card.source
     .col-lg-3
-      - if card['bnm']
-        .rating.bnm= card['rating']
+      - if card.bnm
+        .rating.bnm= card.rating
+      - elsif card.reissue
+        .rating.reissue= card.rating
       - else
-        - if card['reissue']
-          .rating.reissue= card['rating']
-        - else
-          .rating= card['rating']
+        .rating= card.rating
