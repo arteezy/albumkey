@@ -8,23 +8,17 @@
         %h3= link_to @album.title, album_path(@album)
         %h4= link_to @album.artist, albums_path(artist: @album.artist)
         %h5= link_to @album.year, albums_path(year: @album.year)
+        %h5= @album.genre
         %h5= link_to @album.label, albums_path(label: @album.label)
         %h6= @album.date.strftime('%d %b %Y')
         %h6= link_to 'Read review at Pitchfork', @album.source
-        .hidden-lg.hidden-md.hidden-sm
-          - if @album.bnm
-            .btn.btn-lg.btn-danger= @album.rating
-          - elsif @album.reissue
-            .btn.btn-lg.btn-success= @album.rating
-          - else
-            .btn.btn-lg.btn-primary= @album.rating
       .col-lg-2.col-md-4.col-sm-6.hidden-xs
         - if user_signed_in?
           - if @rate
             .rating.user= @rate.rate
           - else
             .rating.user.dim= 0.0
-      .col-lg-2.col-md-4.col-sm-6.hidden-xs
+      .col-lg-2.col-md-4.col-sm-6.col-xs-12
         - if @album.bnm
           .rating.bnm= @album.rating
         - elsif @album.reissue
