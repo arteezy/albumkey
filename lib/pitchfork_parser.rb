@@ -1,6 +1,7 @@
 class PitchforkParser
   def initialize(db, collection)
-    @collection = Mongo::Client.new(db)[collection]
+    @db = Mongo::Client.new(db)
+    @collection = @db[collection]
     @logger = Rails.logger
   end
 
@@ -8,29 +9,27 @@ class PitchforkParser
     document = Nokogiri::HTML(Net::HTTP.get(URI(url)))
     review = document.at_css('.tombstone')
     meta = document.at_css('.article-meta')
-
-    begin
-      album = {
-        source:     url,
-        created_at: Time.now,
-        p4k_id:     url.match('/\d{1,6}-')[0][1..-2].to_i,
-        artist:     review.css('.artists > ul > li').map(&:text).join(' / '),
-        title:      review.css('.review-title').text,
-        label:      review.css('.label-list > li').map(&:text).join(' / '),
-        year:       review.css('.year > span:last-child').text,
-        date:       Date.parse(meta.css('.pub-date').attr('title')).to_datetime,
-        genre:      meta.css('.genre-list > li > a').map(&:text).join(' / '),
-        reviewer:   meta.css('.authors-detail > li > div > a').text,
-        rating:     review.css('.score').text.to_f,
-        artwork:    review.parent.at_css('.album-art > img').attr('src'),
-        reissue:    review.text.include?('Best new reissue'),
-        bnm:        review.text.include?('Best new music')
-      }
-    rescue => e
-      @logger.error "Failed to parse: #{url}"
-      @logger.error e.message
-      @logger.error e.backtrace.join("\n")
-    end
+    album = {
+      source:     url,
+      created_at: Time.now,
+      p4k_id:     url.match('/\d{1,6}-')[0][1..-2].to_i,
+      artist:     review.css('.artists > ul > li').map(&:text).join(' / '),
+      title:      review.css('.review-title').text,
+      label:      review.css('.label-list > li').map(&:text).join(' / '),
+      year:       review.css('.year > span:last-child').text,
+      date:       Date.parse(meta.css('.pub-date').attr('title')).to_datetime,
+      genre:      meta.css('.genre-list > li > a').map(&:text).join(' / '),
+      reviewer:   meta.css('.authors-detail > li > div > a').text,
+      rating:     review.css('.score').text.to_f,
+      artwork:    review.parent.at_css('.album-art > img').attr('src'),
+      reissue:    review.text.include?('Best new reissue'),
+      bnm:        review.text.include?('Best new music')
+    }
+  rescue => e
+    @logger.error "Failed to parse: #{url}"
+    @logger.error e.message
+    @logger.error e.backtrace.join("\n")
+    retry
   end
 
   def get_page_links(url)
@@ -40,12 +39,23 @@ class PitchforkParser
     end
   end
 
+  def prepare_link_list
+    @db[:links].drop
+    (1..find_last_page).each do |page|
+      links = get_page_links("http://pitchfork.com/reviews/albums/?page=#{page}")
+      redo if links.empty?
+      links.map! do |link|
+        { URL: link, parsed: false }
+      end
+      @db[:links].insert_many links
+    end
+  end
+
   def fullscan
     @collection.drop
-    (1..find_last_page).each do |page|
-      links = get_page_links("http://pitchfork.com/reviews/albums/#{page}/")
-      links.map! { |review| parse_review(review) }
-      @collection.insert_many(links)
+    @db[:links].find.each_slice(50) do |batch|
+      batch.map! { |review| parse_review review[:URL] }
+      @collection.insert_many batch
     end
   end
 
@@ -84,7 +94,7 @@ class PitchforkParser
     return start if start == fin - 1
 
     mid = (start + fin) / 2
-    url = "http://pitchfork.com/reviews/albums/#{mid}/"
+    url = "http://pitchfork.com/reviews/albums/?page=#{mid}"
     response = Net::HTTP.get_response(URI(url))
 
     if response.code == '200'
