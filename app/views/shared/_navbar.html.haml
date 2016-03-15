@@ -17,7 +17,7 @@
               %span.caret
           %ul.dropdown-menu{ role: 'menu' }
             - 10.years.ago.year.upto Time.now.year do |year|
-              %li= link_to year, albums_path(year: year, order: :rating, dir: :desc, reissue: 'on')
+              %li= link_to year, albums_path(year: year, order: :rating, dir: :desc, reissue: 0)
         - if user_signed_in?
           - if current_user.try(:admin?)
             %li= link_to 'Search', search_path

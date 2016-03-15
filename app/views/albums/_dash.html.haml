@@ -28,14 +28,14 @@
   .form-group
     %label.btn.btn-danger#bnm-btn
       - if params[:bnm].present?
-        - if params[:bnm] == '1'
-          = hidden_field_tag :bnm, 1
-          %span<
-            Only Best New Music
-        - elsif params[:bnm] == '0'
+        - if params[:bnm] == '0'
           = hidden_field_tag :bnm, 0
           %span<
             No Best New Music
+        - else
+          = hidden_field_tag :bnm, 1
+          %span<
+            Only Best New Music
       - else
         = hidden_field_tag :bnm, nil
         %span<
@@ -43,14 +43,14 @@
   .form-group
     %label.btn.btn-success#reissue-btn
       - if params[:reissue].present?
-        - if params[:reissue] == '1'
-          = hidden_field_tag :reissue, 1
-          %span<
-            Only Reissues
-        - elsif params[:reissue] == '0'
+        - if params[:reissue] == '0'
           = hidden_field_tag :reissue, 0
           %span<
             No Reissues
+        - else
+          = hidden_field_tag :reissue, 1
+          %span<
+            Only Reissues
       - else
         = hidden_field_tag :reissue, nil
         %span<
