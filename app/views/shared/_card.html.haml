@@ -7,7 +7,7 @@
       %h3= link_to card.title, album_path(card)
       %h4= link_to card.artist, albums_path(artist: card.artist)
       %h5= link_to card.year, albums_path(year: card.year)
-      %h5= card.genre
+      %h5= card.genre.join(' • ')
       %h5= link_to card.label, albums_path(label: card.label)
       %h6= card.date.strftime('%d %b %Y')
       %h6= link_to 'Read review at Pitchfork', card.source

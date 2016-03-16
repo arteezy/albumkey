@@ -18,7 +18,7 @@ class PitchforkParser
       label:      review.css('.label-list > li').map(&:text).join(' / '),
       year:       review.css('.year > span:last-child').text,
       date:       Date.parse(meta.css('.pub-date').attr('title')).to_datetime,
-      genre:      meta.css('.genre-list > li > a').map(&:text).join(' / '),
+      genre:      meta.css('.genre-list > li > a').map(&:text),
       reviewer:   meta.css('.authors-detail > li > div > a').text,
       rating:     review.css('.score').text.to_f,
       artwork:    review.parent.at_css('.album-art > img').attr('src'),

@@ -14,6 +14,7 @@ class AlbumsController < ApplicationController
 
     @albums = Album.artist(params[:artist])
                    .year(params[:year])
+                   .genre(params[:genre])
                    .label(params[:label])
                    .reissue(params[:reissue])
                    .bnm(params[:bnm])

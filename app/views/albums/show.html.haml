@@ -8,7 +8,7 @@
         %h3= link_to @album.title, album_path(@album)
         %h4= link_to @album.artist, albums_path(artist: @album.artist)
         %h5= link_to @album.year, albums_path(year: @album.year)
-        %h5= @album.genre
+        %h5= @album.genre.join(' • ')
         %h5= link_to @album.label, albums_path(label: @album.label)
         %h6= @album.date.strftime('%d %b %Y')
         %h6= link_to 'Read review at Pitchfork', @album.source

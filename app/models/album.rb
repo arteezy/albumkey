@@ -11,7 +11,7 @@ class Album
   field :date, type: Date
   field :artwork, type: String
   field :source, type: String
-  field :genre, type: String
+  field :genre, type: Array
   field :reviewer, type: String
   field :rating, type: Float
   field :reissue, type: Boolean
@@ -42,6 +42,7 @@ class Album
 
   scope :artist, -> (artist) { where(artist: artist) if artist.present? }
   scope :year, -> (year) { where(year: year) if year.present? }
+  scope :genre, -> (genre) { where(genre: genre) if genre.present? }
   scope :label, -> (label) { where(label: label) if label.present? }
   scope :reissue, -> (reissue) { reissue == '0' ? where(reissue: false) : where(reissue: true) if reissue.present? }
   scope :bnm, -> (bnm) { bnm == '0' ? where(bnm: false) : where(bnm: true) if bnm.present? }
