@@ -7,7 +7,10 @@ function getQueryParams(qs) {
   return params;
 }
 
-$(document).on('ready page:load', function() {
+$(document).ready(ready);
+$(document).on('page:load', ready);
+
+function ready() {
   // Lock filter fields on submit
   $('#filter').submit(function() {
     $(this).find(':input').filter(function(){ return !this.value; }).attr('disabled', 'disabled');
@@ -93,6 +96,16 @@ $(document).on('ready page:load', function() {
     to_rating = +query.rating.split('-')[1];
   }
 
+  // Hack to simulate placeholder behavior for select tag, because HTML5 is inconsistent
+  if ($('#genre').val() === "") $('#genre').css('color', '#aaa');
+  $('#genre').change(function() {
+    if ($(this).val() === "") {
+      $(this).css('color', '#aaa');
+    } else {
+      $(this).css('color', '#333');
+    }
+  });
+
   // Dynamic user rating setter
   $(function() {
     $('.rating.user').mouseenter(function() {
@@ -131,4 +144,4 @@ $(document).on('ready page:load', function() {
       $(this).removeClass('dim');
     });
   });
-});
+};
