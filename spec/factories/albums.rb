@@ -3,6 +3,7 @@ FactoryGirl.define do
     title { Faker::Lorem.sentence }
     artist { Faker::Name.name }
     label { Faker::Company.name }
+    genre { Faker::Lorem.words(3) }
     year { Faker::Time.between(10.years.ago, Time.now).year }
     date { Faker::Time.between(10.years.ago, Time.now) }
     artwork { Faker::Avatar.image('artwork', '300x300', 'jpg') }
