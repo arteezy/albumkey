@@ -5,10 +5,10 @@
         = image_tag card.artwork, alt: card.title, class: %w(artwork img-thumbnail img-responsive)
     .col-lg-5
       %h3= link_to card.title, album_path(card)
-      %h4= link_to card.artist, albums_path(artist: card.artist)
+      %h4= raw card.artist.map { |artist| link_to artist, albums_path(artist: artist) }.join(' / ')
       %h5= link_to card.year, albums_path(year: card.year)
       %h5= card.genre.join(' • ')
-      %h5= link_to card.label, albums_path(label: card.label)
+      %h5= raw card.label.map { |label| link_to label, albums_path(label: label) }.join(' / ')
       %h6= card.date.strftime('%d %b %Y')
       %h6= link_to 'Read review at Pitchfork', card.source
     .col-lg-3

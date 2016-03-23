@@ -120,15 +120,15 @@ describe AlbumsController, type: :controller do
 
     describe 'PATCH #update' do
       before :each do
-        @album = create(:album, title: 'Illmatic', artist: 'Nas')
+        @album = create(:album, title: 'Illmatic', artist: ['Nas'])
       end
 
       context 'with valid params' do
         it 'updates the requested album' do
-          patch :update, id: @album, album: attributes_for(:album, title: 'Dalmatic', artist: 'Pas')
+          patch :update, id: @album, album: attributes_for(:album, title: 'Dalmatic', artist: ['Pas'])
           @album.reload
           expect(@album.title).to eq('Dalmatic')
-          expect(@album.artist).to eq('Pas')
+          expect(@album.artist).to eq(['Pas'])
         end
 
         it 'assigns the requested album as @album' do
@@ -179,7 +179,7 @@ describe AlbumsController, type: :controller do
     describe 'GET #artists' do
       it 'assigns all artists as @artists' do
         get :artists, format: :json
-        expect(assigns(:artists)).to match_array([album.artist])
+        expect(assigns(:artists)).to match_array(album.artist)
       end
 
       it 'renders the artists JSON' do
@@ -190,14 +190,14 @@ describe AlbumsController, type: :controller do
       it 'generates an array of artist names' do
         another_album = create(:album)
         get :artists, format: :json
-        expect(JSON.parse(response.body)).to match_array([album.artist, another_album.artist])
+        expect(JSON.parse(response.body)).to match_array(album.artist + another_album.artist)
       end
     end
 
     describe 'GET #labels' do
       it 'assigns all record labels as @labels' do
         get :labels, format: :json
-        expect(assigns(:labels)).to match_array([album.label])
+        expect(assigns(:labels)).to match_array(album.label)
       end
 
       it 'renders the labels JSON' do
@@ -208,7 +208,7 @@ describe AlbumsController, type: :controller do
       it 'generates an array of record labels' do
         another_album = create(:album)
         get :labels, format: :json
-        expect(JSON.parse(response.body)).to match_array([album.label, another_album.label])
+        expect(JSON.parse(response.body)).to match_array(album.label + another_album.label)
       end
     end
   end

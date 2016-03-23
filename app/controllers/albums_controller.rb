@@ -144,7 +144,7 @@ class AlbumsController < ApplicationController
   end
 
   def album_params
-    params.require(:album).permit(:title, :artist, :label, :p4k_id, :year,
-      :date, :artwork, :genre, :source, :reviewer, :rating, :reissue, :bnm)
+    params.require(:album).permit(:title, :p4k_id, :year, :artwork, :source,
+      :date, :reviewer, :rating, :reissue, :bnm, artist: [], label: [], genre: [])
   end
 end

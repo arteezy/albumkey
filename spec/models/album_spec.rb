@@ -56,8 +56,8 @@ describe Album, type: :model do
   end
 
   context 'search' do
-    let(:search_album1) { create(:album, title: 'Foo', artist: 'Bar', label: 'Lorem') }
-    let(:search_album2) { create(:album, title: 'Boo', artist: 'Far', label: 'Ipsum') }
+    let(:search_album1) { create(:album, title: 'Foo', artist: ['Bar'], label: ['Lorem']) }
+    let(:search_album2) { create(:album, title: 'Boo', artist: ['Far'], label: ['Ipsum']) }
 
     it 'matches albums with valid query' do
       expect(subject.class.search('ar')).to match_array([search_album1, search_album2])
@@ -74,13 +74,13 @@ describe Album, type: :model do
     end
 
     it 'is valid' do
-      album = create(:album, artist: 'Bar', title: 'Foo')
+      album = create(:album, artist: ['Bar'], title: 'Foo')
       expect(album.slug).to eq('bar-foo')
     end
 
     it 'is unique' do
-      first = create(:album, artist: 'Bar', title: 'Foo')
-      second = create(:album, artist: 'Bar', title: 'Foo')
+      first = create(:album, artist: ['Bar'], title: 'Foo')
+      second = create(:album, artist: ['Bar'], title: 'Foo')
       expect(first.slug).to_not eq(second.slug)
     end
   end

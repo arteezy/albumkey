@@ -6,10 +6,10 @@
         = image_tag @album.artwork, alt: @album.title, class: %w(artwork img-thumbnail img-responsive)
       .col-lg-5.col-md-4.col-sm-6.col-xs-12
         %h3= link_to @album.title, album_path(@album)
-        %h4= link_to @album.artist, albums_path(artist: @album.artist)
+        %h4= raw @album.artist.map { |artist| link_to artist, albums_path(artist: artist) }.join(' / ')
         %h5= link_to @album.year, albums_path(year: @album.year)
         %h5= @album.genre.join(' • ')
-        %h5= link_to @album.label, albums_path(label: @album.label)
+        %h5= raw @album.label.map { |label| link_to label, albums_path(label: label) }.join(' / ')
         %h6= @album.date.strftime('%d %b %Y')
         %h6= link_to 'Read review at Pitchfork', @album.source
       .col-lg-2.col-md-4.col-sm-6.hidden-xs
