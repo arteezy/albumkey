@@ -5,12 +5,12 @@ class DiscogsParserService
   end
 
   def parse(album)
-    search = @wrapper.search("#{album[:artist]} #{album[:title]}")
+    search = @wrapper.search("#{album[:artist].join(' ')} #{album[:title]}")
     return if search[:results].blank?
     search[:results].each do |result|
       if result[:type] == 'master' && result[:year] == album[:year].split('/').sort.last
         album[:discogs] = result
-        Rails.logger.info "#{album[:artist]} - #{album[:title]}"
+        Rails.logger.info "#{album[:artist].join(' / ')} - #{album[:title]}"
         album.save!
         break
       end

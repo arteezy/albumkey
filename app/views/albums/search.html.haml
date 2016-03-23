@@ -19,6 +19,7 @@
         %th= 'Title'
         %th= 'Artist'
         %th= 'Label'
+        %th= 'Genre'
         %th= 'Year'
         %th= 'Date'
         %th= 'Source'
@@ -32,8 +33,9 @@
         %tr
           %td= image_tag album.artwork, size: '100'
           %td= link_to album.title, album_path(album)
-          %td= album.artist
-          %td= album.label
+          %td= album.artist.join(' / ')
+          %td= album.label.join(' / ')
+          %td= album.genre.join(' • ')
           %td= album.year
           %td= album.date
           %td= link_to 'Pitchfork Link', album.source

@@ -73,9 +73,14 @@ describe Album, type: :model do
       expect(create(:album).slug).to_not be_nil
     end
 
-    it 'is valid' do
+    it 'is valid with single artist' do
       album = create(:album, artist: ['Bar'], title: 'Foo')
       expect(album.slug).to eq('bar-foo')
+    end
+
+    it 'is valid with array of artists' do
+      album = create(:album, artist: ['Lorem', 'Ipsum'], title: 'Dolor')
+      expect(album.slug).to eq('lorem-ipsum-dolor')
     end
 
     it 'is unique' do
