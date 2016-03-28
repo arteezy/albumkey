@@ -67,7 +67,7 @@ Rails.application.configure do
   Rails.logger = Le.new(ENV['LOGENTRIES_TOKEN'])
 
   # Add extra probes for Skylight monitoring
-  config.skylight.probes += %w(mongo)
+  config.skylight.probes += %w(mongo redis)
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
