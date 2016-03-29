@@ -1,6 +1,9 @@
-%h1= 'Editing Album'
+- title "Editing #{@album.title}"
 
-= render 'form'
+.col-md-offset-2.col-md-8
+  %h2= 'Editing Album'
 
-= link_to 'Show', @album
-= link_to 'Back', albums_path
+  = render 'form'
+
+  = link_to 'Show', @album
+  = link_to 'Back', albums_path

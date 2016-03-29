@@ -6,44 +6,41 @@
         - @album.errors.full_messages.each do |message|
           %li= message
 
-  .field
+  .form-group
     = f.label :title
-    %br
-    = f.text_field :title
-  .field
+    = f.text_field :title, class: 'form-control'
+  .form-group
     = f.label :artist
-    %br
-    = f.text_field :artist
-  .field
+    = f.text_field :artist, class: 'form-control'
+  .form-group
+    = f.label :genre
+    = f.text_field :genre, class: 'form-control'
+  .form-group
     = f.label :label
-    %br
-    = f.text_field :label
-  .field
+    = f.text_field :label, class: 'form-control'
+  .form-group
     = f.label :year
-    %br
-    = f.text_field :year
-  .field
+    = f.text_field :year, class: 'form-control'
+  .form-group
     = f.label :date
-    %br
-    = f.text_field :date
-  .field
+    = f.text_field :date, class: 'form-control'
+  .form-group
     = f.label :artwork
-    %br
-    = f.text_field :artwork
-  .field
+    = f.text_field :artwork, class: 'form-control'
+  .form-group
+    = f.label :reviewer
+    = f.text_field :reviewer, class: 'form-control'
+  .form-group
     = f.label :source
-    %br
-    = f.text_field :source
-  .field
+    = f.text_field :source, class: 'form-control'
+  .form-group
     = f.label :rating
-    %br
-    = f.text_field :rating
-  .field
+    = f.text_field :rating, class: 'form-control'
+  .form-group
     = f.label :reissue
-    %br
-    = f.check_box :reissue
-  .field
+    = f.check_box :reissue, class: 'form-control'
+  .form-group
     = f.label :bnm
-    %br
-    = f.check_box :bnm
-  .actions= f.submit
+    = f.check_box :bnm, class: 'form-control'
+  .actions
+    = f.submit class: 'btn btn-primary'
