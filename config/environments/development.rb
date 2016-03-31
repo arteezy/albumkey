@@ -34,6 +34,9 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
+  # Raise exception on umpermitted params
+  config.action_controller.action_on_unpermitted_parameters = :raise
+
   # Set MongoDB logging level
   Mongoid.logger.level       = Logger::INFO
   Mongo::Logger.logger.level = Logger::INFO
@@ -41,6 +44,7 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
+  # Enable Bullet
   config.after_initialize do
     Bullet.enable = true
     Bullet.alert = true
