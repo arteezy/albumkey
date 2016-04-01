@@ -46,6 +46,8 @@ gem 'mongoid-slug', '~> 5.1'
 gem 'mongoid-enum', git: 'https://github.com/arteezy/mongoid-enum.git'
 # Use Gravtastic gem to add Gravatar support
 gem 'gravtastic'
+# Use Simple Form gem to simplify form creation
+gem 'simple_form'
 # Use this gem to generate sitemap and ping search engines
 gem 'sitemap_generator'
 # Use Discogs Wrapper gem to easily interact with the Discogs API
