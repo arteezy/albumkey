@@ -123,3 +123,7 @@ footer {
 .dropdown-menu {
   min-width: 100px;
 }
+
+abbr[title='required'] {
+  display: none;
+}
