@@ -1,4 +1,4 @@
-class PitchforkParser
+class PitchforkParserService
   def initialize(db, collection)
     @db = Mongo::Client.new(db)
     @collection = @db[collection]
