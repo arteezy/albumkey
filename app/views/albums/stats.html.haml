@@ -20,24 +20,31 @@
   %br
 
   .row
-    .col-lg-4
+    .col-md-3
       .panel.panel-default
         .panel-body
           .text-center
             %strong
               Total albums:
             = @total[:album]
-    .col-lg-4
+    .col-md-3
       .panel.panel-default
         .panel-body
           .text-center
             %strong
               Total BNMs:
             = @total[:bnm]
-    .col-lg-4
+    .col-md-3
       .panel.panel-default
         .panel-body
           .text-center
             %strong
               Total reissues:
             = @total[:reissue]
+    .col-md-3
+      .panel.panel-default
+        .panel-body
+          .text-center
+            %strong
+              Discogs data:
+            = @total[:discogs]

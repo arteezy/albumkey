@@ -65,9 +65,10 @@ class AlbumsController < ApplicationController
     @stats = Album.collection.aggregate(pipeline)
 
     @total = {
-      album: Album.count,
-      bnm: Album.where(bnm: true).count,
-      reissue: Album.where(reissue: true).count
+      album: Album.year(params[:year]).count,
+      bnm: Album.year(params[:year]).where(bnm: true).count,
+      reissue: Album.year(params[:year]).where(reissue: true).count,
+      discogs: Album.year(params[:year]).where(:discogs.ne => nil).count
     }
 
     respond_to do |format|

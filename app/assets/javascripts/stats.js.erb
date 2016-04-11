@@ -67,7 +67,6 @@ $(document).on("ready page:load", function() {
         );
 
         var avg_rating = data.map(function(d) { return d.avg_rating.toFixed(2); });
-        draw(avg_rating);
       },
       error: function (result) {
         error();
