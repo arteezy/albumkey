@@ -1,9 +1,20 @@
 - title 'User details'
-
-%h3 User
-%p
-  Email:
-  = @user.email if @user.email
-%p
-  Role:
-  = @user.role if @user.role
+.col-md-offset-2.col-md-8
+  .panel.panel-primary
+    .panel-heading
+      User
+    .panel-body
+      %p
+        = image_tag @user.gravatar_url, alt: @user.email, class: %w(img-thumbnail img-responsive)
+      %p
+        %strong Email:
+        = @user.email if @user.email
+      %p
+        %strong Role:
+        = @user.role if @user.role
+      %p
+        %strong Sign in count:
+        = @user.sign_in_count if @user.sign_in_count
+      %p
+        %strong Member since:
+        = @user.created_at.strftime('%d %b %Y') if @user.created_at
