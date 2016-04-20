@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' },
     controllers: { registrations: 'users/registrations' }
 
-  resources :users
+  resources :users, only: [:index, :show, :update, :destroy]
 
   resources :albums do
     resources :comments, only: [:create, :update, :destroy]
