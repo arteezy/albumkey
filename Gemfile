@@ -17,7 +17,7 @@ gem 'coffee-rails', '~> 4.1'
 # Use HAMLit for faster templates
 gem 'hamlit', '~> 2.5'
 # Use Mongo gem as Ruby driver for MongoDB
-gem 'mongo', '~> 2.2.1'
+gem 'mongo', '~> 2.3.0'
 # Use Mongoid as ODM for MongoDB
 gem 'mongoid', '~> 5.1'
 # Use Devise as authentication library
