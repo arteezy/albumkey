@@ -1,4 +1,7 @@
-$(document).on("ready page:load", function() {
+$(document).ready(chart);
+$(document).on("page:load", chart);
+
+function chart() {
   if (document.location.pathname.startsWith("/stats"))
     $.ajax({
       type: "GET",
@@ -72,4 +75,4 @@ $(document).on("ready page:load", function() {
         error();
       }
     });
-});
+}

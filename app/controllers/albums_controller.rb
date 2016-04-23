@@ -62,7 +62,7 @@ class AlbumsController < ApplicationController
     }
     pipeline << { '$sort' => { '_id' => 1 } }
 
-    @stats = Album.collection.aggregate(pipeline)
+    stats = Album.collection.aggregate(pipeline)
 
     @total = {
       album: Album.year(params[:year]).count,
@@ -73,7 +73,7 @@ class AlbumsController < ApplicationController
 
     respond_to do |format|
       format.html { render :stats }
-      format.json { render json: @stats }
+      format.json { render json: stats }
     end
   end
 
