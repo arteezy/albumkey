@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.3.0'
+ruby '2.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2.1'
@@ -15,7 +15,7 @@ gem 'uglifier', '~> 3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1'
 # Use HAMLit for faster templates
-gem 'hamlit', '~> 2.5'
+gem 'hamlit', '~> 2.6'
 # Use Mongo gem as Ruby driver for MongoDB
 gem 'mongo', '~> 2.3.0'
 # Use Mongoid as ODM for MongoDB

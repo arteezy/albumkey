@@ -335,7 +335,7 @@ DEPENDENCIES
   faker (~> 1.4)
   fog-aws
   gravtastic
-  hamlit (~> 2.5)
+  hamlit (~> 2.6)
   jbuilder (~> 2.3)
   jquery-rails
   kaminari (~> 0.17)
