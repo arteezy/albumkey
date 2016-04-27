@@ -68,7 +68,7 @@ class AlbumsController < ApplicationController
       album: Album.year(params[:year]).count,
       bnm: Album.year(params[:year]).where(bnm: true).count,
       reissue: Album.year(params[:year]).where(reissue: true).count,
-      discogs: Album.year(params[:year]).where(:discogs.ne => nil).count
+      discogs: Album.year(params[:year]).not.where(discogs: nil).count
     }
 
     respond_to do |format|
