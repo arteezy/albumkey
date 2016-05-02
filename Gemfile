@@ -105,6 +105,8 @@ group :production do
   gem 'rails_12factor'
   # Add LogEntries log monitoring
   gem 'le'
+  # Add Sentry for error reporting
+  gem 'sentry-raven'
   # Use New Relic as monitoring service
   gem 'newrelic_rpm'
   # Use Skylight as alternative monitoring service

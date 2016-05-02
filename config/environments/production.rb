@@ -69,6 +69,11 @@ Rails.application.configure do
   # Add extra probes for Skylight monitoring
   config.skylight.probes += %w(mongo redis)
 
+  # Configure Sentry error reporting
+  Raven.configure do |config|
+    config.dsn = "https://#{ENV['SENTRY_KEY']}:#{ENV['SENTRY_SECRET']}@sentry.io/#{ENV['SENTRY_PROJECT']}"
+  end
+
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
 
