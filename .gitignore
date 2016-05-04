@@ -16,3 +16,7 @@
 
 # Ignore Code Climate test coverage reports
 /coverage
+
+# Ignore deploy configs
+/config/deploy
+/config/deploy.rb

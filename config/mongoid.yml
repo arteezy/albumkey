@@ -3,7 +3,7 @@ production:
     default:
       # The standard MongoDB connection URI allows for easy replica set connection setup.
       # Use environment variables or a config file to keep your credentials safe.
-      uri: <%= ENV["RICHFORKDB"] %>
+      uri: <%= ENV["MONGODB_URL"] %>
       options:
         write:
           w: 1

@@ -66,6 +66,21 @@ group :development, :test do
   gem 'pry-byebug'
 end
 
+group :development, :deploy do
+  # Use Capistrano for deployment
+  gem 'capistrano', '~> 3.4.1'
+  # Use Airbrussh to nicely format deployment log output
+  gem 'airbrussh', require: false
+  # Rails tasks for capistrano
+  gem 'capistrano-rails', require: false
+  # Bundler tasks for capistrano
+  gem 'capistrano-bundler', require: false
+  # Rbenv tasks for capistrano
+  gem 'capistrano-rbenv', require: false
+  # Puma tasks for capistrano
+  gem 'capistrano3-puma', require: false
+end
+
 group :development do
   # Spring speeds up development by keeping your application running in the background
   gem 'spring'
