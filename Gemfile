@@ -116,8 +116,6 @@ group :test do
 end
 
 group :production do
-  # 12 Factor gem for Heroku
-  gem 'rails_12factor'
   # Add LogEntries log monitoring
   gem 'le'
   # Add Sentry for error reporting
