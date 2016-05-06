@@ -22,22 +22,27 @@ class AlbumsController < ApplicationController
                    .albums_order(params[:order], params[:dir])
                    .search(params[:search])
                    .page(params[:page])
+
+    @albums_page_count = Rails.cache.fetch ['albums_count', params], expires_in: 2.hours do
+      (@albums.count / Kaminari.config.default_per_page.to_f).ceil
+    end
   end
 
   # GET /api/artists.json
   def artists
-    @artists = Rails.cache.fetch 'artists', expires_in: 1.hour do
+    @artists = Rails.cache.fetch 'artists', expires_in: 2.hours do
       Album.distinct('artist').sort
     end
   end
 
   # GET /api/labels.json
   def labels
-    @labels = Rails.cache.fetch 'labels', expires_in: 1.hour do
+    @labels = Rails.cache.fetch 'labels', expires_in: 2.hours do
       Album.distinct('label').sort
     end
   end
 
+  # GET /search
   def search
     @albums = Album.search(params[:search]).page(params[:page])
   end
