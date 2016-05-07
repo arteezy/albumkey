@@ -54,6 +54,8 @@ gem 'sitemap_generator'
 gem 'discogs-wrapper'
 # Use fog-aws as an interface to Amazon Web Services
 gem 'fog-aws'
+# Use Whenever gem to manage Cron jobs
+gem 'whenever'
 # Use TZInfo Data as data source for time zones
 gem 'tzinfo-data'
 
