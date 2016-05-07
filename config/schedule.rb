@@ -18,3 +18,15 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+
+every 6.hours do
+  rake 'albums:update'
+end
+
+every :day, at: '05:01am' do
+  rake 'albums:getlatest'
+end
+
+every :day do
+  rake 'slugs:update'
+end
