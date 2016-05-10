@@ -1,20 +1,21 @@
-.well.well-sm
-  .row.card{ 'data-album-id' => card.id }
-    .col-lg-4
-      = link_to album_path(card) do
-        = image_tag card.artwork, alt: card.title, class: %w(artwork img-thumbnail img-responsive)
-    .col-lg-5
-      %h3= link_to card.title, album_path(card)
-      %h4= raw card.artist.map { |artist| link_to artist, albums_path(artist: artist) }.join(' / ')
-      %h5= link_to card.year, albums_path(year: card.year)
-      %h5= card.genre.join(' • ')
-      %h5= raw card.label.map { |label| link_to label, albums_path(label: label) }.join(' / ')
-      %h6= card.date.strftime('%d %b %Y')
-      %h6= link_to 'Read review at Pitchfork', card.source
-    .col-lg-3
-      - if card.bnm
-        .rating.bnm= card.rating
-      - elsif card.reissue
-        .rating.reissue= card.rating
-      - else
-        .rating= card.rating
+- cache card do
+  .well.well-sm
+    .row.card{ 'data-album-id' => card.id }
+      .col-lg-4
+        = link_to album_path(card) do
+          = image_tag card.artwork, alt: card.title, class: %w(artwork img-thumbnail img-responsive)
+      .col-lg-5
+        %h3= link_to card.title, album_path(card)
+        %h4= raw card.artist.map { |artist| link_to artist, albums_path(artist: artist) }.join(' / ')
+        %h5= link_to card.year, albums_path(year: card.year)
+        %h5= card.genre.join(' • ')
+        %h5= raw card.label.map { |label| link_to label, albums_path(label: label) }.join(' / ')
+        %h6= card.date.strftime('%d %b %Y')
+        %h6= link_to 'Read review at Pitchfork', card.source
+      .col-lg-3
+        - if card.bnm
+          .rating.bnm= card.rating
+        - elsif card.reissue
+          .rating.reissue= card.rating
+        - else
+          .rating= card.rating
