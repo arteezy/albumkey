@@ -81,6 +81,8 @@ group :development, :deploy do
   gem 'capistrano-rbenv', require: false
   # Puma tasks for capistrano
   gem 'capistrano3-puma', require: false
+  # Check CI status before deployment
+  gem 'capistrano-ci', require: false
 end
 
 group :development do

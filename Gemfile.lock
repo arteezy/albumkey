@@ -73,6 +73,9 @@ GEM
     capistrano-bundler (1.1.4)
       capistrano (~> 3.1)
       sshkit (~> 1.2)
+    capistrano-ci (0.0.5)
+      capistrano (>= 2.5.5)
+      httparty
     capistrano-rails (1.1.7)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
@@ -152,6 +155,8 @@ GEM
       thor
       tilt
     hashie (3.4.4)
+    httparty (0.14.0)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     ipaddress (0.8.3)
     jbuilder (2.6.0)
@@ -195,6 +200,7 @@ GEM
       mongoid-compatibility
       stringex (~> 2.0)
     multi_json (1.12.1)
+    multi_xml (0.5.5)
     multipart-post (2.0.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -355,6 +361,7 @@ DEPENDENCIES
   bullet
   capistrano (~> 3.4.1)
   capistrano-bundler
+  capistrano-ci
   capistrano-rails
   capistrano-rbenv
   capistrano3-puma
