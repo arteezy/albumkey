@@ -44,10 +44,10 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
-    airbrussh (1.1.0)
+    airbrussh (1.1.1)
       sshkit (>= 1.6.1, != 1.7.0)
     arel (6.0.3)
-    autoprefixer-rails (6.4.1)
+    autoprefixer-rails (6.4.1.1)
       execjs
     awesome_print (1.7.0)
     bcrypt (3.1.11)
@@ -62,7 +62,7 @@ GEM
       sass (>= 3.3.4)
     bson (4.1.1)
     builder (3.2.2)
-    bullet (5.3.0)
+    bullet (5.4.0)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.10.0)
     byebug (9.0.5)
@@ -195,7 +195,7 @@ GEM
     mongoid-compatibility (0.4.0)
       activesupport
       mongoid (>= 2.0)
-    mongoid-slug (5.2.0)
+    mongoid-slug (5.3.0)
       mongoid (>= 3.0)
       mongoid-compatibility
       stringex (~> 2.0)
@@ -414,4 +414,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.12.5
+   1.13.0

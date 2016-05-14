@@ -17,7 +17,14 @@ class DiscogsParserService
     end
   end
 
-  def update
+  def parse_by_year(year)
+    Rails.logger.info "Parsing #{year} year!"
+    Album.where(discogs: nil, year: year).each do |album|
+      parse(album)
+    end
+  end
+
+  def update_latest
     start = Date.today.beginning_of_year
     Rails.logger.info "Updating Discogs from #{start}!"
     Album.where(discogs: nil, date: { '$gte' => start }).each do |album|
@@ -25,10 +32,12 @@ class DiscogsParserService
     end
   end
 
-  def parse_by_year(year)
-    Rails.logger.info "Parsing #{year} year!"
-    Album.where(discogs: nil, year: year).each do |album|
-      parse(album)
+  def request_detailed_info
+    Rails.logger.info 'Requesting detailed Discogs info...'
+    Album.where('discogs.type' => 'master').each do |album|
+      album[:discogs] = @wrapper.get_master_release(album[:discogs][:id])
+      Rails.logger.info "#{album[:artist].join(' / ')} - #{album[:title]}"
+      album.save!
     end
   end
 
