@@ -83,6 +83,14 @@ describe Album, type: :model do
       expect(album.slug).to eq('lorem-ipsum-dolor')
     end
 
+    it 'is updated on album update' do
+      album = create(:album)
+      old_slug = album.slug
+      album.update(artist: ['Foo'], title: 'Bar')
+      expect(album.slug).to_not eq(old_slug)
+      expect(album.slug).to eq('foo-bar')
+    end
+
     it 'is unique' do
       first = create(:album, artist: ['Bar'], title: 'Foo')
       second = create(:album, artist: ['Bar'], title: 'Foo')
