@@ -26,6 +26,35 @@
         - else
           .rating= @album.rating
 
+    - if @album[:discogs]
+      .row
+        - if @album[:discogs][:tracklist]
+          .col-lg-12
+            .panel.panel-success.discogs
+              .panel-heading
+                Discogs data
+                %span.pull-right.collapse-arrow
+                  %i.glyphicon.glyphicon-chevron-up
+              .panel-body
+                %h4.tracklist
+                  Tracklist:
+                %ol
+                  - @album[:discogs][:tracklist].each do |track|
+                    %li= track[:title]
+
+        - if @album[:discogs][:videos]
+          .col-lg-12
+            .panel.panel-info.discogs
+              .panel-heading.panel-collapsed
+                Videos
+                %span.pull-right.collapse-arrow
+                  %i.glyphicon.glyphicon-chevron-down
+              .panel-body{ style: 'display: none' }
+                - @album[:discogs][:videos].take(3).each do |video|
+                  .col-lg-4
+                    .embed-responsive.embed-responsive-16by9
+                      %iframe.embed-responsive-item{ src: video[:uri].sub('watch?v=', 'embed/') }
+
   - if user_signed_in?
     - if current_user.try(:admin?)
       = link_to 'Edit', edit_album_path(@album)
