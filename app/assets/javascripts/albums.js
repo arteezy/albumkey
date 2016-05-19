@@ -20,17 +20,17 @@ function ready() {
     return true;
   });
 
+  // Collapse panels fro Discogs data
   $('.discogs > .panel-heading').click(function() {
-    var $this = $(this);
-    if ($this.hasClass('panel-collapsed')) {
-      $this.closest('.panel').find('.panel-body').slideDown();
-      $this.removeClass('panel-collapsed');
-      $this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+    var content = $(this).closest('.panel').find('.panel-body');
+    if ($(this).hasClass('panel-collapsed')) {
+      content.slideDown();
+      $(this).find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
     } else {
-      $this.closest('.panel').find('.panel-body').slideUp();
-      $this.addClass('panel-collapsed');
-      $this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+      content.slideUp();
+      $(this).find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
     }
+    $(this).toggleClass('panel-collapsed');
   });
 
   // Triple-state button for BNM selection
@@ -157,4 +157,4 @@ function ready() {
       $(this).removeClass('dim');
     });
   });
-};
+}
