@@ -19,4 +19,5 @@
 //= require amcharts
 //= require amcharts-serial
 //= require amcharts-dark
+//= require lazysizes
 //= require_tree .

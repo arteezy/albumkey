@@ -53,7 +53,7 @@
                 - @album[:discogs][:videos].take(3).each do |video|
                   .col-lg-4
                     .embed-responsive.embed-responsive-16by9
-                      %iframe.embed-responsive-item{ src: video[:uri].sub('watch?v=', 'embed/') }
+                      %iframe.embed-responsive-item.lazyload{ 'data-src' => video[:uri].sub('watch?v=', 'embed/') }
 
   - if user_signed_in?
     - if current_user.try(:admin?)
