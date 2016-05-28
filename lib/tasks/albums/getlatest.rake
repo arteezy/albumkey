@@ -5,5 +5,6 @@ namespace :albums do
     parser = PitchforkParserService.new(ENV['MONGODB_URL'], 'albums')
     parser.update
     puts 'Done'
+    Rake::Task['slugs:update'].invoke
   end
 end

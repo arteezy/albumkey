@@ -13,6 +13,10 @@ every :day, at: '05:05am' do
   rake 'albums:getlatest'
 end
 
-every :day do
+every :day, at: '10:10pm' do
   rake 'slugs:update'
+end
+
+every :sunday, at: '09:15am' do
+  rake 'discogs:fullscan'
 end
