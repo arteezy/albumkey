@@ -90,6 +90,8 @@ group :development do
   gem 'spring'
   # This gem implements the rspec command for Spring
   gem 'spring-commands-rspec'
+  # This gem makes Spring watch the filesystem for changes using Listen rather than by polling the filesystem
+  gem 'spring-watcher-listen'
   # Use Rack Mini Profiler for advanced performance profiling
   gem 'rack-mini-profiler'
   # Use Bullet gem to find slow queries and unused eager loading
