@@ -42,8 +42,15 @@ class PitchforkParserService
   def prepare_link_list
     @db[:links].drop
     (1..find_last_page).each do |page|
+      @logger.info "Crawling page: #{page}"
       links = get_page_links("http://pitchfork.com/reviews/albums/?page=#{page}")
-      redo if links.empty?
+
+      tries ||= 15
+      if links.empty? && tries > 0
+        tries -= 1
+        redo
+      end
+
       links.map! do |link|
         { URL: link, parsed: false }
       end
@@ -73,7 +80,7 @@ class PitchforkParserService
     begin
       links = get_page_links("http://pitchfork.com/reviews/albums/?page=#{page}") - latest_albums_links
       unless links.empty?
-        @logger.info 'Found new reviews! Staging them for parsing:'
+        @logger.info 'Found new reviews! Staging them for crawling:'
         links.map! do |link|
           @logger.info link
           parse_review(link)
