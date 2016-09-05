@@ -5,6 +5,11 @@ class PitchforkParserService
     @logger = Rails.logger
   end
 
+  def pitchfork_id(url)
+    match = url.match('/\d{1,6}-')
+    match ? match[0][1..-2].to_i : match
+  end
+
   def parse_review(url)
     document = Nokogiri::HTML(Net::HTTP.get(URI(url)))
     review = document.at_css('.tombstone')
@@ -12,7 +17,7 @@ class PitchforkParserService
     album = {
       source:     url,
       created_at: Time.now,
-      p4k_id:     url.match('/\d{1,6}-')[0][1..-2].to_i,
+      p4k_id:     pitchfork_id(url),
       artist:     review.css('.artists > ul > li').map(&:text),
       title:      review.css('.review-title').text,
       label:      review.css('.label-list > li').map(&:text),

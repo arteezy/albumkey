@@ -18,7 +18,7 @@ class Album
   field :bnm, type: Boolean
 
   validates :title, presence: true
-  validates :p4k_id, presence: true, uniqueness: true
+  validates :p4k_id, uniqueness: true
   validates :artist, presence: true
   validates :label, presence: true
   validates :year, presence: true
