@@ -5,11 +5,6 @@ class PitchforkParserService
     @logger = Rails.logger
   end
 
-  def pitchfork_id(url)
-    match = url.match('/\d{1,6}-')
-    match ? match[0][1..-2].to_i : match
-  end
-
   def parse_review(url)
     document = Nokogiri::HTML(Net::HTTP.get(URI(url)))
     review = document.at_css('.tombstone')
@@ -30,11 +25,17 @@ class PitchforkParserService
       reissue:    review.text.include?('Best new reissue'),
       bnm:        review.text.include?('Best new music')
     }
+    album.compact
   rescue => e
     @logger.error "Failed to parse: #{url}"
     @logger.error e.message
     @logger.error e.backtrace.join("\n")
     retry
+  end
+
+  def pitchfork_id(url)
+    match = url.match('/\d{1,6}-')
+    match ? match[0][1..-2].to_i : match
   end
 
   def get_page_links(url)
@@ -91,9 +92,12 @@ class PitchforkParserService
           parse_review(link)
         end
         @collection.insert_many(links)
+        @logger.info 'Review batch was successfully written to the DB'
       end
       batch_size = 12
       page += 1
+    rescue Mongo::Error::BulkWriteError => e
+      @logger.error e.result
     end until links.size < batch_size
   end
 
