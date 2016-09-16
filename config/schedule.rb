@@ -9,7 +9,7 @@ every 8.hours do
   rake 'albums:update'
 end
 
-every :day, at: '06:05am' do
+every :day, at: '05:05am' do
   rake 'albums:getlatest'
 end
 
