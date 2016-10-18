@@ -49,6 +49,17 @@ footer {
   }
 }
 
+h1 .badge {
+  display: inline;
+  font-size: 18px;
+  padding: 3px 7px 5px;
+  vertical-align: middle;
+}
+
+h1 span.label {
+  margin-left: 10px;
+}
+
 .card {
   h1,
   h2,

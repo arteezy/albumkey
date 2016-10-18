@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     post 'rate/:album_id', to: 'rates#create', as: 'rate'
   end
 
-  get '/robots.:format', to: 'pages#robots'
-  get '/sitemap.xml.gz', to: 'pages#sitemap'
+  get 'robots.:format', to: 'pages#robots'
+  get 'sitemap.xml.gz', to: 'pages#sitemap'
+  get 'status', to: 'pages#status'
 end

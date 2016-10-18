@@ -1,0 +1,27 @@
+.row
+  .col-sm-12
+    %h1
+      %span.label.label-default
+        Albums:
+        %span.badge= @status[:album_count]
+      %span.label.label-default
+        Users:
+        %span.badge= @status[:user_count]
+      %span.label.label-default
+        Rates:
+        %span.badge= @status[:rate_count]
+    %h1
+      %span.label.label-danger
+        Ruby: #{@status[:ruby]}
+    %h1
+      %span.label.label-success
+        Rails: #{@status[:rails]}
+    %h1
+      %span.label.label-warning
+        Puma: #{@status[:puma]}
+    %h1
+      %span.label.label-info
+        MongoDB: #{@status[:mongodb]}
+    %h1
+      %span.label.label-primary
+        = @status[:time]

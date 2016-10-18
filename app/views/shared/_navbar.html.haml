@@ -23,6 +23,7 @@
             %li= link_to 'Search', search_path
         %li= link_to 'Stats', stats_path(Time.now.year)
         %li= link_to 'Users', users_path
+        %li= link_to 'Status', status_path
 
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
