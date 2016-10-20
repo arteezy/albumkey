@@ -5,12 +5,12 @@ job_type :runner, 'cd :path && PATH=:rbenv:"$PATH" bin/rails runner -e :environm
 
 set :output, 'log/whenever.log'
 
-every 8.hours do
-  rake 'albums:update'
+every '2-14/4 5,6 * * *' do
+  rake 'albums:getlatest'
 end
 
-every :day, at: '05:05am' do
-  rake 'albums:getlatest'
+every 8.hours do
+  rake 'albums:update'
 end
 
 every :day, at: '10:10pm' do
