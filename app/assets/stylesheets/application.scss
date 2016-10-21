@@ -4,6 +4,7 @@
 @import 'ion.rangeSlider';
 @import 'ion.rangeSlider.skinFlat';
 @import 'albums';
+@import 'comments';
 
 @font-face {
   font-family: 'Glyphicons Halflings';
@@ -12,4 +13,26 @@
     font-url(asset-path('glyphicons-halflings-regular.woff')) format('woff'),
     font-url(asset-path('glyphicons-halflings-regular.ttf')) format('truetype'),
     font-url(asset-path('glyphicons-halflings-regular.svg#glyphicons_halflingsregular')) format('svg');
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
+footer {
+  background-color: #f7f7f7;
+  margin-top: 1em;
+  height: 3em;
+  width: 100%;
+
+  .footer-text {
+    line-height: 1em;
+    margin: 1em 0;
+  }
 }

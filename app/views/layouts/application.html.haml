@@ -14,23 +14,24 @@
     = javascript_include_tag 'application', defer: true
 
   %body
-    = render 'shared/navbar'
+    .content
+      = render 'shared/navbar'
 
-    .container
-      .row
-        .col-xs-12
-          - unless notice.blank?
-            .alert.alert-info.alert-dismissible{ role: 'alert' }<
-              %button.close{ type: 'button', data: { dismiss: 'alert' }, aria: { label: 'Close' } }
-                %span{ aria: { hidden: 'true' } }= '×'
-              = notice
-          - unless alert.blank?
-            .alert.alert-danger.alert-dismissible{ role: 'alert' }<
-              %button.close{ type: 'button', data: { dismiss: 'alert' }, aria: { label: 'Close' } }
-                %span{ aria: { hidden: 'true' } }= '×'
-              = alert
-      .row
-        = yield
+      .container
+        .row
+          .col-xs-12
+            - unless notice.blank?
+              .alert.alert-info.alert-dismissible{ role: 'alert' }<
+                %button.close{ type: 'button', data: { dismiss: 'alert' }, aria: { label: 'Close' } }
+                  %span{ aria: { hidden: 'true' } }= '×'
+                = notice
+            - unless alert.blank?
+              .alert.alert-danger.alert-dismissible{ role: 'alert' }<
+                %button.close{ type: 'button', data: { dismiss: 'alert' }, aria: { label: 'Close' } }
+                  %span{ aria: { hidden: 'true' } }= '×'
+                = alert
+        .row
+          = yield
 
     %footer
       .footer-text.text-muted.text-center
