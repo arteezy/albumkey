@@ -34,7 +34,7 @@ class PitchforkParserService
   end
 
   def pitchfork_id(url)
-    match = url.match('/\d{1,6}-')
+    match = url.match('/\d{5,7}-')
     match ? match[0][1..-2].to_i : match
   end
 
