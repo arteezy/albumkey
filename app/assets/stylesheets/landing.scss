@@ -1,0 +1,39 @@
+.landing-container {
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+.images,
+.gradient {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+}
+
+.images {
+  z-index: 10;
+  height: 1280px;
+  animation: slide 105s linear infinite;
+  will-change: transform;
+  background: image-url('back.jpg') repeat;
+}
+
+.gradient {
+  z-index: 20;
+  background: linear-gradient(to right, rgba(0, 0, 128, 0.75), rgba(128, 0, 0, 0.8));
+}
+
+.words {
+  z-index: 30;
+  padding: 100px;
+  color: whitesmoke;
+  text-shadow: 2px 2px 2px black;
+  position: absolute;
+}
+
+@keyframes slide {
+  from { transform: translateY(0); }
+  to { transform: translateY(-640px); }
+}

@@ -1,4 +1,8 @@
 class PagesController < ApplicationController
+  def landing
+    render layout: false
+  end
+
   def robots
     respond_to :text
     expires_in 1.days, public: true
