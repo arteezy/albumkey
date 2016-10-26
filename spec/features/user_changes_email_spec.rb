@@ -15,7 +15,7 @@ feature 'User changes email' do
     fill_in 'user_current_password', with: 'password'
     click_button 'Update'
 
-    visit root_path
+    visit albums_path
     first('.card h3 > a').click
     expect(page).to have_content 'new@mail.com'
   end

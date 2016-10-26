@@ -3,17 +3,17 @@ require 'rails_helper'
 feature 'Site Browsing' do
   scenario 'Visit Home page' do
     visit root_path
-    expect(page).to have_content 'Richfork'
+    expect(page).to have_content 'Discover the best music'
   end
 
   scenario 'Visit Albums page' do
-    visit root_path
+    visit albums_path
     click_link 'Albums'
     expect(page).to have_content 'Music'
   end
 
   scenario 'Visit Stats page' do
-    visit root_path
+    visit stats_path
     click_link 'Stats'
     expect(page).to have_content 'Total albums'
   end
@@ -21,7 +21,7 @@ feature 'Site Browsing' do
   scenario 'Visit Users page' do
     admin = create(:admin)
 
-    visit root_path
+    visit users_path
 
     click_link 'Log In'
     fill_in 'Email', with: admin.email
