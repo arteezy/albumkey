@@ -44,6 +44,8 @@ gem 'kaminari-mongoid', '~> 1.0.1'
 gem 'mongoid-slug', '~> 5.1'
 # Use Mongoid Enum for enum support
 gem 'mongoid-enum', git: 'https://github.com/arteezy/mongoid-enum.git'
+# Ruby wrapper for ImageMagick command line utility
+gem 'mini_magick', '~> 4.8.0'
 # Use Gravtastic gem to add Gravatar support
 gem 'gravtastic'
 # Use Simple Form gem to simplify form creation

@@ -105,7 +105,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
-    database_cleaner (1.5.3)
+    database_cleaner (1.6.1)
     debug_inspector (0.0.2)
     devise (3.5.10)
       bcrypt (~> 3.0)
@@ -191,6 +191,7 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
+    mini_magick (4.8.0)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     mongo (2.3.1)
@@ -213,7 +214,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.1.0)
-    newrelic_rpm (4.1.0.333)
+    newrelic_rpm (4.2.0.334)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
     oauth (0.5.1)
@@ -229,7 +230,7 @@ GEM
     pry-rails (0.3.6)
       pry (>= 0.10.4)
     public_suffix (2.0.5)
-    puma (3.8.2)
+    puma (3.9.1)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     quiet_assets (1.1.0)
@@ -396,6 +397,7 @@ DEPENDENCIES
   kaminari-mongoid (~> 1.0.1)
   launchy (~> 2.4)
   le
+  mini_magick (~> 4.8.0)
   mongo (~> 2.3.0)
   mongoid (~> 5.1)
   mongoid-enum!
@@ -429,4 +431,4 @@ RUBY VERSION
    ruby 2.3.3p222
 
 BUNDLED WITH
-   1.14.4
+   1.14.6
