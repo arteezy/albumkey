@@ -15,6 +15,7 @@ end
 
 every :day, at: '10:10pm' do
   rake 'slugs:update'
+  rake 'albums:wall'
 end
 
 every :sunday, at: '09:15am' do
