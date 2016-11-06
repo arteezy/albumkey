@@ -1,11 +1,17 @@
 class AlbumWallGenerator
-  def initialize(tmp = 'tmp', output = 'app/assets/images')
+  def initialize(bnm, tmp = 'tmp', output = 'app/assets/images')
+    @bnm = bnm
     @tmp = tmp
     @output = output
   end
 
   def prepare_images
-    albums = Album.order(date: :desc).limit(12).pluck(:artwork)
+    albums =
+      if @bnm
+        Album.where(bnm: @bnm).order(date: :desc).limit(12).pluck(:artwork)
+      else
+        Album.order(date: :desc).limit(12).pluck(:artwork)
+      end
 
     names = []
 
