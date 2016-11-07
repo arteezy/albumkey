@@ -1,3 +1,7 @@
+$images-height: 1920px;
+$gradient-start: rgba(0, 0, 128, .65);
+$gradient-end: rgba(128, 0, 0, .7);
+
 .landing-container {
   position: relative;
   overflow: hidden;
@@ -14,15 +18,15 @@
 
 .images {
   z-index: 10;
-  height: 1280px;
-  animation: slide 105s linear infinite;
+  height: $images-height;
+  animation: slide 90s linear infinite;
   will-change: transform;
   background: url('wall.jpg') repeat;
 }
 
 .gradient {
   z-index: 20;
-  background: linear-gradient(to right, rgba(0, 0, 128, 0.75), rgba(128, 0, 0, 0.8));
+  background: linear-gradient(to right, $gradient-start, $gradient-end);
 }
 
 .words {
@@ -35,5 +39,5 @@
 
 @keyframes slide {
   from { transform: translateY(0); }
-  to { transform: translateY(-640px); }
+  to { transform: translateY(-$images-height / 2); }
 }
