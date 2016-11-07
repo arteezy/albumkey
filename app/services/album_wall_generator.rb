@@ -1,5 +1,5 @@
 class AlbumWallGenerator
-  def initialize(bnm, tmp = 'tmp', output = 'app/assets/images')
+  def initialize(bnm, tmp = 'tmp', output = 'public/assets')
     @bnm = bnm
     @tmp = tmp
     @output = output
