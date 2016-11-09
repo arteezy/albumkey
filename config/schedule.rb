@@ -15,9 +15,16 @@ end
 
 every :day, at: '10:10pm' do
   rake 'slugs:update'
-  rake 'albums:wall'
 end
 
 every :sunday, at: '09:15am' do
   rake 'discogs:fullscan'
+end
+
+every :weekday, at: '08:30am' do
+  rake 'albums:wall'
+end
+
+every :weekend, at: '08:30am' do
+  rake 'albums:wall:bnm'
 end
