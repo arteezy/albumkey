@@ -7,7 +7,7 @@ class AlbumWallGenerator
     @output = output
   end
 
-  def prepare_images
+  def preload_images
     albums =
       if bnm
         Album.where(bnm: bnm).order(date: :desc).limit(12).pluck(:artwork)
@@ -17,19 +17,30 @@ class AlbumWallGenerator
 
     albums.map.with_index do |album, index|
       cover = MiniMagick::Image.open album
-      name = "#{tmp}/#{index + 1}.jpg"
-      cover.write name
-      name
+      filename = "#{tmp}/#{index + 1}.jpg"
+      cover.write filename
+      filename
     end
   end
 
-  def ribbon(names, result)
-    names *= 2
+  def add_border(filename, size, color = 'White')
+    MiniMagick::Tool::Convert.new do |convert|
+      convert << filename
+
+      convert.bordercolor << color
+      convert.border << "#{size}x#{size}"
+
+      convert << filename
+    end
+  end
+
+  def ribbon(filenames, result)
+    filenames *= 2
 
     MiniMagick::Tool::Convert.new do |convert|
       convert.append
 
-      names.each do |i|
+      filenames.each do |i|
         convert << i
       end
 
@@ -37,8 +48,8 @@ class AlbumWallGenerator
     end
   end
 
-  def shifted_ribbon(names, result, percent, split = 'split')
-    first = names.shift
+  def shifted_ribbon(filenames, result, percent)
+    first = filenames.shift
 
     MiniMagick::Tool::Convert.new do |convert|
       convert.crop
@@ -46,36 +57,36 @@ class AlbumWallGenerator
       convert << "100%x#{percent}%"
 
       convert << first
-      convert << "#{tmp}/#{split}.jpg"
+      convert << "#{tmp}/split.jpg"
     end
 
     if percent < 50
       MiniMagick::Tool::Convert.new do |convert|
         convert.append
 
-        convert << "#{tmp}/#{split}-1.jpg"
-        convert << "#{tmp}/#{split}-2.jpg"
-        convert << "#{tmp}/#{split}-3.jpg"
+        convert << "#{tmp}/split-1.jpg"
+        convert << "#{tmp}/split-2.jpg"
+        convert << "#{tmp}/split-3.jpg"
 
-        convert << "#{tmp}/#{split}-1.jpg"
+        convert << "#{tmp}/split-1.jpg"
       end
     end
 
-    names.unshift "#{tmp}/#{split}-1.jpg"
-    names.push "#{tmp}/#{split}-0.jpg"
+    filenames.unshift "#{tmp}/split-1.jpg"
+    filenames.push "#{tmp}/split-0.jpg"
 
-    ribbon(names, result)
+    ribbon(filenames, result)
   end
 
-  def gen_ribbon(names, result, percent = nil)
+  def gen_ribbon(filenames, result, percent = nil)
     if percent
-      shifted_ribbon(names, result, percent)
+      shifted_ribbon(filenames, result, percent)
     else
-      ribbon(names, result)
+      ribbon(filenames, result)
     end
   end
 
-  def combine_ribbons(result, left, right)
+  def combine_ribbons(left, right, result)
     MiniMagick::Tool::Convert.new do |convert|
       convert.append.+
 
@@ -87,17 +98,17 @@ class AlbumWallGenerator
   end
 
   def generate_wall
-    names = prepare_images
+    filenames = preload_images
 
-    gen_ribbon(names[0..2], 'r1')
-    gen_ribbon(names[3..5], 'r2', 66)
-    combine_ribbons("#{tmp}/left", 'r1', 'r2')
+    gen_ribbon(filenames[0..2], 'r1')
+    gen_ribbon(filenames[3..5], 'r2', 66)
+    combine_ribbons('r1', 'r2', "#{tmp}/left")
 
-    gen_ribbon(names[6..8], 'r4')
-    gen_ribbon(names[9..11], 'r3', 33)
-    combine_ribbons("#{tmp}/right", 'r3', 'r4')
+    gen_ribbon(filenames[6..8], 'r4')
+    gen_ribbon(filenames[9..11], 'r3', 33)
+    combine_ribbons('r3', 'r4', "#{tmp}/right")
 
-    combine_ribbons("#{output}/wall", 'left', 'right')
+    combine_ribbons('left', 'right', "#{output}/wall")
 
     Rails.logger.info 'Successfully generated album wall'
   end
