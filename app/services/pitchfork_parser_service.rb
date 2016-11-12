@@ -15,7 +15,7 @@ class PitchforkParserService
       p4k_id:     pitchfork_id(url),
       artist:     review.css('.artists > ul > li').map(&:text),
       title:      review.css('.review-title').text,
-      label:      review.css('.label-list > li').map(&:text),
+      label:      review.css('.labels-list > li').map(&:text),
       year:       review.css('.year').text.split(' • ')[1],
       date:       Date.parse(meta.css('.pub-date').attr('title')).to_datetime,
       genre:      meta.css('.genre-list > li > a').map(&:text),
