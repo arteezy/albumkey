@@ -93,6 +93,9 @@ class AlbumWallGenerator
       convert << "#{tmp}/#{left}.jpg"
       convert << "#{tmp}/#{right}.jpg"
 
+      convert.interlace
+      convert << 'Plane'
+
       convert << "#{result}.jpg"
     end
   end
