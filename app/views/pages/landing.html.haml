@@ -5,7 +5,6 @@
     %meta{ charset: 'utf-8' }
     %meta{ http: { equiv: 'X-UA-Compatible' }, content: 'IE=edge' }
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1' }
-    %meta{ name: 'google-site-verification', content: ENV['GWT_TAG'] }
 
     %title= 'AlbumKey'
 
@@ -16,8 +15,15 @@
     .landing-container
       .images
       .gradient
-      .words
-        %h1
-          Discover the best music
-        %h2
-          No paywalls, no ads, just albums you'll love
+      .landing-text
+        .landing-heading
+          %h1
+            Discover the best music
+          %h2
+            No paywalls, no ads, just albums you'll love
+        .landing-buttons
+          - if user_signed_in?
+            = link_to 'Albums', albums_path, class: 'btn btn-lg btn-success'
+          - else
+            = link_to 'Log In', new_user_session_path, class: 'btn btn-lg btn-primary'
+            = link_to 'Sign Up', new_user_registration_path, class: 'btn btn-lg btn-primary'
