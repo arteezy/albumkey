@@ -1,8 +1,8 @@
-// Readable 3.3.6
+// Readable 3.3.7
 // -----------------------------------------------------
 
-$web-font-path: "https://fonts.googleapis.com/css?family=Lato:400,700,900" !default;
-$web-alt-font-path: "https://fonts.googleapis.com/css?family=Raleway:400,700" !default;
+$web-font-path: 'https://fonts.googleapis.com/css?family=Lato:400,700,900' !default;
+$web-alt-font-path: 'https://fonts.googleapis.com/css?family=Raleway:400,700' !default;
 
 @import url($web-font-path);
 @import url($web-alt-font-path);
@@ -19,7 +19,7 @@ $web-alt-font-path: "https://fonts.googleapis.com/css?family=Raleway:400,700" !d
   }
 
   &-nav > li > a {
-    $margin-vertical: (($navbar-height - 2*$padding-base-vertical - $line-height-computed - 2px) / 2);
+    $margin-vertical: (($navbar-height - 2 * $padding-base-vertical - $line-height-computed - 2px) / 2);
     margin: $margin-vertical 6px;
     padding: $padding-base-vertical $padding-base-horizontal;
     border: 1px solid transparent;
