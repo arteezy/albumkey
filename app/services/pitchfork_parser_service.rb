@@ -41,7 +41,7 @@ class PitchforkParserService
   def get_page_links(url)
     document = Nokogiri::HTML(Net::HTTP.get(URI(url)))
     document.css('.fragment-list > .review > a').map do |review|
-      "http://pitchfork.com#{review.attr('href')}"
+      "https://pitchfork.com#{review.attr('href')}"
     end
   end
 
@@ -84,7 +84,7 @@ class PitchforkParserService
   def incremental_update(page = 1, batch_size = 24)
     latest_albums_links = Album.desc(:date).limit(batch_size).pluck(:source)
     begin
-      links = get_page_links("http://pitchfork.com/reviews/albums/?page=#{page}") - latest_albums_links
+      links = get_page_links("https://pitchfork.com/reviews/albums/?page=#{page}") - latest_albums_links
       unless links.empty?
         @logger.info 'Found new reviews! Staging them for crawling:'
         links.map! do |link|
