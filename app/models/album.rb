@@ -24,7 +24,7 @@ class Album
   validates :year, presence: true
   validates :date, presence: true
   validates :artwork, presence: true
-  validates :source, presence: true
+  validates :source, presence: true, uniqueness: true
   validates :reviewer, presence: true
   validates :rating, presence: true, numericality: true
   validates :reissue, presence: true
@@ -35,9 +35,10 @@ class Album
   index(label: 1)
   index(rating: 1)
   index(date: -1, created_at: 1)
+  index({ source: 1 }, unique: true)
   # An index that is both sparse and unique prevents collection
   # from having documents with duplicate values for a field
-  # but allows multiple documents that omit the key.
+  # but allows multiple documents without the key.
   index({ p4k_id: 1 }, unique: true, sparse: true)
 
   has_many :rates, dependent: :destroy
