@@ -7,7 +7,7 @@ class PitchforkParserService
 
   def parse_review(url)
     document = Nokogiri::HTML(Net::HTTP.get(URI(url)))
-    review = document.at_css('.tombstone')
+    review = document.at_css('.single-album-tombstone')
     meta = document.at_css('.article-meta')
     album = {
       source:     url,
