@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :update, :destroy]
   end
 
+  resources :lists
+
   get 'search', to: 'albums#search'
   get 'stats(/:year)', to: 'albums#stats', as: 'stats'
 
