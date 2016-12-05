@@ -21,6 +21,7 @@
         - if user_signed_in?
           - if current_user.try(:admin?)
             %li= link_to 'Search', search_path
+        %li= link_to 'Lists', lists_path
         %li= link_to 'Stats', stats_path(Time.now.year)
         %li= link_to 'Users', users_path
         %li= link_to 'Status', status_path
