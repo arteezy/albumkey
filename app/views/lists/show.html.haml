@@ -6,5 +6,9 @@
   %strong Category:
   = @list.category
 
+%p
+  %strong Author:
+  = link_to @list.user.email, user_path(@list.user)
+
 = link_to 'Edit', edit_list_path(@list)
 = link_to 'Back', lists_path
