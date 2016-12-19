@@ -1,13 +1,13 @@
-.col-lg-4
+.col-md-4
   %h3 Personal Lists
   - @lists.personal.each do |list|
     %p= link_to list.title, list
-  = link_to 'Create List', new_list_path
-.col-lg-4
+  = link_to 'Create List', new_list_path, class: 'btn btn-primary'
+.col-md-4
   %h3 Community Lists
   - @lists.community.each do |list|
     %p= link_to list.title, list
-.col-lg-4
+.col-md-4
   %h3 Staff Lists
   - @lists.staff.each do |list|
     %p= link_to list.title, list

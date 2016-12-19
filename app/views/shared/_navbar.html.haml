@@ -7,7 +7,7 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to 'Richfork', root_path, class: 'navbar-brand'
+      = link_to 'R', root_path, class: 'navbar-brand'
     .collapse.navbar-collapse#navbar-collapse-button
       %ul.nav.navbar-nav.navbar-left
         %li= link_to 'Albums', albums_path
@@ -16,7 +16,7 @@
             = precede 'Top Albums' do
               %span.caret
           %ul.dropdown-menu{ role: 'menu' }
-            - 10.years.ago.year.upto Time.now.year do |year|
+            - 6.years.ago.year.upto Time.now.year do |year|
               %li= link_to year, albums_path(year: year, order: :rating, dir: :desc, reissue: 0)
         - if user_signed_in?
           - if current_user.try(:admin?)

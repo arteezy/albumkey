@@ -6,4 +6,4 @@
     = f.select :category, List::CATEGORY.map { |cat| [cat.to_s.titleize, cat] }
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, class: 'btn btn-primary'
