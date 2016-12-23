@@ -21,7 +21,8 @@ class PagesController < ApplicationController
       time:        Time.now.to_s(:long),
       album_count: Album.count,
       user_count:  User.count,
-      rate_count:  Rate.count
+      rate_count:  Rate.count,
+      list_count:  List.count
     }
   end
 end
