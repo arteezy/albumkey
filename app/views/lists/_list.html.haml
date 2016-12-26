@@ -1,0 +1,5 @@
+.well
+  = image_tag current_user.gravatar_url, class: 'media-object', size: '50', alt: list.title
+  %p
+    = link_to list.title, list
+    = list.user.email
