@@ -1,5 +1,8 @@
-.well
-  = image_tag current_user.gravatar_url, class: 'media-object', size: '50', alt: list.title
-  %p
-    = link_to list.title, list
-    = list.user.email
+%li.media
+  .media-left
+    = image_tag current_user.gravatar_url, class: 'media-object', size: '50', alt: list.title
+  .media-body
+    %h4.media-heading
+      = link_to list.title, list
+    .text-muted
+      = list.user.email
