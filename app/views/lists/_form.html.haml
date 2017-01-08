@@ -3,7 +3,7 @@
 
   .form-inputs
     = f.input :title
-    = f.select :category, List::CATEGORY.map { |cat| [cat.to_s.titleize, cat] }
+    = f.input :category, as: :radio_buttons, collection: @categories
 
   .form-actions
     = f.button :submit, class: 'btn btn-primary'
