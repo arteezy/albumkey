@@ -1,5 +1,9 @@
 %h2
   = @list.title
+  = link_to edit_list_path @list do
+    %span.glyphicon.glyphicon-pencil
+  = link_to 'Delete List', @list, method: :delete, data: { confirm: 'Are you sure?' } do
+    %span.glyphicon.glyphicon-remove
 
 %p
   %strong Category:
@@ -8,5 +12,3 @@
 %p
   %strong Author:
   = link_to @list.user.email, user_path(@list.user)
-
-= link_to 'Edit', edit_list_path(@list), class: 'btn btn-warning'
