@@ -1,13 +1,14 @@
-.col-md-4
-  %h3 Personal Lists
-  %ul.media-list
-    = render partial: 'list', collection: @lists.personal
-  = link_to 'Create List', new_list_path, class: 'btn btn-primary'
-.col-md-4
-  %h3 Community Lists
-  %ul.media-list
-    = render partial: 'list', collection: @lists.community
-.col-md-4
-  %h3 Staff Lists
-  %ul.media-list
-    = render partial: 'list', collection: @lists.staff
+.album-lists
+  .col-sm-4
+    %h3 Personal Lists
+    %ul.media-list
+      = render partial: 'list', collection: @lists.personal
+    = link_to 'Create List', new_list_path, class: 'btn btn-primary'
+  .col-sm-4
+    %h3 Community Lists
+    %ul.media-list
+      = render partial: 'list', collection: @lists.community
+  .col-sm-4
+    %h3 Staff Lists
+    %ul.media-list
+      = render partial: 'list', collection: @lists.staff
