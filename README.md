@@ -1,10 +1,10 @@
-[![Build Status](https://travis-ci.org/arteezy/richfork.svg?branch=master)](https://travis-ci.org/arteezy/richfork)
-[![Code Climate](https://codeclimate.com/github/arteezy/richfork/badges/gpa.svg)](https://codeclimate.com/github/arteezy/richfork)
-[![Test Coverage](https://codeclimate.com/github/arteezy/richfork/badges/coverage.svg)](https://codeclimate.com/github/arteezy/richfork/coverage)
+[![Build Status](https://travis-ci.org/arteezy/albumkey.svg?branch=master)](https://travis-ci.org/arteezy/albumkey)
+[![Code Climate](https://codeclimate.com/github/arteezy/albumkey/badges/gpa.svg)](https://codeclimate.com/github/arteezy/albumkey)
+[![Test Coverage](https://codeclimate.com/github/arteezy/albumkey/badges/coverage.svg)](https://codeclimate.com/github/arteezy/albumkey/coverage)
 
 # Pitchfork Analyst Tool
 
-[richfork.ml](http://richfork.ml)
+[albumkey.com](http://albumkey.com)
 
 Rails web application for analysis of [Pitchfork](http://pitchfork.com) music album reviews.
 

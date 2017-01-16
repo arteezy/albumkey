@@ -7,7 +7,7 @@
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1' }
     %meta{ name: 'google-site-verification', content: ENV['GWT_TAG'] }
 
-    %title= content_for?(:title) ? yield(:title) : 'Richfork'
+    %title= content_for?(:title) ? yield(:title) : 'AlbumKey'
 
     = stylesheet_link_tag 'application'
     = csrf_meta_tag
@@ -35,5 +35,5 @@
 
     %footer
       .footer-text.text-muted.text-center<
-        Richfork ©
+        AlbumKey ©
         = "2015 – #{Time.now.year}"

@@ -1,4 +1,4 @@
-SitemapGenerator::Sitemap.default_host = 'http://richfork.ml'
+SitemapGenerator::Sitemap.default_host = 'http://albumkey.com'
 SitemapGenerator::Sitemap.public_path = 'tmp/'
 SitemapGenerator::Sitemap.adapter = SitemapGenerator::S3Adapter.new
 SitemapGenerator::Sitemap.sitemaps_host = "http://#{ENV['FOG_DIRECTORY']}.s3.amazonaws.com/"

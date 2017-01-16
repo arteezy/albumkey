@@ -14,7 +14,7 @@ require 'sprockets/railtie'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Richfork
+module AlbumKey
   class Application < Rails::Application
     # Precompile font assets
     config.assets.precompile << /\.(?:png|svg|eot|woff|ttf)$/
