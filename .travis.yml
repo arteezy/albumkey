@@ -6,4 +6,4 @@ services:
   - mongodb
 addons:
   code_climate:
-    repo_token: 4c9ecec2102620e17bfe17dcd35c39c3d1cd2694849e63c54caf28c7025c2366
+    repo_token: cf3447f19ab3ba56ecc962661bcf070e9b320bc97f9d083ed5720703d1d1083a

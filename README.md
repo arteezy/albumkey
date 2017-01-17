@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/arteezy/albumkey.svg?branch=master)](https://travis-ci.org/arteezy/albumkey)
-[![Code Climate](https://codeclimate.com/github/arteezy/albumkey/badges/gpa.svg)](https://codeclimate.com/github/arteezy/albumkey)
-[![Test Coverage](https://codeclimate.com/github/arteezy/albumkey/badges/coverage.svg)](https://codeclimate.com/github/arteezy/albumkey/coverage)
+[![Code Maintainability](https://api.codeclimate.com/v1/badges/67d6970f19d9fd440be0/maintainability)](https://codeclimate.com/github/arteezy/albumkey/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/67d6970f19d9fd440be0/test_coverage)](https://codeclimate.com/github/arteezy/albumkey/test_coverage)
 
 # Pitchfork Analyst Tool
 
