@@ -41,6 +41,7 @@ class Album
   # but allows multiple documents without the key.
   index({ p4k_id: 1 }, unique: true, sparse: true)
 
+  has_and_belongs_to_many :lists
   has_many :rates, dependent: :destroy
   embeds_many :comments # implies dependent: :destroy
 
