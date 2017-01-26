@@ -1,6 +1,6 @@
 %li.media
   .media-left
-    = image_tag current_user.gravatar_url, class: 'media-object', size: '50', alt: list.title
+    = image_tag list.user.gravatar_url, class: 'media-object', size: '50', alt: list.title
   .media-body
     %h4.media-heading
       = link_to list.title, list
