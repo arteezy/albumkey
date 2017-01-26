@@ -2,7 +2,7 @@
   = @list.title
   = link_to edit_list_path @list do
     %span.glyphicon.glyphicon-pencil
-  = link_to 'Delete List', @list, method: :delete, data: { confirm: 'Are you sure?' } do
+  = link_to @list, method: :delete, data: { confirm: 'Are you sure?' } do
     %span.glyphicon.glyphicon-remove
 
 %p
