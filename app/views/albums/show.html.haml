@@ -12,6 +12,10 @@
         %h5= raw @album.label.map { |label| link_to label, albums_path(label: label) }.join(' / ')
         %h6= @album.date.strftime('%d %b %Y')
         %h6= link_to 'Read review at Pitchfork', @album.source
+        - if @lists
+          = form_tag list_path, method: :patch do
+            = select_tag(:list_id, options_from_collection_for_select(@lists, :id, :title))
+            = submit_tag('Add to List', class: 'btn btn-xs btn-primary')
       .col-lg-2.col-md-4.col-sm-6.hidden-xs
         - if user_signed_in?
           - if @rate

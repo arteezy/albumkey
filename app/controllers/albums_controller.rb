@@ -88,6 +88,7 @@ class AlbumsController < ApplicationController
     @comments = @album.comments.all
     return unless user_signed_in?
     @comment = @album.comments.build
+    @lists   = @current_user.lists
 
     if @album.rates.where(user_id: current_user.id).exists?
       @rate = @album.rates.find_by(user_id: current_user.id)
