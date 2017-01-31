@@ -111,7 +111,7 @@ class AlbumsController < ApplicationController
 
     respond_to do |format|
       if @album.save
-        format.html { redirect_to @album, notice: 'Album was successfully created.' }
+        format.html { redirect_to @album, notice: 'Album was successfully created' }
         format.json { render :show, status: :created, location: @album }
       else
         format.html { render :new }
@@ -123,13 +123,19 @@ class AlbumsController < ApplicationController
   # PATCH/PUT /albums/1
   # PATCH/PUT /albums/1.json
   def update
-    respond_to do |format|
-      if @album.update(album_params)
-        format.html { redirect_to @album, notice: 'Album was successfully updated.' }
-        format.json { render :show, status: :ok, location: @album }
-      else
-        format.html { render :edit }
-        format.json { render json: @album.errors, status: :unprocessable_entity }
+    if album_params[:list_id]
+      list = List.find(album_params[:list_id])
+      @album.lists.push(list)
+      redirect_to list, notice: 'Album was successfully added to this List'
+    else
+      respond_to do |format|
+        if @album.update(album_params)
+          format.html { redirect_to @album, notice: 'Album was successfully updated' }
+          format.json { render :show, status: :ok, location: @album }
+        else
+          format.html { render :edit }
+          format.json { render json: @album.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -139,7 +145,7 @@ class AlbumsController < ApplicationController
   def destroy
     @album.destroy
     respond_to do |format|
-      format.html { redirect_to albums_url, notice: 'Album was successfully destroyed.' }
+      format.html { redirect_to albums_url, notice: 'Album was successfully destroyed' }
       format.json { head :no_content }
     end
   end
@@ -151,7 +157,7 @@ class AlbumsController < ApplicationController
   end
 
   def album_params
-    params.require(:album).permit(:title, :p4k_id, :year, :artwork, :source,
+    params.require(:album).permit(:title, :p4k_id, :year, :artwork, :source, :list_id,
       :date, :reviewer, :rating, :reissue, :bnm, artist: [], label: [], genre: [])
   end
 end
