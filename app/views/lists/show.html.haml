@@ -4,11 +4,13 @@
     %span.glyphicon.glyphicon-pencil
   = link_to @list, method: :delete, data: { confirm: 'Are you sure?' } do
     %span.glyphicon.glyphicon-remove
+.col-md-3
+  %p
+    %strong Category:
+    = @list.category
+  %p
+    %strong Author:
+    = link_to @list.user.email, user_path(@list.user)
 
-%p
-  %strong Category:
-  = @list.category
-
-%p
-  %strong Author:
-  = link_to @list.user.email, user_path(@list.user)
+.col-md-9
+  = render partial: 'shared/card', collection: @list.albums
