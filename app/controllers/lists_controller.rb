@@ -1,6 +1,5 @@
 class ListsController < ApplicationController
   before_action :set_list, only: [:show, :edit, :update, :destroy]
-  before_action :categories, only: [:new, :edit]
 
   # GET /lists
   # GET /lists.json
@@ -67,15 +66,6 @@ class ListsController < ApplicationController
 
   def set_list
     @list = List.find(params[:id])
-  end
-
-  def categories
-    @categories = List::CATEGORY.map do |category|
-      [
-        category.to_s.titleize,
-        category
-      ]
-    end
   end
 
   def list_params

@@ -18,4 +18,13 @@ class List
   def ranked
     positions.zip(albums).sort.transpose.last
   end
+
+  def self.categories_for_select
+    CATEGORY.map do |category|
+      [
+        category.to_s.titleize,
+        category
+      ]
+    end
+  end
 end

@@ -3,7 +3,7 @@
 
   .form-inputs
     = f.input :title
-    = f.input :category, as: :radio_buttons, collection: @categories
+    = f.input :category, as: :radio_buttons, collection: List.categories_for_select
 
   .form-actions
     = f.button :submit, class: 'btn btn-primary'
