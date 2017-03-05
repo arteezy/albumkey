@@ -38,11 +38,6 @@ RSpec.describe ListsController, type: :controller do
       get :new
       expect(assigns(:list)).to be_a_new(List)
     end
-
-    it 'assigns proper categories' do
-      get :new
-      expect(assigns(:categories).to_h.values).to eq(List::CATEGORY)
-    end
   end
 
   describe 'GET #edit' do
@@ -54,11 +49,6 @@ RSpec.describe ListsController, type: :controller do
     it 'assigns the requested list as @list' do
       get :edit, id: list
       expect(assigns(:list)).to eq(list)
-    end
-
-    it 'assigns proper categories' do
-      get :edit, id: list
-      expect(assigns(:categories).to_h.values).to eq(List::CATEGORY)
     end
   end
 
