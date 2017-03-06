@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe List, type: :model do
   it 'sets proper categories for select' do
-    expect(List.categories_for_select.to_h.values).to eq(List::CATEGORY)
+    cats_hash = List.categories_for_select.to_h
+    expect(cats_hash.keys).to match_array(List::CATEGORY.map { |c| c.to_s.titleize })
+    expect(cats_hash.values).to match_array(List::CATEGORY)
   end
 
   it 'has a valid factory' do

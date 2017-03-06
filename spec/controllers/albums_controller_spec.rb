@@ -46,6 +46,12 @@ describe AlbumsController, type: :controller do
           get :show, id: album
           expect(assigns(:rate)).to eq(rate)
         end
+
+        it 'assigns the user lists of album as @lists' do
+          list = create(:list, user: subject.current_user)
+          get :show, id: album
+          expect(assigns(:lists)).to match_array([list])
+        end
       end
     end
 
@@ -119,39 +125,53 @@ describe AlbumsController, type: :controller do
     end
 
     describe 'PATCH #update' do
-      before :each do
-        @album = create(:album, title: 'Illmatic', artist: ['Nas'])
-      end
+      let(:album) { create(:album, title: 'Illmatic', artist: ['Nas']) }
 
       context 'with valid params' do
         it 'updates the requested album' do
-          patch :update, id: @album, album: attributes_for(:album, title: 'Dalmatic', artist: ['Pas'])
-          @album.reload
-          expect(@album.title).to eq('Dalmatic')
-          expect(@album.artist).to eq(['Pas'])
+          patch :update, id: album, album: attributes_for(:album, title: 'Dalmatic', artist: ['Pas'])
+          album.reload
+          expect(album.title).to eq('Dalmatic')
+          expect(album.artist).to eq(['Pas'])
         end
 
         it 'assigns the requested album as @album' do
-          patch :update, id: @album, album: attributes_for(:album)
-          expect(assigns(:album)).to eq(@album)
+          patch :update, id: album, album: attributes_for(:album)
+          expect(assigns(:album)).to eq(album)
         end
 
         it 'redirects to the album' do
-          patch :update, id: @album, album: attributes_for(:album)
-          @album.reload
-          expect(response).to redirect_to(@album)
+          patch :update, id: album, album: attributes_for(:album)
+          album.reload
+          expect(response).to redirect_to(album)
         end
       end
 
       context 'with invalid params' do
         it 'assigns the album as @album' do
-          patch :update, id: @album, album: attributes_for(:invalid_album)
-          expect(assigns(:album)).to eq(@album)
+          patch :update, id: album, album: attributes_for(:invalid_album)
+          expect(assigns(:album)).to eq(album)
         end
 
         it 're-renders the edit template' do
-          patch :update, id: @album, album: attributes_for(:invalid_album)
+          patch :update, id: album, album: attributes_for(:invalid_album)
           expect(response).to render_template('edit')
+        end
+      end
+
+      context 'adding album to list' do
+        let(:list) { create(:list) }
+
+        it 'updates the requested album with list relation' do
+          patch :update, id: album, album: { list_id: list }
+          album.reload
+          expect(album.lists).to match_array([list])
+        end
+
+        it 'redirects to the list with newly added album' do
+          patch :update, id: album, album: { list_id: list }
+          album.reload
+          expect(response).to redirect_to(list)
         end
       end
     end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Top level site browsing' do
+feature 'Top Level site browsing' do
   scenario 'Visit Home page' do
     visit root_path
     expect(page).to have_content 'Discover the best music'
@@ -30,6 +30,11 @@ feature 'Top level site browsing' do
 
     click_link 'Users'
     expect(page).to have_content 'Admin'
+  end
+
+  scenario 'Visit Lists page' do
+    visit lists_path
+    expect(page).to have_content 'Community'
   end
 
   scenario 'Visit Status page' do
