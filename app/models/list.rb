@@ -9,7 +9,7 @@ class List
   enum :category, [:personal, :community, :staff]
 
   field :title,     type: String
-  field :positions, type: Array
+  field :positions, type: Array, default: []
 
   validates :title,    presence: true
   validates :category, presence: true
