@@ -17,9 +17,9 @@ gem 'coffee-rails', '~> 4.1'
 # Use HAMLit for faster templates
 gem 'hamlit', '~> 2.6'
 # Use Mongo gem as Ruby driver for MongoDB
-gem 'mongo', '~> 2.3.0'
+gem 'mongo', '~> 2.4.3'
 # Use Mongoid as ODM for MongoDB
-gem 'mongoid', '~> 5.1'
+gem 'mongoid', '~> 5.2.1'
 # Use Devise as authentication library
 gem 'devise', '~> 3.5.2'
 # Use Pundit for role-based authorization
@@ -35,7 +35,7 @@ gem 'jbuilder', '~> 2.3'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.1', group: :doc
 # Use Nokogiri as HTML parser
-gem 'nokogiri', '~> 1.6.6'
+gem 'nokogiri', '~> 1.7.1'
 # Use Kaminari gem for pagination
 gem 'kaminari-actionview', '~> 1.0.1'
 # Kaminari adapter for Mongoid

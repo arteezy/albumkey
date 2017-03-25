@@ -58,7 +58,7 @@ class Album
 
   def self.search(query)
     if query.present?
-      re = Regexp.new(query, true)
+      re = ::Regexp.new(query, true)
       any_of([
         { artist: re },
         { title: re },
