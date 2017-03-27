@@ -25,7 +25,7 @@ gem 'devise', '~> 3.5.2'
 # Use Pundit for role-based authorization
 gem 'pundit', '~> 1.1'
 # Use Sidekiq as job queue for background processing
-gem 'sidekiq', '~> 4.1.1'
+gem 'sidekiq', '~> 4.2.5'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster
@@ -120,7 +120,7 @@ group :test do
   # Use Launchy as helper to Capybara specs
   gem 'launchy', '~> 2.4'
   # Use Code Climate to measure test coverage and code quality
-  gem 'codeclimate-test-reporter', '~> 0.6'
+  gem 'codeclimate-test-reporter', '~> 1.0.8'
 end
 
 group :production do
