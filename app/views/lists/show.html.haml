@@ -18,4 +18,4 @@
       = link_to @list.user.email, user_path(@list.user)
 
 .col-md-9
-  = render partial: 'shared/card', collection: @list.ranked
+  = render partial: 'shared/card', locals: { list: @list }, collection: @list.ranked_albums
