@@ -62,6 +62,22 @@ class ListsController < ApplicationController
     end
   end
 
+  def move_album
+    list = List.find(params[:list_id])
+    album = Album.find(params[:album_id])
+    list.move_album(album, params[:direction].to_sym)
+    list.save!
+    redirect_to list, turbolinks: true
+  end
+
+  def delete_album
+    list = List.find(params[:list_id])
+    album = Album.find(params[:album_id])
+    list.delete_album(album)
+    list.save!
+    redirect_to list, turbolinks: true
+  end
+
   private
 
   def set_list
