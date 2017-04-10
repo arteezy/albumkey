@@ -41,7 +41,7 @@ class Album
   # but allows multiple documents without the key.
   index({ p4k_id: 1 }, unique: true, sparse: true)
 
-  has_and_belongs_to_many :lists
+  has_and_belongs_to_many :lists, after_add: :set_position
   has_many :rates, dependent: :destroy
   embeds_many :comments # implies dependent: :destroy
 
@@ -67,5 +67,11 @@ class Album
     else
       all
     end
+  end
+
+  private
+
+  def set_position(list)
+    list.positions << list.positions.size + 1
   end
 end
