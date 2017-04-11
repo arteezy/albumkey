@@ -13,6 +13,7 @@ RSpec.configure do |config|
   config.extend ControllerMacros, type: :controller
   config.include FactoryGirl::Syntax::Methods
   config.include Features::DeviseHelpers, type: :feature
+  config.include Features::ContentOrder, type: :feature
   config.infer_spec_type_from_file_location!
 
   config.before(:suite) do
