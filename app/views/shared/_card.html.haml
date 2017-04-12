@@ -1,6 +1,6 @@
 - cache card do
-  .well.well-sm
-    .row.card{ 'data-album-id' => card.id }
+  .well.well-sm.card{ 'data-album-id' => card.id }
+    .row
       .col-lg-4
         = link_to album_path(card) do
           = image_tag card.artwork, alt: card.title, class: %w(artwork img-thumbnail img-responsive)

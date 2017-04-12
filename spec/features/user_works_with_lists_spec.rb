@@ -99,12 +99,12 @@ feature 'User works with lists' do
     click_link 'Awesome List'
     expect('First').to appear_before 'Second'
 
-    within '.well:last-child' do
+    within '.card:last-child' do
       click_button 'Up'
     end
     expect('First').to appear_after 'Second'
 
-    within '.well:first-child' do
+    within '.card:first-child' do
       click_button 'Down'
     end
     expect('First').to appear_before 'Second'
