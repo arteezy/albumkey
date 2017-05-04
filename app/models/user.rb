@@ -13,8 +13,6 @@ class User
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :trackable, :validatable
 
-  field :username,           type: String
-
   ## Database authenticatable
   field :email,              type: String, default: ''
   field :encrypted_password, type: String, default: ''
@@ -32,6 +30,10 @@ class User
   field :last_sign_in_at,    type: Time
   field :current_sign_in_ip, type: String
   field :last_sign_in_ip,    type: String
+
+  field :username,           type: String
+
+  validates :username, presence: true, uniqueness: { case_sensitive: false }
 
   has_many :rates, dependent: :destroy
   has_many :lists, dependent: :destroy
