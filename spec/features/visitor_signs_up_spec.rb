@@ -32,6 +32,18 @@ feature 'Visitor signs up' do
     expect_user_to_be_signed_out
   end
 
+  scenario 'tries with very short username' do
+    sign_up_with 'az', 'valid@example.com', 'password'
+
+    expect_user_to_be_signed_out
+  end
+
+  scenario 'tries with very long username' do
+    sign_up_with 'abc' *11, 'valid@example.com', 'password'
+
+    expect_user_to_be_signed_out
+  end
+
   scenario 'tries with non-unique username' do
     FactoryGirl.create(:user, username: 'xXx_1337h4xxor_xXx')
     sign_up_with 'xXx_1337h4xxor_xXx', 'valid@example.com', 'password'

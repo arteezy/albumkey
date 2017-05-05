@@ -33,7 +33,10 @@ class User
 
   field :username,           type: String
 
-  validates :username, presence: true, uniqueness: { case_sensitive: false }
+  validates :username,
+    presence: true,
+    uniqueness: { case_sensitive: false },
+    length: { minimum: 3, maximum: 32 }
 
   has_many :rates, dependent: :destroy
   has_many :lists, dependent: :destroy
