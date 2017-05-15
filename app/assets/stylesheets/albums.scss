@@ -128,3 +128,11 @@ abbr[title='required'] {
 .tracklist {
   margin-left: 1em;
 }
+
+ul.halfpadding {
+  padding-left: 20px;
+}
+
+.field_with_errors input {
+  border: 1px solid red;
+}
