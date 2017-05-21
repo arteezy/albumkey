@@ -5,16 +5,19 @@
       User
     .panel-body
       %p
-        = image_tag @user.gravatar_url, alt: @user.email, class: %w(img-thumbnail img-responsive)
+        = image_tag @user.gravatar_url, alt: @user.username, class: 'img-thumbnail img-responsive'
+      %p
+        %strong Username:
+        = @user.username if @user.username
       %p
         %strong Email:
         = @user.email if @user.email
       %p
-        %strong Role:
-        = @user.role if @user.role
+        %strong Registration date:
+        = @user.created_at.strftime('%d %b %Y %H:%M') if @user.created_at
       %p
         %strong Sign in count:
         = @user.sign_in_count if @user.sign_in_count
       %p
-        %strong Member since:
-        = @user.created_at.strftime('%d %b %Y') if @user.created_at
+        %strong Role:
+        = @user.role if @user.role
