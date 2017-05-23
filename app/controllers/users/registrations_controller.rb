@@ -20,8 +20,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # PUT /resource
   def update
     super do |user|
-      if user.errors.blank?
-        UpdateUserDetailsInCommentsJob.perform_later(current_user.email, user.email, user.gravatar_url)
+      if user.previous_changes.include?(:username) && user.errors.blank?
+        UpdateUserDetailsInCommentsJob.perform_later(
+          current_user.username,
+          user.username,
+          user.gravatar_url
+        )
       end
     end
   end

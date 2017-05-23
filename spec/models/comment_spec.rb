@@ -6,9 +6,9 @@ describe Comment, type: :model do
   end
 
   it 'is invalid without a user email' do
-    comment = build(:comment, user_email: nil)
+    comment = build(:comment, user_name: nil)
     comment.valid?
-    expect(comment.errors[:user_email]).to include("can't be blank")
+    expect(comment.errors[:user_name]).to include("can't be blank")
   end
 
   it 'is invalid without an user avatar' do

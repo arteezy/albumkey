@@ -15,7 +15,7 @@
       = @list.category
     %p
       %strong Author:
-      = link_to @list.user.email, user_path(@list.user)
+      = link_to @list.user.username, user_path(@list.user)
 
 .col-md-9
   = render partial: 'shared/card', locals: { list: @list }, collection: @list.ranked_albums

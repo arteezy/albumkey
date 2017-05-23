@@ -1,9 +1,10 @@
 - title "#{@album.artist.join(' / ')} - #{@album.title}"
+
 .col-xs-12
   .well.well-sm
     .row.card{ 'data-album-id' => @album.id }
       .col-lg-3.col-md-4.col-sm-6.col-xs-12
-        = image_tag @album.artwork, alt: @album.title, class: %w(artwork img-thumbnail img-responsive)
+        = image_tag @album.artwork, alt: @album.title, class: 'artwork img-thumbnail img-responsive'
       .col-lg-5.col-md-4.col-sm-6.col-xs-12
         %h3= link_to @album.title, album_path(@album)
         %h4= raw @album.artist.map { |artist| link_to artist, albums_path(artist: artist) }.join(' / ')
@@ -72,7 +73,7 @@
     - @comments.each do |comment|
       .well.well-sm
         = image_tag comment.user_avatar, size: '33'
-        %strong= comment.user_email
+        %strong= comment.user_name
         = comment.body
 
   - if user_signed_in?

@@ -4,8 +4,8 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @album.comments.new(comment_params)
-    @comment.user_id = current_user.id
-    @comment.user_email = current_user.email
+    @comment.user = current_user
+    @comment.user_name = current_user.username
     @comment.user_avatar = current_user.gravatar_url
 
     respond_to do |format|
