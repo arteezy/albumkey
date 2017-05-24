@@ -3,10 +3,12 @@
 .col-md-12
   %h2
     = @list.title
-    = link_to edit_list_path @list do
-      %span.glyphicon.glyphicon-pencil
-    = link_to @list, method: :delete, data: { confirm: 'Are you sure?' } do
-      %span.glyphicon.glyphicon-remove
+    %span.text-muted= "by #{@list.user.username}"
+    - if policy(@list).update?
+      = link_to edit_list_path @list do
+        %span.glyphicon.glyphicon-pencil
+      = link_to @list, method: :delete, data: { confirm: 'Are you sure?' } do
+        %span.glyphicon.glyphicon-remove
 
 .col-md-3
   .well
@@ -16,6 +18,12 @@
     %p
       %strong Author:
       = link_to @list.user.username, user_path(@list.user)
+    %p
+      %strong Total Albums:
+      = @list.albums.count
+    %p
+      %strong Created At:
+      = @list.created_at.strftime('%d %b %Y')
 
 .col-md-9
   = render partial: 'shared/card', locals: { list: @list }, collection: @list.ranked_albums
