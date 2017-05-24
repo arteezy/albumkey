@@ -13,7 +13,7 @@ feature 'Top Level site browsing' do
   end
 
   scenario 'Visit Stats page' do
-    visit stats_path
+    visit stats_albums_path
     click_link 'Stats'
     expect(page).to have_content 'Total albums'
   end

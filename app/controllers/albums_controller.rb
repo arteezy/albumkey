@@ -42,13 +42,13 @@ class AlbumsController < ApplicationController
     end
   end
 
-  # GET /search
+  # GET /albums/search
   def search
     @albums = Album.search(params[:search]).page(params[:page])
   end
 
-  # GET /stats
-  # GET /stats.json
+  # GET /albums/stats
+  # GET /albums/stats.json
   def stats
     pipeline = []
     pipeline << {

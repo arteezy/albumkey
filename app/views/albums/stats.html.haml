@@ -11,9 +11,9 @@
             = params[:year] ||= 'overall'
             %span.caret
           %ul.dropdown-menu
-            %li= link_to 'overall', stats_path
+            %li= link_to 'overall', stats_albums_path
             - Time.now.year.downto 1999 do |year|
-              %li= link_to year, stats_path(year)
+              %li= link_to year, stats_albums_path(year)
 
       #chartid{ style: 'width: 100%; height: 400px; background-color: #282828;' }
 

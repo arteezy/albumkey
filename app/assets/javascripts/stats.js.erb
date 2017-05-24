@@ -1,78 +1,81 @@
 $(document).ready(chart);
-$(document).on("page:load", chart);
+$(document).on('page:load', chart);
 
 function chart() {
-  if (document.location.pathname.startsWith("/stats"))
+  if (document.location.pathname.startsWith('/albums/stats')) {
     $.ajax({
-      type: "GET",
-      contentType: "application/json; charset=utf-8",
+      type: 'GET',
+      contentType: 'application/json; charset=utf-8',
       url: document.location.pathname,
-      dataType: "json",
-      success: function (data) {
-        AmCharts.makeChart("chartid",
-          {
-            "type": "serial",
-            "categoryField": "_id",
-            "dataDateFormat": "YYYY-MM-DD",
-            "theme": "dark",
-            "path": "",
-            "pathToImages": "",
-            "categoryAxis": {
-              "parseDates": true
-            },
-            "chartCursor": {},
-            "chartScrollbar": {
-              "backgroundColor": "#9400D3",
-              "dragIcon": "<%= image_path("dragIconRectBigBlack") %>",
-              "dragIconHeight": 30,
-              "dragIconWidth": 30
-            },
-            "zoomOutButtonImage": "<%= image_path("lensWhite") %>",
-            "trendLines": [],
-            "graphs": [
-              {
-                "bullet": "bubble",
-                "bulletSize": 5,
-                "gapPeriod": 1,
-                "id": "AVGDR",
-                "lineThickness": 2,
-                "precision": 2,
-                "stepDirection": "center",
-                "title": "Rating",
-                "type": "smoothedLine",
-                "valueField": "avg_rating",
-                "visibleInLegend": false
-              }
-            ],
-            "guides": [],
-            "valueAxes": [
-              {
-                "id": "ValueAxis-1",
-                "maximum": 10,
-                "minimum": 0,
-                "title": "Average Rating"
-              }
-            ],
-            "allLabels": [],
-            "balloon": {},
-            "legend": {
-              "useGraphSettings": true
-            },
-            "titles": [
-              {
-                "id": "Title-1",
-                "size": 15,
-                "text": "Average Daily Rating"
-              }
-            ],
-            "dataProvider": data
-          }
-        );
+      dataType: 'json',
+      success: function(data) {
+        var am_charts_config = {
+          'type': 'serial',
+          'categoryField': '_id',
+          'dataDateFormat': 'YYYY-MM-DD',
+          'theme': 'dark',
+          'path': '',
+          'pathToImages': '',
+          'categoryAxis': {
+            'parseDates': true
+          },
+          'chartCursor': {},
+          'chartScrollbar': {
+            'backgroundColor': '#9400D3',
+            'dragIcon': '<%= image_path('dragIconRectBigBlack') %>',
+            'dragIconHeight': 30,
+            'dragIconWidth': 30
+          },
+          'zoomOutButtonImage': '<%= image_path('lensWhite') %>',
+          'trendLines': [],
+          'graphs': [
+            {
+              'bullet': 'bubble',
+              'bulletSize': 5,
+              'gapPeriod': 1,
+              'id': 'AVGDR',
+              'lineThickness': 2,
+              'precision': 2,
+              'stepDirection': 'center',
+              'title': 'Rating',
+              'type': 'smoothedLine',
+              'valueField': 'avg_rating',
+              'visibleInLegend': false
+            }
+          ],
+          'guides': [],
+          'valueAxes': [
+            {
+              'id': 'avg_rating',
+              'maximum': 10,
+              'minimum': 0,
+              'title': 'Average Rating'
+            }
+          ],
+          'allLabels': [],
+          'balloon': {},
+          'legend': {
+            'useGraphSettings': true
+          },
+          'titles': [
+            {
+              'id': 'avg_rating_title',
+              'size': 15,
+              'text': 'Average Daily Rating'
+            }
+          ],
+          'dataProvider': data
+        };
 
-        var avg_rating = data.map(function(d) { return d.avg_rating.toFixed(2); });
+        AmCharts.makeChart('chartid', am_charts_config);
+
+        var avg_rating = data.map(function(d) {
+          return d.avg_rating.toFixed(2);
+        });
       },
-      error: function (result) {
+      error: function(result) {
         error();
       }
     });
+  }
 }

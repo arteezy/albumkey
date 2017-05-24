@@ -6,7 +6,7 @@
 
   .row
     .col-lg-offset-2.col-lg-8
-      = form_tag search_path, method: 'get', class: 'input-group' do
+      = form_tag search_albums_path, method: 'get', class: 'input-group' do
         = text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search'
         %span.input-group-btn= submit_tag 'Search', name: nil, class: 'btn btn-primary'
 
