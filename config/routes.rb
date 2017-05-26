@@ -16,8 +16,10 @@ Rails.application.routes.draw do
   end
 
   resources :lists do
-    patch 'albums/:album_id', to: 'lists#move_album', as: 'move_album'
-    delete 'albums/:album_id', to: 'lists#delete_album', as: 'delete_album'
+    member do
+      patch 'albums/:album_id', to: 'lists#move_album', as: 'move_album'
+      delete 'albums/:album_id', to: 'lists#delete_album', as: 'delete_album'
+    end
   end
 
   scope :api do

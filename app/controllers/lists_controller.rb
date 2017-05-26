@@ -71,7 +71,7 @@ class ListsController < ApplicationController
   end
 
   def move_album
-    list = List.find(params[:list_id])
+    list = List.find(params[:id])
     authorize list
     album = Album.find(params[:album_id])
     list.move_album(album, params[:direction].to_sym)
@@ -80,7 +80,7 @@ class ListsController < ApplicationController
   end
 
   def delete_album
-    list = List.find(params[:list_id])
+    list = List.find(params[:id])
     authorize list
     album = Album.find(params[:album_id])
     list.delete_album(album)

@@ -14,13 +14,13 @@
         %h6= link_to 'Read review at Pitchfork', card.source
         - if defined? list
           - if policy(list).update?
-            = form_tag list_move_album_path(list, card), method: :patch do
+            = form_tag move_album_list_path(list, card), method: :patch do
               = hidden_field_tag :direction, :up
               = submit_tag 'Up'
-            = form_tag list_move_album_path(list, card), method: :patch do
+            = form_tag move_album_list_path(list, card), method: :patch do
               = hidden_field_tag :direction, :down
               = submit_tag 'Down'
-            = link_to 'Delete', list_delete_album_path(list, card), method: :delete, data: { confirm: 'Are you sure?' }
+            = link_to 'Delete', delete_album_list_path(list, card), method: :delete, data: { confirm: 'Are you sure?' }
       .col-lg-3
         - if defined? list
           .rating= card_counter + 1
