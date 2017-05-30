@@ -2,15 +2,19 @@
   .col-md-3
     .rank
       .rank-number= ranked_album_counter + 1
-      .rank-buttons
+      .rank-direction-buttons
         - if policy(list).update?
           = form_tag move_album_list_path(list, ranked_album), method: :patch do
             = hidden_field_tag :direction, :up
-            = submit_tag 'Up'
+            = button_tag type: 'submit', class: 'btn btn-lg' do
+              %i.glyphicon.glyphicon-chevron-up
           = form_tag move_album_list_path(list, ranked_album), method: :patch do
             = hidden_field_tag :direction, :down
-            = submit_tag 'Down'
-          = link_to 'Delete', delete_album_list_path(list, ranked_album), method: :delete, data: { confirm: 'Are you sure?' }
+            = button_tag type: 'submit', class: 'btn btn-lg' do
+              %i.glyphicon.glyphicon-chevron-down
+      .rank-delete-button
+        = link_to delete_album_list_path(list, ranked_album), method: :delete, data: { confirm: 'Are you sure?' } do
+          %i.glyphicon.glyphicon-remove
 
   .col-md-9
     = render partial: 'shared/card', object: ranked_album

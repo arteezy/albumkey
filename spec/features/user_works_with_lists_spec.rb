@@ -75,7 +75,9 @@ feature 'User works with lists' do
 
     visit lists_path
     click_link 'Awesome List'
-    click_link 'Delete'
+    within '.ranked-album' do
+      find('a:has(.glyphicon-remove)').click
+    end
     expect(page).not_to have_content 'Bad Album'
   end
 
@@ -100,12 +102,12 @@ feature 'User works with lists' do
     expect('First').to appear_before 'Second'
 
     within '.ranked-album:last-child' do
-      click_button 'Up'
+      find('button:has(.glyphicon-chevron-up)').click
     end
     expect('First').to appear_after 'Second'
 
     within '.ranked-album:first-child' do
-      click_button 'Down'
+      find('button:has(.glyphicon-chevron-down)').click
     end
     expect('First').to appear_before 'Second'
   end
