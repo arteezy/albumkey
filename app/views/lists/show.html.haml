@@ -10,20 +10,5 @@
       = link_to @list, method: :delete, data: { confirm: 'Are you sure?' } do
         %span.glyphicon.glyphicon-remove
 
-.col-md-3
-  .well
-    %p
-      %strong Category:
-      = @list.category
-    %p
-      %strong Author:
-      = link_to @list.user.username, user_path(@list.user)
-    %p
-      %strong Total Albums:
-      = @list.albums.count
-    %p
-      %strong Created At:
-      = @list.created_at.strftime('%d %b %Y')
-
-.col-md-9
-  = render partial: 'shared/card', locals: { list: @list }, collection: @list.ranked_albums
+.col-md-12
+  = render partial: 'ranked_album', locals: { list: @list }, collection: @list.ranked_albums

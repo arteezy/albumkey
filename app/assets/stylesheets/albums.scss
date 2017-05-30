@@ -136,3 +136,20 @@ ul.halfpadding {
 .field_with_errors input {
   border: 1px solid red;
 }
+
+.rank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+}
+
+.rank-number {
+  font-size: 80px;
+  font-weight: 900;
+  order: 1;
+}
+
+.rank-buttons {
+  order: 2;
+}
