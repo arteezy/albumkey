@@ -107,6 +107,7 @@ RSpec.describe ListsController, type: :controller do
 
         it 'redirects to the list' do
           patch :update, id: list, list: attributes_for(:list)
+          list.reload
           expect(response).to redirect_to(list)
         end
       end

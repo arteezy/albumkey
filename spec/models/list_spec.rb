@@ -63,4 +63,29 @@ RSpec.describe List, type: :model do
       expect(list.errors[:user]).to include("can't be blank")
     end
   end
+
+  context 'slug' do
+    it 'is generated' do
+      expect(create(:list).slug).to_not be_nil
+    end
+
+    it 'is in right format' do
+      list = create(:list, title: 'Top 100 List')
+      expect(list.slug).to eq('top-100-list')
+    end
+
+    it 'is updated on list update' do
+      list = create(:list)
+      old_slug = list.slug
+      list.update(title: 'Updated List')
+      expect(list.slug).to_not eq(old_slug)
+      expect(list.slug).to eq('updated-list')
+    end
+
+    it 'is unique' do
+      first = create(:list, title: 'My List')
+      second = create(:list, title: 'My List')
+      expect(first.slug).to_not eq(second.slug)
+    end
+  end
 end

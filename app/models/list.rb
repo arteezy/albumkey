@@ -1,6 +1,7 @@
 class List
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Slug
   include Mongoid::Enum
 
   belongs_to :user
@@ -14,6 +15,8 @@ class List
   validates :title,    presence: true
   validates :category, presence: true
   validates :user,     presence: true
+
+  slug :title
 
   def ranked_albums
     positions.zip(albums).sort.transpose.last
