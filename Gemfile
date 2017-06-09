@@ -52,10 +52,12 @@ gem 'gravtastic'
 gem 'simple_form'
 # Use this gem to generate sitemap and ping search engines
 gem 'sitemap_generator'
+# Data for MIME content type definitions
+gem 'mime-types'
 # Use Discogs Wrapper gem to easily interact with the Discogs API
 gem 'discogs-wrapper'
 # Use fog-aws as an interface to Amazon Web Services
-gem 'fog-aws'
+gem 'fog-aws', '~> 1.4.0'
 # Use Whenever gem to manage Cron jobs
 gem 'whenever'
 # Use TZInfo Data as data source for time zones

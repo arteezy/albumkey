@@ -17,6 +17,10 @@ every :day, at: '10:10pm' do
   rake 'slugs:update'
 end
 
+every :day, at: '07:25pm' do
+  rake 'sitemap:refresh'
+end
+
 every :sunday, at: '09:15am' do
   rake 'discogs:fullscan'
 end
