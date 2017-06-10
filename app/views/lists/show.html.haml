@@ -1,7 +1,7 @@
 - title @list.title
 
-.col-md-12
-  %h2
+.col-md-10.col-md-offset-1
+  %h2.text-center.list-title
     = @list.title
     %span.text-muted= "by #{@list.user.username}"
     - if policy(@list).update?
