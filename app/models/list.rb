@@ -1,6 +1,7 @@
 class List
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::SortedRelations
   include Mongoid::Slug
   include Mongoid::Enum
 
@@ -18,14 +19,10 @@ class List
 
   slug :title
 
-  def ranked_albums
-    positions.zip(albums).sort.transpose.last
-  end
-
   def move_album(album, direction)
     return unless albums.include?(album)
 
-    left = albums.index(album)
+    left = sorted_albums.index(album)
     index = positions[left]
 
     if direction == :up
@@ -42,8 +39,11 @@ class List
   def delete_album(album)
     return unless albums.include?(album)
 
-    index = positions[albums.index(album)]
+    index = positions[sorted_albums.index(album)]
     positions.delete(index)
+    albums.delete(album)
+    freeze_relation_ids
+
     positions.map! do |p|
       if p > index
         p - 1
@@ -51,8 +51,11 @@ class List
         p
       end
     end
+  end
 
-    albums.delete(album)
+  def ranked_albums
+    positioned_albums = positions.zip(sorted_albums)
+    positioned_albums.sort.transpose.last
   end
 
   def self.categories_for_select
