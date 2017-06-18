@@ -12,14 +12,22 @@ RSpec.describe List, type: :model do
   end
 
   context 'positions' do
-    let(:list) { build(:list) }
+    let(:list) { create(:list) }
     let(:a1)   { build(:album, title: 'One') }
     let(:a2)   { build(:album, title: 'Two') }
     let(:a3)   { build(:album, title: 'Three') }
 
     before(:each) do
-      list.albums = [a1, a2, a3]
+      list.albums << [a1, a2, a3]
       list.positions = [1, 2, 3]
+    end
+
+    it "doesn\'t add duplicate records" do
+      list.albums << a3
+      a3.lists << list
+
+      expect(list.ranked_albums).to match_array [a1, a2, a3]
+      expect(list.positions).to match_array [1, 2, 3]
     end
 
     it 'correctly moves album position up' do

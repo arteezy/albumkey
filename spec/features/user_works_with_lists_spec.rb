@@ -51,7 +51,7 @@ feature 'User works with lists' do
 
     FactoryGirl.create(:album, title: 'Cool Album')
     visit albums_path
-    first('.card h3 > a').click
+    click_link 'Cool Album', match: :first
     select 'Awesome List', from: 'album_list_id'
     click_button 'Add to List'
 
@@ -62,6 +62,24 @@ feature 'User works with lists' do
     expect(page).to have_content 'Cool Album'
   end
 
+  scenario 'tries to add album again' do
+    fill_in 'list_title', with: 'Awesome List'
+    choose 'list_category_personal'
+    click_button 'Create List'
+
+    FactoryGirl.create(:album, title: 'Unique Album')
+    visit albums_path
+    click_link 'Unique Album', match: :first
+    select 'Awesome List', from: 'album_list_id'
+    click_button 'Add to List'
+
+    visit albums_path
+    click_link 'Unique Album', match: :first
+
+    expect(page).not_to have_content 'Awesome List'
+    expect(page).not_to have_content 'Add to List'
+  end
+
   scenario 'deletes album from list' do
     fill_in 'list_title', with: 'Awesome List'
     choose 'list_category_personal'
@@ -69,7 +87,7 @@ feature 'User works with lists' do
 
     FactoryGirl.create(:album, title: 'Bad Album')
     visit albums_path
-    first('.card h3 > a').click
+    click_link 'Bad Album', match: :first
     select 'Awesome List', from: 'album_list_id'
     click_button 'Add to List'
 

@@ -13,7 +13,7 @@
         %h5= raw @album.label.map { |label| link_to label, albums_path(label: label) }.join(' / ')
         %h6= @album.date.strftime('%d %b %Y')
         %h6= link_to 'Read review at Pitchfork', @album.source
-        - if @lists
+        - if @lists.present?
           = form_tag @album, method: :patch do
             = select_tag('album[list_id]', options_from_collection_for_select(@lists, :id, :title))
             = submit_tag('Add to List', class: 'btn btn-xs btn-primary')
@@ -67,7 +67,7 @@
   = link_to 'Back', :back
 
   %h3 Comments
-  - if @comments.empty?
+  - if @comments.blank?
     %h5.text-muted The comments section is empty
   - else
     - @comments.each do |comment|

@@ -95,7 +95,7 @@ class AlbumsController < ApplicationController
     end
 
     return unless @current_user.lists.present?
-    @lists = @current_user.lists
+    @lists = @current_user.lists - @album.lists
   end
 
   # GET /albums/new
