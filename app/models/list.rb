@@ -11,13 +11,16 @@ class List
   enum :category, [:personal, :community, :staff]
 
   field :title,     type: String
-  field :positions, type: Array, default: []
+  field :positions, type: Array,   default: []
+  field :closed,    type: Boolean, default: false
 
   validates :title,    presence: true
   validates :category, presence: true
   validates :user,     presence: true
 
   slug :title
+
+  scope :opened, -> { where(closed: false) }
 
   def move_album(album, direction)
     return unless albums.include?(album)

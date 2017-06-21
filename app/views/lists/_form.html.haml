@@ -4,6 +4,8 @@
   .form-inputs
     = f.input :title
     = f.input :category, as: :radio_buttons, collection: List.categories_for_select
+    - if action_name == 'edit'
+      = f.input :closed, as: :radio_buttons 
 
   .form-actions
     = f.button :submit, class: 'btn btn-primary'

@@ -94,8 +94,8 @@ class AlbumsController < ApplicationController
       @rate = @album.rates.find_by(user_id: current_user.id)
     end
 
-    return unless @current_user.lists.present?
-    @lists = @current_user.lists - @album.lists
+    return unless @current_user.lists.opened.present?
+    @lists = @current_user.lists.opened - @album.lists
   end
 
   # GET /albums/new
