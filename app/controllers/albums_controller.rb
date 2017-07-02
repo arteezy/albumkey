@@ -44,7 +44,9 @@ class AlbumsController < ApplicationController
 
   # GET /albums/search
   def search
-    @albums = Album.search(params[:search]).page(params[:page])
+    albums = Album.search(params[:search])
+    albums = albums.desc(:updated_at) if params[:lastupdated]
+    @albums = albums.page(params[:page])
   end
 
   # GET /albums/stats

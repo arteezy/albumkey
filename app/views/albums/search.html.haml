@@ -5,46 +5,56 @@
   %h3= 'Search Albums'
 
   .row
-    .col-lg-offset-2.col-lg-8
+    .col-md-2
+      - if params[:lastupdated]
+        = link_to 'Show Last Added', search_albums_path, class: 'btn btn-info'
+      - else
+        = link_to 'Show Last Updated', search_albums_path(lastupdated: true), class: 'btn btn-info'
+    .col-md-8
       = form_tag search_albums_path, method: 'get', class: 'input-group' do
         = text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search'
         %span.input-group-btn= submit_tag 'Search', name: nil, class: 'btn btn-primary'
 
   %br
 
-  %table.table.table-bordered.table-hover
-    %thead
-      %tr
-        %th= 'Artwork'
-        %th= 'Title'
-        %th= 'Artist'
-        %th= 'Label'
-        %th= 'Genre'
-        %th= 'Year'
-        %th= 'Date'
-        %th= 'Source'
-        %th= 'Rating'
-        %th= 'Reissue'
-        %th= 'Bnm'
-        %th{ colspan: '3' }= 'Actions'
-
-    %tbody.text-center
-      - @albums.each do |album|
+  .table-responsive
+    %table.table.table-striped.table-bordered.table-condensed.table-hover
+      %thead
         %tr
-          %td= image_tag album.artwork, size: '100'
-          %td= link_to album.title, album_path(album)
-          %td= album.artist.join(' / ')
-          %td= album.label.join(' / ')
-          %td= album.genre.join(' • ')
-          %td= album.year
-          %td= album.date
-          %td= link_to 'Pitchfork Link', album.source
-          %td= album.rating
-          %td= album.reissue
-          %td= album.bnm
-          %td= link_to 'Show', album
-          %td= link_to 'Edit', edit_album_path(album)
-          %td= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' }
+          %th= 'Artwork'
+          %th= 'Title'
+          %th= 'Artist'
+          %th= 'Label'
+          %th= 'Genre'
+          %th= 'Year'
+          %th= 'Published'
+          %th= 'Created'
+          %th= 'Updated'
+          %th= 'Source'
+          %th= 'Rating'
+          %th= 'Reissue'
+          %th= 'Bnm'
+          %th{ colspan: '3' }= 'Actions'
+
+      %tbody.text-center
+        - @albums.each do |album|
+          %tr
+            %td= image_tag album.artwork, size: '100'
+            %td= link_to album.title, album_path(album)
+            %td= album.artist.join(' / ')
+            %td= album.label.join(' / ')
+            %td= album.genre.join(' • ')
+            %td= album.year
+            %td.text-nowrap= album.date
+            %td.text-nowrap= album.created_at.strftime('%d.%m.%Y %H:%M')
+            %td.text-nowrap= album.updated_at.strftime('%d.%m.%Y %H:%M')
+            %td= link_to 'Pitchfork Link', album.source
+            %td= album.rating
+            %td= album.reissue
+            %td= album.bnm
+            %td= link_to 'Show', album
+            %td= link_to 'Edit', edit_album_path(album)
+            %td= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' }
 
   = paginate @albums
 
