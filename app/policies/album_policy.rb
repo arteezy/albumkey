@@ -1,9 +1,9 @@
 class AlbumPolicy
-  attr_reader :current_user, :model
+  attr_reader :user, :album
 
-  def initialize(current_user, model)
-    @current_user = current_user
-    @album = model
+  def initialize(user, album)
+    @user = user
+    @album = album
   end
 
   def index?
@@ -14,8 +14,12 @@ class AlbumPolicy
     true
   end
 
+  def search?
+    @user
+  end
+
   def create?
-    @current_user.admin? if @current_user
+    @user.admin? if @user
   end
 
   def new?
@@ -23,14 +27,14 @@ class AlbumPolicy
   end
 
   def update?
-    @current_user.admin? if @current_user
+    create?
   end
 
   def edit?
-    update?
+    create?
   end
 
   def destroy?
-    @current_user.admin? if @current_user
+    create?
   end
 end
