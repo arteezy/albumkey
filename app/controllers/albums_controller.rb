@@ -47,6 +47,7 @@ class AlbumsController < ApplicationController
     albums = Album.search(params[:search])
     albums = albums.desc(:updated_at) if params[:lastupdated]
     @albums = albums.page(params[:page])
+    authorize @albums
   end
 
   # GET /albums/stats
@@ -103,16 +104,19 @@ class AlbumsController < ApplicationController
   # GET /albums/new
   def new
     @album = Album.new
+    authorize @album
   end
 
   # GET /albums/1/edit
   def edit
+    authorize @album
   end
 
   # POST /albums
   # POST /albums.json
   def create
     @album = Album.new(album_params)
+    authorize @album
 
     respond_to do |format|
       if @album.save
@@ -133,6 +137,7 @@ class AlbumsController < ApplicationController
       @album.lists.push(list)
       redirect_to list, notice: 'Album was successfully added to this List'
     else
+      authorize @album
       respond_to do |format|
         if @album.update(album_params)
           format.html { redirect_to @album, notice: 'Album was successfully updated' }
@@ -148,6 +153,7 @@ class AlbumsController < ApplicationController
   # DELETE /albums/1
   # DELETE /albums/1.json
   def destroy
+    authorize @album
     @album.destroy
     respond_to do |format|
       format.html { redirect_to albums_url, notice: 'Album was successfully destroyed' }
