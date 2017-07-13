@@ -2,7 +2,7 @@
   .col-md-1.col-md-offset-1
     .rank
       .rank-number= ranked_album_counter + 1
-      - if policy(list).update?
+      - if policy(list).update? && !list.closed
         .rank-direction-buttons
           = form_tag move_album_list_path(list, ranked_album), method: :patch do
             = hidden_field_tag :direction, :up

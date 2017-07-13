@@ -129,4 +129,29 @@ feature 'User works with lists' do
     end
     expect('First').to appear_before 'Second'
   end
+
+  scenario 'tries to modify closed list' do
+    fill_in 'list_title', with: 'Closed List'
+    choose 'list_category_personal'
+    click_button 'Create List'
+
+    FactoryGirl.create(:album, title: 'Frozen Album')
+    visit albums_path
+    click_link 'Frozen Album', match: :first
+    select 'Closed List', from: 'album_list_id'
+    click_button 'Add to List'
+
+    visit lists_path
+    click_link 'Closed List'
+
+    expect(page).to have_css '.rank-direction-buttons'
+    expect(page).to have_css '.rank-delete-button'
+
+    find('a:has(.glyphicon-pencil)').click
+    choose 'list_closed_true'
+    click_button 'Update List'
+
+    expect(page).not_to have_css '.rank-direction-buttons'
+    expect(page).not_to have_css '.rank-delete-button'
+  end
 end
