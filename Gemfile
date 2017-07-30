@@ -64,6 +64,8 @@ gem 'fog-aws', '~> 1.4.0'
 gem 'whenever'
 # Use TZInfo Data as data source for time zones
 gem 'tzinfo-data'
+# Use Awesome Print to make debugging more visually comprehensive
+gem 'awesome_print'
 
 group :development, :test do
   # Use RSpec for advanced testing
@@ -104,8 +106,6 @@ group :development do
   gem 'bullet'
   # Use Pry as Rails console replacement
   gem 'pry-rails'
-  # Use Awesome Print to make debugging more visually comprehensive
-  gem 'awesome_print'
   # Use Better Errors gem to replace errors page
   gem 'better_errors'
   # Use binding_of_caller gem to enable live REPL on error pages
