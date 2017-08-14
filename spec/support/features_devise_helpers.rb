@@ -13,6 +13,11 @@ module Features
       click_button 'Log In'
     end
 
+    def sign_in_as_admin
+      admin = FactoryGirl.create(:admin)
+      sign_in_with admin.email, admin.password
+    end
+
     def sign_out
       click_link 'Log Out'
     end
