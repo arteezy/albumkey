@@ -19,14 +19,7 @@ feature 'Top Level site browsing' do
   end
 
   scenario 'Visit Users page' do
-    admin = create(:admin)
-
-    visit users_path
-
-    click_link 'Log In'
-    fill_in 'Email', with: admin.email
-    fill_in 'Password', with: admin.password
-    click_button 'Log In'
+    sign_in_as_admin
 
     click_link 'Users'
     expect(page).to have_content 'Admin'
@@ -38,8 +31,10 @@ feature 'Top Level site browsing' do
   end
 
   scenario 'Visit Status page' do
+    sign_in_as_admin
+
     visit status_path
-    expect(page).to have_content 'Rails:'
+    expect(page).to have_content 'Puma:'
   end
 
   scenario 'Visit Robots page' do

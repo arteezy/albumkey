@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  after_action :verify_authorized, only: :status
+
   def landing
     render layout: false
   end
@@ -24,5 +26,6 @@ class PagesController < ApplicationController
       rate_count:  Rate.count,
       list_count:  List.count
     }
+    authorize :page
   end
 end
