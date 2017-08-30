@@ -21,7 +21,7 @@ every :day, at: '07:25pm' do
   rake 'sitemap:refresh'
 end
 
-every :sunday, at: '09:15am' do
+every :monday, at: '09:15am' do
   rake 'discogs:fullscan'
 end
 
