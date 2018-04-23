@@ -7,30 +7,29 @@ class PitchforkParserService
 
   def parse_review(url)
     document = Nokogiri::HTML(Net::HTTP.get(URI(url)))
-    review = document.at_css('.single-album-tombstone')
-    meta = document.at_css('.article-meta')
+    review = document.at_xpath("//div[contains(@class,'SplitScreenContentHeaderForMusicReview')]")
+    meta = document.xpath("//div[contains(@class,'SplitScreenContentHeaderGrid')]")   
     album = {
       source:     url,
       created_at: Time.now,
+      updated_at: Time.now,
       p4k_id:     pitchfork_id(url),
-      artist:     review.css('.artist-list > li').map(&:text),
-      title:      review.css('.single-album-tombstone__review-title').text,
-      label:      review.css('.labels-list > li').map(&:text),
-      year:       review.css('.single-album-tombstone__meta-year').text.split(' • ')[1],
-      date:       Date.parse(meta.css('.pub-date').attr('title')).to_datetime,
-      genre:      meta.css('.genre-list > li > a').map(&:text),
-      reviewer:   meta.css('.authors-detail > li > div > a').text,
-      rating:     review.css('.score').text.to_f,
-      artwork:    review.parent.at_css('.single-album-tombstone__art > img').attr('src'),
-      reissue:    review.text.include?('Best new reissue'),
-      bnm:        review.text.include?('Best new music')
+      artist:     [review.at_xpath(".//div[contains(@class,'SplitScreenContentHeaderArtist')]").text],
+      title:      review.at_xpath(".//h1[contains(@class,'SplitScreenContentHeaderHed')]").text,
+      year:       review.at_xpath(".//time[contains(@class,'SplitScreenContentHeaderReleaseYear')]").text,
+      genre:      meta_genre(meta),
+      label:      meta_label(meta),
+      date:       meta_date(meta),
+      reviewer:   review.next.at_xpath(".//span[contains(@class,'BylineName')]/a").text,
+      rating:     review.at_xpath(".//div[contains(@class,'SplitScreenContentHeaderScoreBox')]").text.to_f,
+      artwork:    review.at_xpath(".//picture[contains(@class,'SplitScreenContentHeaderLede')]/img").attr(:src),
+      reissue:    review.text.include?('Best New Reissue'),
+      bnm:        review.text.include?('Best New Music')
     }
-    album.compact
   rescue => e
     @logger.error "Failed to parse: #{url}"
     @logger.error e.message
     @logger.error e.backtrace.join("\n")
-    retry
   end
 
   def pitchfork_id(url)
@@ -38,10 +37,25 @@ class PitchforkParserService
     match ? match[0][1..-2].to_i : match
   end
 
+  def meta_genre(meta)
+    genre = meta.at_xpath(".//ul/li/div/p[contains(text(),'Genre:')]")
+    genre ? [genre.next.text] : nil
+  end
+  
+  def meta_label(meta)
+    label = meta.at_xpath(".//ul/li/div/p[contains(text(),'Label:')]")
+    label ? [label.next.text] : nil
+  end
+  
+  def meta_date(meta)
+    date = meta.at_xpath(".//ul/li/div/p[contains(text(),'Reviewed:')]")
+    date ? Date.parse(date.next.text).to_datetime : nil    
+  end
+
   def get_page_links(url)
     document = Nokogiri::HTML(Net::HTTP.get(URI(url)))
-    document.css('.fragment-list > .review > a').map do |review|
-      "https://pitchfork.com#{review.attr('href')}"
+    document.xpath("//a[contains(@class,'SummaryItemHedLink')]").map do |review|      
+      "https://pitchfork.com#{review.attr(:href)}"
     end
   end
 
@@ -69,6 +83,23 @@ class PitchforkParserService
     @db[:links].find.each_slice(50) do |batch|
       batch.map! { |review| parse_review review[:URL] }
       @collection.insert_many batch
+    end
+  end
+
+  def frontpage
+    latest_albums_links = Album.desc(:date).limit(100).pluck(:source)
+    begin
+      links = get_page_links("https://pitchfork.com/reviews/albums/") - latest_albums_links
+      unless links.empty?
+        @logger.info 'Found new reviews! Staging them for crawling:'
+        links.each do |link|
+          @logger.info link
+          @collection.insert_one(parse_review(link))
+        end
+        @logger.info 'Review batch was successfully written to the DB'
+      end
+    rescue Mongo::Error::OperationFailure => e
+      @logger.error e.result
     end
   end
 
