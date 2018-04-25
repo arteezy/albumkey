@@ -3,12 +3,13 @@ class List
   include Mongoid::Timestamps
   include Mongoid::SortedRelations
   include Mongoid::Slug
-  include Mongoid::Enum
+  extend Enumerize
 
   belongs_to :user
   has_and_belongs_to_many :albums
 
-  enum :category, [:personal, :community, :staff]
+  field :category
+  enumerize :category, in: [:personal, :community, :staff], default: :personal, predicates: true
 
   field :title,     type: String
   field :positions, type: Array,   default: []
@@ -21,6 +22,10 @@ class List
   slug :title
 
   scope :opened, -> { where(closed: false) }
+
+  scope :personal, -> { where(category: :personal) }
+  scope :community, -> { where(category: :community) }
+  scope :staff, -> { where(category: :staff) }
 
   def move_album(album, direction)
     return unless albums.include?(album)
@@ -62,7 +67,7 @@ class List
   end
 
   def self.categories_for_select
-    CATEGORY.map do |category|
+    category.values.map do |category|
       [
         category.to_s.titleize,
         category

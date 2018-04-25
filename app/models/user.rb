@@ -1,12 +1,13 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Enum
+  extend Enumerize
   include Gravtastic
 
   gravtastic
 
-  enum :role, [:user, :admin]
+  field :role
+  enumerize :role, in: [:user, :admin], default: :user, predicates: true
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -37,6 +38,8 @@ class User
     presence: true,
     uniqueness: { case_sensitive: false },
     length: { minimum: 3, maximum: 32 }
+
+  validates :role, inclusion: { in: role.values }
 
   has_many :rates, dependent: :destroy
   has_many :lists, dependent: :destroy

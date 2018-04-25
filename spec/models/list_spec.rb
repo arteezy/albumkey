@@ -7,8 +7,8 @@ RSpec.describe List, type: :model do
 
   it 'sets proper categories for select' do
     cats_hash = List.categories_for_select.to_h
-    expect(cats_hash.keys).to match_array(List::CATEGORY.map { |c| c.to_s.titleize })
-    expect(cats_hash.values).to match_array(List::CATEGORY)
+    expect(cats_hash.keys).to match_array(List.category.values.map { |c| c.to_s.titleize })
+    expect(cats_hash.values).to match_array(List.category.values)
   end
 
   context 'positions' do

@@ -5,7 +5,7 @@
 %td= user.sign_in_count
 %td
   = form_for(user) do |f|
-    = f.select(:role, User::ROLE.map { |role| [role.to_s.titleize, role] })
+    = f.select(:role, User.role.values.map { |role| [role.to_s.titleize, role] })
     = f.submit 'Change Role', class: 'btn btn-xs btn-default'
 %td= link_to('Delete user', user_path(user), data: { confirm: 'Are you sure?' },
   method: :delete, class: 'btn btn-xs btn-danger') unless user == current_user

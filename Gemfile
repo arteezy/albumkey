@@ -44,8 +44,8 @@ gem 'kaminari-mongoid', '~> 1.0.1'
 gem 'mongoid-slug', '~> 5.1'
 # Preserve the assocition order of relations between Mongoid documents
 gem 'mongoid-sorted-relations'
-# Use Mongoid Enum for enum support
-gem 'mongoid-enum', git: 'https://github.com/arteezy/mongoid-enum.git'
+# Use Enumerize gem for enum support in Mongoid
+gem 'enumerize', '~> 2.2.2'
 # Ruby wrapper for ImageMagick command line utility
 gem 'mini_magick', '~> 4.8.0'
 # Use Gravtastic gem to add Gravatar support
