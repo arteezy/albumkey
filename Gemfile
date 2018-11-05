@@ -3,25 +3,25 @@ source 'https://rubygems.org'
 ruby '2.5.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.1'
+gem 'rails', '~> 5.0.6'
 # Use Puma as application server
-gem 'puma', '~> 3.6'
+gem 'puma', '~> 3.11.4'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 5.0.7'
 # Use Bootstrap as CSS framework
 gem 'bootstrap-sass', '~> 3.3.5'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '~> 3.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1'
+gem 'coffee-rails', '~> 4.2.2'
 # Use HAMLit for faster templates
 gem 'hamlit', '~> 2.6'
 # Use Mongo gem as Ruby driver for MongoDB
 gem 'mongo', '~> 2.4.3'
 # Use Mongoid as ODM for MongoDB
-gem 'mongoid', '~> 5.2.1'
+gem 'mongoid', '~> 6.0.3'
 # Use Devise as authentication library
-gem 'devise', '~> 3.5.2'
+gem 'devise', '~> 4.4.3'
 # Use Pundit for role-based authorization
 gem 'pundit', '~> 1.1'
 # Use Sidekiq as job queue for background processing
@@ -31,9 +31,11 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster
 gem 'turbolinks', '~> 2.5.3'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.3'
+gem 'jbuilder', '~> 2.6.4'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.1', group: :doc
+# Use Loofah for HTML sanitization
+gem 'loofah', '~> 2.9.1'
 # Use Nokogiri as HTML parser
 gem 'nokogiri', '~> 1.10.10'
 # Use Kaminari gem for pagination
@@ -51,7 +53,7 @@ gem 'mini_magick', '~> 4.8.0'
 # Use Gravtastic gem to add Gravatar support
 gem 'gravtastic'
 # Use Simple Form gem to simplify form creation
-gem 'simple_form'
+gem 'simple_form', '~> 3.5.1'
 # Use this gem to generate sitemap and ping search engines
 gem 'sitemap_generator'
 # Data for MIME content type definitions
@@ -73,7 +75,7 @@ group :development, :test do
   # Use Factory Girl as factories generator for specs
   gem 'factory_girl_rails', '~> 4.5'
   # Call 'binding.pry' anywhere in the code to stop execution and get a debugger console
-  gem 'pry-byebug'
+  gem 'pry-byebug', '~> 3.6.0'
 end
 
 group :development, :deploy do
@@ -95,26 +97,26 @@ end
 
 group :development do
   # Spring speeds up development by keeping your application running in the background
-  gem 'spring'
+  gem 'spring', '~> 2.0'
   # This gem implements the rspec command for Spring
   gem 'spring-commands-rspec'
   # This gem makes Spring watch the filesystem for changes using Listen rather than by polling the filesystem
   gem 'spring-watcher-listen'
   # Use Rack Mini Profiler for advanced performance profiling
-  gem 'rack-mini-profiler'
+  gem 'rack-mini-profiler', '~> 1.0.1'
   # Use Bullet gem to find slow queries and unused eager loading
-  gem 'bullet'
+  gem 'bullet', '~> 5.7'
   # Use Pry as Rails console replacement
   gem 'pry-rails'
   # Use Better Errors gem to replace errors page
   gem 'better_errors'
   # Use binding_of_caller gem to enable live REPL on error pages
   gem 'binding_of_caller'
-  # Use Quiest Assets to supress assets console logging
-  gem 'quiet_assets'
 end
 
 group :test do
+  # Add `assigns` and `assert_template` methods for controller testing
+  gem 'rails-controller-testing', '~> 1.0.2'
   # Use Faker gem to generate fake test data
   gem 'faker', '~> 1.4'
   # Use Capybara for integration specs
@@ -135,5 +137,5 @@ group :production do
   # Use New Relic as monitoring service
   gem 'newrelic_rpm'
   # Use Skylight as alternative monitoring service
-  gem 'skylight'
+  gem 'skylight', '~> 2.0.1'
 end

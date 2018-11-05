@@ -1,4 +1,4 @@
-class UpdateUserDetailsInCommentsJob < ActiveJob::Base
+class UpdateUserDetailsInCommentsJob < ApplicationJob
   queue_as :default
 
   def perform(old_username, new_username, new_avatar)
