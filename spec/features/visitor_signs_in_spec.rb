@@ -37,6 +37,6 @@ feature 'Visitor signs in' do
   end
 
   def expect_page_to_display_sign_in_error
-    expect(page).to have_content 'Invalid email or password'
+    expect(page).to have_content 'Invalid Email or password'
   end
 end
