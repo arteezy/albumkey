@@ -72,8 +72,8 @@ gem 'awesome_print'
 group :development, :test do
   # Use RSpec for advanced testing
   gem 'rspec-rails', '~> 3.2'
-  # Use Factory Girl as factories generator for specs
-  gem 'factory_girl_rails', '~> 4.5'
+  # Use Factory Bot as factories generator for specs
+  gem 'factory_bot_rails', '~> 4.11.1'
   # Call 'binding.pry' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug', '~> 3.6.0'
 end

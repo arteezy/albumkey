@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :album do
     title { Faker::Lorem.sentence }
     p4k_id { Faker::Number.number(5) }

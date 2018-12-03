@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :list do
     title { Faker::Lorem.sentence }
     category :personal

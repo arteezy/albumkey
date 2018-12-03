@@ -45,14 +45,14 @@ feature 'Visitor signs up' do
   end
 
   scenario 'tries with non-unique username' do
-    FactoryGirl.create(:user, username: 'xXx_1337h4xxor_xXx')
+    FactoryBot.create(:user, username: 'xXx_1337h4xxor_xXx')
     sign_up_with 'xXx_1337h4xxor_xXx', 'valid@example.com', 'password'
 
     expect_user_to_be_signed_out
   end
 
   scenario 'tries with non-unique username, but with different case' do
-    FactoryGirl.create(:user, username: 'maxim')
+    FactoryBot.create(:user, username: 'maxim')
     sign_up_with 'MaXiM', 'valid@example.com', 'password'
 
     expect_user_to_be_signed_out

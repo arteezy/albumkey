@@ -2,8 +2,8 @@ require 'rails_helper'
 
 feature 'User changes username' do
   scenario 'sees that his comments have new username' do
-    FactoryGirl.create(:album)
-    FactoryGirl.create(:user, email: 'email@mail.com', username: 'oldname', password: 'password')
+    FactoryBot.create(:album)
+    FactoryBot.create(:user, email: 'email@mail.com', username: 'oldname', password: 'password')
     sign_in_with 'email@mail.com', 'password'
 
     first('.card h3 > a').click

@@ -2,7 +2,7 @@ module Features
   module DeviseHelpers
     def sign_in
       password = 'password'
-      user = FactoryGirl.create(:user, password: password)
+      user = FactoryBot.create(:user, password: password)
       sign_in_with user.email, password
     end
 
@@ -14,7 +14,7 @@ module Features
     end
 
     def sign_in_as_admin
-      admin = FactoryGirl.create(:admin)
+      admin = FactoryBot.create(:admin)
       sign_in_with admin.email, admin.password
     end
 
@@ -47,7 +47,7 @@ module Features
     end
 
     def user_with_reset_password
-      user = FactoryGirl.create(:user)
+      user = FactoryBot.create(:user)
       reset_password_for user.email
       user.reload
     end

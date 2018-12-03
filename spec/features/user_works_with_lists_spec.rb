@@ -49,7 +49,7 @@ feature 'User works with lists' do
     choose 'list_category_personal'
     click_button 'Create List'
 
-    FactoryGirl.create(:album, title: 'Cool Album')
+    FactoryBot.create(:album, title: 'Cool Album')
     visit albums_path
     click_link 'Cool Album', match: :first
     select 'Awesome List', from: 'album_list_id'
@@ -67,7 +67,7 @@ feature 'User works with lists' do
     choose 'list_category_personal'
     click_button 'Create List'
 
-    FactoryGirl.create(:album, title: 'Unique Album')
+    FactoryBot.create(:album, title: 'Unique Album')
     visit albums_path
     click_link 'Unique Album', match: :first
     select 'Awesome List', from: 'album_list_id'
@@ -85,7 +85,7 @@ feature 'User works with lists' do
     choose 'list_category_personal'
     click_button 'Create List'
 
-    FactoryGirl.create(:album, title: 'Bad Album')
+    FactoryBot.create(:album, title: 'Bad Album')
     visit albums_path
     click_link 'Bad Album', match: :first
     select 'Awesome List', from: 'album_list_id'
@@ -104,8 +104,8 @@ feature 'User works with lists' do
     choose 'list_category_personal'
     click_button 'Create List'
 
-    a1 = FactoryGirl.create(:album, title: 'First Album')
-    a2 = FactoryGirl.create(:album, title: 'Second Album')
+    a1 = FactoryBot.create(:album, title: 'First Album')
+    a2 = FactoryBot.create(:album, title: 'Second Album')
 
     visit album_path(a1)
     select 'Awesome List', from: 'album_list_id'
@@ -135,7 +135,7 @@ feature 'User works with lists' do
     choose 'list_category_personal'
     click_button 'Create List'
 
-    FactoryGirl.create(:album, title: 'Frozen Album')
+    FactoryBot.create(:album, title: 'Frozen Album')
     visit albums_path
     click_link 'Frozen Album', match: :first
     select 'Closed List', from: 'album_list_id'
