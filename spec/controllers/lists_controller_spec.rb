@@ -19,12 +19,12 @@ RSpec.describe ListsController, type: :controller do
 
     describe 'GET #show' do
       it 'returns a success response' do
-        get :show, id: list
+        get :show, params: { id: list }
         expect(response).to be_success
       end
 
       it 'assigns the requested list as @list' do
-        get :show, id: list
+        get :show, params: { id: list }
         expect(assigns(:list)).to eq(list)
       end
     end
@@ -49,12 +49,12 @@ RSpec.describe ListsController, type: :controller do
 
     describe 'GET #edit' do
       it 'returns a success response' do
-        get :edit, id: list
+        get :edit, params: { id: list }
         expect(response).to be_success
       end
 
       it 'assigns the requested list as @list' do
-        get :edit, id: list
+        get :edit, params: { id: list }
         expect(assigns(:list)).to eq(list)
       end
     end
@@ -63,30 +63,30 @@ RSpec.describe ListsController, type: :controller do
       context 'with valid params' do
         it 'creates a new List' do
           expect {
-            post :create, list: attributes_for(:list)
+            post :create, params: { list: attributes_for(:list) }
           }.to change(List, :count).by(1)
         end
 
         it 'assigns a newly created list as @list' do
-          post :create, list: attributes_for(:list)
+          post :create, params: { list: attributes_for(:list) }
           expect(assigns(:list)).to be_a(List)
           expect(assigns(:list)).to be_persisted
         end
 
         it 'redirects to the created list' do
-          post :create, list: attributes_for(:list)
+          post :create, params: { list: attributes_for(:list) }
           expect(response).to redirect_to(List.last)
         end
       end
 
       context 'with invalid params' do
         it 'assigns a newly created but unsaved list as @list' do
-          post :create, list: attributes_for(:invalid_list)
+          post :create, params: { list: attributes_for(:invalid_list) }
           expect(assigns(:list)).to be_a_new(List)
         end
 
         it 're-renders the new template' do
-          post :create, list: attributes_for(:invalid_list)
+          post :create, params: { list: attributes_for(:invalid_list) }
           expect(response).to render_template :new
         end
       end
@@ -95,18 +95,18 @@ RSpec.describe ListsController, type: :controller do
     describe 'PATCH #update' do
       context 'with valid params' do
         it 'updates the requested list' do
-          patch :update, id: list, list: attributes_for(:list, title: 'Lorem Ipsum')
+          patch :update, params: { id: list, list: attributes_for(:list, title: 'Lorem Ipsum') }
           list.reload
           expect(list.title).to eq('Lorem Ipsum')
         end
 
         it 'assigns the requested list as @list' do
-          patch :update, id: list, list: attributes_for(:list)
+          patch :update, params: { id: list, list: attributes_for(:list) }
           expect(assigns(:list)).to eq(list)
         end
 
         it 'redirects to the list' do
-          patch :update, id: list, list: attributes_for(:list)
+          patch :update, params: { id: list, list: attributes_for(:list) }
           list.reload
           expect(response).to redirect_to(list)
         end
@@ -114,12 +114,12 @@ RSpec.describe ListsController, type: :controller do
 
       context 'with invalid params' do
         it 'assigns the list as @list' do
-          patch :update, id: list, list: attributes_for(:invalid_list)
+          patch :update, params: { id: list, list: attributes_for(:invalid_list) }
           expect(assigns(:list)).to eq(list)
         end
 
         it 're-renders the edit template' do
-          patch :update, id: list, list: attributes_for(:invalid_list)
+          patch :update, params: { id: list, list: attributes_for(:invalid_list) }
           expect(response).to render_template :edit
         end
       end
@@ -129,12 +129,12 @@ RSpec.describe ListsController, type: :controller do
       it 'destroys the requested list' do
         list
         expect {
-          delete :destroy, id: list
+          delete :destroy, params: { id: list }
         }.to change(List, :count).by(-1)
       end
 
       it 'redirects to the lists list' do
-        delete :destroy, id: list
+        delete :destroy, params: { id: list }
         expect(response).to redirect_to(lists_url)
       end
     end
@@ -142,13 +142,13 @@ RSpec.describe ListsController, type: :controller do
     context 'with invalid params' do
       it 'denies access to the list owned by other user' do
         list = create(:list)
-        delete :destroy, id: list
+        delete :destroy, params: { id: list }
         expect(flash[:alert]).to eq 'You are not authorized to perform this action'
       end
 
       it 'denies access to to signed out user' do
         sign_out user
-        delete :destroy, id: list
+        delete :destroy, params: { id: list }
         expect(flash[:alert]).to eq 'You are not authorized to perform this action'
       end
     end

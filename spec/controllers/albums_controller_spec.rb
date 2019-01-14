@@ -18,18 +18,18 @@ describe AlbumsController, type: :controller do
 
     describe 'GET #show' do
       it 'assigns the requested album as @album' do
-        get :show, id: album
+        get :show, params: { id: album }
         expect(assigns(:album)).to eq(album)
       end
 
       it 'assigns album comments as @comments' do
         comment = create(:comment, album: album)
-        get :show, id: album
+        get :show, params: { id: album }
         expect(assigns(:comments)).to match_array([comment])
       end
 
       it 'renders the show template' do
-        get :show, id: album
+        get :show, params: { id: album }
         expect(response).to render_template :show
       end
 
@@ -37,19 +37,19 @@ describe AlbumsController, type: :controller do
         login_user
 
         it 'assigns a new comment as @comment' do
-          get :show, id: album
+          get :show, params: { id: album }
           expect(assigns(:comment)).to be_a_new(Comment)
         end
 
         it 'assigns the user rate of album as @rate' do
           rate = create(:rate, album: album, user: subject.current_user)
-          get :show, id: album
+          get :show, params: { id: album }
           expect(assigns(:rate)).to eq(rate)
         end
 
         it 'assigns the user lists of album as @lists' do
           list = create(:list, user: subject.current_user)
-          get :show, id: album
+          get :show, params: { id: album }
           expect(assigns(:lists)).to match_array([list])
         end
       end
@@ -83,19 +83,19 @@ describe AlbumsController, type: :controller do
         login_admin
 
         it 'assigns the requested album as @album' do
-          get :edit, id: album
+          get :edit, params: { id: album }
           expect(assigns(:album)).to eq(album)
         end
 
         it 'renders the edit template' do
-          get :edit, id: album
+          get :edit, params: { id: album }
           expect(response).to render_template :edit
         end
       end
 
       context 'as guest' do
         it 'redirects to root' do
-          get :edit, id: album
+          get :edit, params: { id: album }
           expect(response).to redirect_to(root_path)
         end
       end
@@ -111,7 +111,7 @@ describe AlbumsController, type: :controller do
         end
 
         it 'assigns searched albums as @albums' do
-          get :search, search: album.title
+          get :search, params: { search: album.title }
           expect(assigns(:albums)).to match_array([album])
         end
       end
@@ -131,30 +131,30 @@ describe AlbumsController, type: :controller do
         context 'with valid params' do
           it 'creates a new Album' do
             expect {
-              post :create, album: attributes_for(:album)
+              post :create, params: { album: attributes_for(:album) }
             }.to change(Album, :count).by(1)
           end
 
           it 'assigns a newly created album as @album' do
-            post :create, album: attributes_for(:album)
+            post :create, params: { album: attributes_for(:album) }
             expect(assigns(:album)).to be_a(Album)
             expect(assigns(:album)).to be_persisted
           end
 
           it 'redirects to the created album' do
-            post :create, album: attributes_for(:album)
+            post :create, params: { album: attributes_for(:album) }
             expect(response).to redirect_to(Album.last)
           end
         end
 
         context 'with invalid params' do
           it 'assigns a newly created but unsaved album as @album' do
-            post :create, album: attributes_for(:invalid_album)
+            post :create, params: { album: attributes_for(:invalid_album) }
             expect(assigns(:album)).to be_a_new(Album)
           end
 
           it 're-renders the new template' do
-            post :create, album: attributes_for(:invalid_album)
+            post :create, params: { album: attributes_for(:invalid_album) }
             expect(response).to render_template :new
           end
         end
@@ -162,7 +162,7 @@ describe AlbumsController, type: :controller do
 
       context 'as guest' do
         it 'redirects to root' do
-          post :create, album: attributes_for(:album)
+          post :create, params: { album: attributes_for(:album) }
           expect(response).to redirect_to(root_path)
         end
       end
@@ -176,19 +176,19 @@ describe AlbumsController, type: :controller do
 
         context 'with valid params' do
           it 'updates the requested album' do
-            patch :update, id: album, album: attributes_for(:album, title: 'Dalmatic', artist: ['Pas'])
+            patch :update, params: { id: album, album: attributes_for(:album, title: 'Dalmatic', artist: ['Pas']) }
             album.reload
             expect(album.title).to eq('Dalmatic')
             expect(album.artist).to eq(['Pas'])
           end
 
           it 'assigns the requested album as @album' do
-            patch :update, id: album, album: attributes_for(:album)
+            patch :update, params: { id: album, album: attributes_for(:album) }
             expect(assigns(:album)).to eq(album)
           end
 
           it 'redirects to the album' do
-            patch :update, id: album, album: attributes_for(:album)
+            patch :update, params: { id: album, album: attributes_for(:album) }
             album.reload
             expect(response).to redirect_to(album)
           end
@@ -196,12 +196,12 @@ describe AlbumsController, type: :controller do
 
         context 'with invalid params' do
           it 'assigns the album as @album' do
-            patch :update, id: album, album: attributes_for(:invalid_album)
+            patch :update, params: { id: album, album: attributes_for(:invalid_album) }
             expect(assigns(:album)).to eq(album)
           end
 
           it 're-renders the edit template' do
-            patch :update, id: album, album: attributes_for(:invalid_album)
+            patch :update, params: { id: album, album: attributes_for(:invalid_album) }
             expect(response).to render_template('edit')
           end
         end
@@ -210,13 +210,13 @@ describe AlbumsController, type: :controller do
           let(:list) { create(:list) }
 
           it 'updates the requested album with list relation' do
-            patch :update, id: album, album: { list_id: list }
+            patch :update, params: { id: album, album: { list_id: list } }
             album.reload
             expect(album.lists).to match_array([list])
           end
 
           it 'redirects to the list with newly added album' do
-            patch :update, id: album, album: { list_id: list }
+            patch :update, params: { id: album, album: { list_id: list } }
             album.reload
             expect(response).to redirect_to(list)
           end
@@ -225,7 +225,7 @@ describe AlbumsController, type: :controller do
 
       context 'as guest' do
         it 'redirects to root' do
-          patch :update, id: album, album: attributes_for(:album)
+          patch :update, params: { id: album, album: attributes_for(:album) }
           expect(response).to redirect_to(root_path)
         end
       end
@@ -238,19 +238,19 @@ describe AlbumsController, type: :controller do
         it 'destroys the requested album' do
           album
           expect {
-            delete :destroy, id: album
+            delete :destroy, params: { id: album }
           }.to change(Album, :count).by(-1)
         end
 
         it 'redirects to the albums list' do
-          delete :destroy, id: album
+          delete :destroy, params: { id: album }
           expect(response).to redirect_to(albums_url)
         end
       end
 
       context 'as guest' do
         it 'redirects to root' do
-          delete :destroy, id: album
+          delete :destroy, params: { id: album }
           expect(response).to redirect_to(root_path)
         end
       end

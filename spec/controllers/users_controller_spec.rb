@@ -16,7 +16,7 @@ describe UsersController, type: :controller do
 
     describe 'GET #show' do
       it 'redirects to root with alert' do
-        get :show, id: user
+        get :show, params: { id: user }
         expect(response).to redirect_to(root_path)
         expect(flash[:alert]).to match(/You are not authorized to perform this action/)
       end
@@ -24,7 +24,7 @@ describe UsersController, type: :controller do
 
     describe 'PATCH #update' do
       it 'redirects to root with alert' do
-        patch :update, id: user
+        patch :update, params: { id: user }
         expect(response).to redirect_to(root_path)
         expect(flash[:alert]).to match(/You are not authorized to perform this action/)
       end
@@ -32,7 +32,7 @@ describe UsersController, type: :controller do
 
     describe 'DELETE #destroy' do
       it 'redirects to root with alert' do
-        delete :destroy, id: user
+        delete :destroy, params: { id: user }
         expect(response).to redirect_to(root_path)
         expect(flash[:alert]).to match(/You are not authorized to perform this action/)
       end
@@ -56,12 +56,12 @@ describe UsersController, type: :controller do
 
     describe 'GET #show' do
       it 'assigns the requested user as @user' do
-        get :show, id: user
+        get :show, params: { id: user }
         expect(assigns(:user)).to eq(user)
       end
 
       it 'renders the show template' do
-        get :show, id: user
+        get :show, params: { id: user }
         expect(response).to render_template :show
       end
     end
@@ -69,18 +69,18 @@ describe UsersController, type: :controller do
     describe 'PATCH #update' do
       context 'with valid params' do
         it 'updates the requested user' do
-          patch :update, id: user, user: attributes_for(:user, role: :admin)
+          patch :update, params: { id: user, user: attributes_for(:user, role: :admin) }
           user.reload
           expect(user.role).to eq(:admin)
         end
 
         it 'assigns the requested user as @user' do
-          patch :update, id: user, user: attributes_for(:user)
+          patch :update, params: { id: user, user: attributes_for(:user) }
           expect(assigns(:user)).to eq(user)
         end
 
         it 'redirects to the users index page with notice' do
-          patch :update, id: user, user: attributes_for(:user)
+          patch :update, params: { id: user, user: attributes_for(:user) }
           expect(response).to redirect_to(users_path)
           expect(flash[:notice]).to match(/User updated/)
         end
@@ -88,12 +88,12 @@ describe UsersController, type: :controller do
 
       context 'with invalid params' do
         it 'assigns the user as @user' do
-          patch :update, id: user, user: attributes_for(:user, role: nil)
+          patch :update, params: { id: user, user: attributes_for(:user, role: nil) }
           expect(assigns(:user)).to eq(user)
         end
 
         it 'redirects to the users index page with alert' do
-          patch :update, id: user, user: attributes_for(:user, role: nil)
+          patch :update, params: { id: user, user: attributes_for(:user, role: nil) }
           expect(response).to redirect_to(users_path)
           expect(flash[:alert]).to match(/Unable to update user/)
         end
@@ -104,18 +104,18 @@ describe UsersController, type: :controller do
       it 'destroys the requested user' do
         user
         expect {
-          delete :destroy, id: user
+          delete :destroy, params: { id: user }
         }.to change(User, :count).by(-1)
       end
 
       it 'refuses to destroy himself (current_user)' do
-        delete :destroy, id: subject.current_user
+        delete :destroy, params: { id: subject.current_user }
         expect(response).to redirect_to(root_path)
         expect(flash[:alert]).to match(/You are not authorized to perform this action/)
       end
 
       it 'redirects to the users list with notice' do
-        delete :destroy, id: user
+        delete :destroy, params: { id: user }
         expect(response).to redirect_to(users_path)
         expect(flash[:notice]).to match(/User deleted/)
       end
