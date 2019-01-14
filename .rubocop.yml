@@ -1,0 +1,8 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+Rails:
+  Enabled: true
+AllCops:
+   TargetRubyVersion: 2.5
+   TargetRailsVersion: 5.0

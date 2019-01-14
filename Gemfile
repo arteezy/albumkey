@@ -76,6 +76,9 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 4.11.1'
   # Call 'binding.pry' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug', '~> 3.6.0'
+  # Use RuboCop for code style checking and formatting
+  gem 'rubocop-rails', '~> 2.14.2', require: false
+  gem 'rubocop-rspec', '~> 2.1', require: false
 end
 
 group :development, :deploy do
