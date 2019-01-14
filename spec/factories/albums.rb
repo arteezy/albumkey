@@ -11,11 +11,11 @@ FactoryBot.define do
     reviewer { Faker::Name.name }
     source { Faker::Internet.url }
     rating { rand(0.0...10.0).round(1) }
-    reissue false
-    bnm false
+    reissue { false }
+    bnm { false }
 
     factory :invalid_album do
-      title nil
+      title { nil }
     end
   end
 end

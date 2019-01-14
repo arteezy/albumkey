@@ -3,10 +3,10 @@ FactoryBot.define do
     username { Faker::Internet.user_name(3..32) }
     email { Faker::Internet.email }
     password { Faker::Internet.password }
-    role :user
+    role { :user }
 
     factory :admin do
-      role :admin
+      role { :admin }
     end
   end
 end

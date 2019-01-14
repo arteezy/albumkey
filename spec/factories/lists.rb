@@ -1,11 +1,11 @@
 FactoryBot.define do
   factory :list do
     title { Faker::Lorem.sentence }
-    category :personal
+    category { :personal }
     association :user, factory: :user
 
     factory :invalid_list do
-      title nil
+      title { nil }
     end
   end
 end

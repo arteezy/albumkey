@@ -5,7 +5,7 @@ FactoryBot.define do
     association :album, factory: :album
 
     factory :invalid_rate do
-      rate -13.3
+      rate { -13.3 }
     end
   end
 end

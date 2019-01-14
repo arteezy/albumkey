@@ -7,7 +7,7 @@ FactoryBot.define do
     association :album, factory: :album
 
     factory :invalid_comment do
-      body nil
+      body { nil }
     end
   end
 end
