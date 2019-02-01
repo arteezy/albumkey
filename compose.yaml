@@ -1,0 +1,18 @@
+services:
+  mongodb:
+    image: mongo:3.6
+    ports:
+      - "27017:27017"
+    networks:
+      - net
+    volumes:
+      - mongodb:/data/db
+      - mongodb_config:/data/configdb
+
+networks:
+  net:
+    driver: bridge
+
+volumes:
+  mongodb:
+  mongodb_config:
