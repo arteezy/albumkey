@@ -23,7 +23,7 @@ class AlbumsController < ApplicationController
                    .search(params[:search])
                    .page(params[:page])
 
-    @albums_page_count = Rails.cache.fetch ['albums_count', params], expires_in: 2.hours do
+    @albums_page_count = Rails.cache.fetch ['albums_count', params.permit!], expires_in: 2.hours do
       (@albums.count / Kaminari.config.default_per_page.to_f).ceil
     end
   end

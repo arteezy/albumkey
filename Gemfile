@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.5.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.6'
+gem 'rails', '~> 5.1.6'
 # Use Puma as application server
 gem 'puma', '~> 3.11.4'
 # Use SCSS for stylesheets
@@ -68,6 +68,8 @@ gem 'whenever'
 gem 'tzinfo-data'
 # Use Awesome Print to make debugging more visually comprehensive
 gem 'awesome_print'
+# Use FFI to lock dependency of the Listen gem
+gem 'ffi', '~> 1.15.5'
 
 group :development, :test do
   # Use RSpec for advanced testing

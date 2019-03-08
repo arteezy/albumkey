@@ -18,7 +18,9 @@ RSpec.describe List, type: :model do
     let(:a3)   { build(:album, title: 'Three') }
 
     before(:each) do
-      list.albums << [a1, a2, a3]
+      list.albums << a1
+      list.albums << a2
+      list.albums << a3
       list.positions = [1, 2, 3]
     end
 
