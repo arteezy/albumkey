@@ -8,5 +8,5 @@
   - if @albums.empty?
     %h5.text-muted Nothing Found
   - else
-    = render partial: 'shared/card', collection: @albums, cached: true
+    = render partial: 'shared/card', collection: @albums
     = paginate @albums, total_pages: @albums_page_count

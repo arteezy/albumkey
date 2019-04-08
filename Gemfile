@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.5.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.6'
+gem 'rails', '~> 5.2.3'
 # Use Puma as application server
 gem 'puma', '~> 3.11.4'
 # Use SCSS for stylesheets
@@ -53,7 +53,7 @@ gem 'mini_magick', '~> 4.8.0'
 # Use Gravtastic gem to add Gravatar support
 gem 'gravtastic'
 # Use Simple Form gem to simplify form creation
-gem 'simple_form', '~> 3.5.1'
+gem 'simple_form', '~> 4.1.0'
 # Use this gem to generate sitemap and ping search engines
 gem 'sitemap_generator'
 # Data for MIME content type definitions
@@ -70,6 +70,8 @@ gem 'tzinfo-data'
 gem 'awesome_print'
 # Use FFI to lock dependency of the Listen gem
 gem 'ffi', '~> 1.15.5'
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Use RSpec for advanced testing
@@ -130,8 +132,8 @@ group :test do
   gem 'database_cleaner', '~> 1.5'
   # Use Launchy as helper to Capybara specs
   gem 'launchy', '~> 2.4'
-  # Use Code Climate to measure test coverage and code quality
-  gem 'codeclimate-test-reporter', '~> 1.0.8'
+  # Use simplecov to measure test coverage
+  gem 'simplecov', '~> 0.16.1'
 end
 
 group :production do

@@ -21,7 +21,7 @@ $gradient-end: rgba(128, 0, 0, .7);
   height: $images-height;
   animation: slide 90s linear infinite;
   will-change: transform;
-  background: url('wall.jpg') repeat;
+  background: url('assets/wall.jpg') repeat;
 }
 
 .gradient {
