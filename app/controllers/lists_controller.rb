@@ -5,7 +5,7 @@ class ListsController < ApplicationController
   # GET /lists
   # GET /lists.json
   def index
-    @lists = List.includes(:user).all
+    @lists = List.includes(:user, :albums).all
     authorize List
   end
 
