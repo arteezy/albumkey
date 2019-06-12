@@ -75,9 +75,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Use RSpec for advanced testing
-  gem 'rspec-rails', '~> 3.2'
+  gem 'rspec-rails', '~> 4.0.1'
   # Use Factory Bot as factories generator for specs
-  gem 'factory_bot_rails', '~> 4.11.1'
+  gem 'factory_bot_rails', '~> 5.1.1'
   # Call 'binding.pry' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug', '~> 3.6.0'
   # Use RuboCop for code style checking and formatting
