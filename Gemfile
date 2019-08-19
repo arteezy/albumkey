@@ -19,7 +19,7 @@ gem 'hamlit', '~> 2.6'
 # Use Mongo gem as Ruby driver for MongoDB
 gem 'mongo', '~> 2.10.1'
 # Use Mongoid as ODM for MongoDB
-gem 'mongoid', '~> 6.4.2'
+gem 'mongoid', '~> 7.0.5'
 # Use Devise as authentication library
 gem 'devise', '~> 4.4.3'
 # Use Pundit for role-based authorization
@@ -41,9 +41,9 @@ gem 'nokogiri', '~> 1.10.10'
 # Use Kaminari gem for pagination
 gem 'kaminari-actionview', '~> 1.0.1'
 # Kaminari adapter for Mongoid
-gem 'kaminari-mongoid', '~> 1.0.1'
+gem 'kaminari-mongoid', '~> 1.0.2'
 # Use Mongoid Slug as slug generator for beautiful URLs
-gem 'mongoid-slug', '~> 5.1'
+gem 'mongoid-slug', '~> 6.0.1'
 # Use Enumerize gem for enum support in Mongoid
 gem 'enumerize', '~> 2.2.2'
 # Ruby wrapper for ImageMagick command line utility
