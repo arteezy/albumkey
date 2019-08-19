@@ -241,7 +241,6 @@ GEM
       mongoid (>= 3.0)
       mongoid-compatibility
       stringex (~> 2.0)
-    mongoid-sorted-relations (0.0.4)
     msgpack (1.8.0)
     multi_json (1.15.0)
     multi_xml (0.6.0)
@@ -498,7 +497,6 @@ DEPENDENCIES
   mongo (~> 2.10.1)
   mongoid (~> 6.4.2)
   mongoid-slug (~> 5.1)
-  mongoid-sorted-relations
   newrelic_rpm
   nokogiri (~> 1.10.10)
   pry-byebug (~> 3.6.0)

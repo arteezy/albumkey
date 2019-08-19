@@ -1,7 +1,6 @@
 class List
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::SortedRelations
   include Mongoid::Slug
   extend Enumerize
 
@@ -30,7 +29,7 @@ class List
   def move_album(album, direction)
     return unless albums.include?(album)
 
-    left = sorted_albums.index(album)
+    left = albums.asc.to_a.index(album)
     index = positions[left]
 
     if direction == :up
@@ -47,10 +46,9 @@ class List
   def delete_album(album)
     return unless albums.include?(album)
 
-    index = positions[sorted_albums.index(album)]
+    index = positions[albums.asc.to_a.index(album)]
     positions.delete(index)
     albums.delete(album)
-    freeze_relation_ids
 
     positions.map! do |p|
       if p > index
@@ -62,7 +60,7 @@ class List
   end
 
   def ranked_albums
-    positioned_albums = positions.zip(sorted_albums)
+    positioned_albums = positions.zip(albums.asc)
     positioned_albums.sort.transpose.last
   end
 

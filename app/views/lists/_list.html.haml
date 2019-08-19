@@ -1,7 +1,7 @@
 %li.media
   .media-left
     - if list.albums.present?
-      = image_tag list.albums.first.artwork, class: 'media-object', size: '50', alt: list.title
+      = image_tag list.ranked_albums.first.artwork, class: 'media-object', size: '50', alt: list.title
     - else
       = image_tag list.user.gravatar_url, class: 'media-object', size: '50', alt: list.title
   .media-body

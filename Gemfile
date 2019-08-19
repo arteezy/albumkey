@@ -44,8 +44,6 @@ gem 'kaminari-actionview', '~> 1.0.1'
 gem 'kaminari-mongoid', '~> 1.0.1'
 # Use Mongoid Slug as slug generator for beautiful URLs
 gem 'mongoid-slug', '~> 5.1'
-# Preserve the assocition order of relations between Mongoid documents
-gem 'mongoid-sorted-relations'
 # Use Enumerize gem for enum support in Mongoid
 gem 'enumerize', '~> 2.2.2'
 # Ruby wrapper for ImageMagick command line utility
