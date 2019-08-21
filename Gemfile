@@ -21,7 +21,7 @@ gem 'mongo', '~> 2.10.1'
 # Use Mongoid as ODM for MongoDB
 gem 'mongoid', '~> 7.0.5'
 # Use Devise as authentication library
-gem 'devise', '~> 4.4.3'
+gem 'devise', '~> 4.7.0'
 # Use Pundit for role-based authorization
 gem 'pundit', '~> 1.1'
 # Use Sidekiq as job queue for background processing
