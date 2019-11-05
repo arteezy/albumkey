@@ -8,7 +8,7 @@ RSpec.describe ListsController, type: :controller do
     describe 'GET #index' do
       it 'returns a success response' do
         get :index
-        expect(response).to be_success
+        expect(response).to have_http_status(:success)
       end
 
       it 'assigns all lists as @lists' do
@@ -20,7 +20,7 @@ RSpec.describe ListsController, type: :controller do
     describe 'GET #show' do
       it 'returns a success response' do
         get :show, params: { id: list }
-        expect(response).to be_success
+        expect(response).to have_http_status(:success)
       end
 
       it 'assigns the requested list as @list' do
@@ -38,7 +38,7 @@ RSpec.describe ListsController, type: :controller do
     describe 'GET #new' do
       it 'returns a success response' do
         get :new
-        expect(response).to be_success
+        expect(response).to have_http_status(:success)
       end
 
       it 'assigns a new list as @list' do
@@ -50,7 +50,7 @@ RSpec.describe ListsController, type: :controller do
     describe 'GET #edit' do
       it 'returns a success response' do
         get :edit, params: { id: list }
-        expect(response).to be_success
+        expect(response).to have_http_status(:success)
       end
 
       it 'assigns the requested list as @list' do
