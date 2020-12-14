@@ -20,7 +20,7 @@ Bundler.require(*Rails.groups)
 
 module AlbumKey
   class Application < Rails::Application
-    config.load_defaults 6.0
+    config.load_defaults 6.1
 
     # Precompile font assets
     config.assets.precompile << /\.(?:png|svg|eot|woff|ttf)$/
