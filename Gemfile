@@ -123,7 +123,7 @@ group :test do
   # Add `assigns` and `assert_template` methods for controller testing
   gem 'rails-controller-testing', '~> 1.0.2'
   # Use Faker gem to generate fake test data
-  gem 'faker', '~> 1.4'
+  gem 'faker', '~> 2.15.1'
   # Use Capybara for integration specs
   gem 'capybara', '~> 2.4'
   # Use DatabaseCleaner to wipe DB before tests

@@ -5,8 +5,8 @@ RSpec.describe UpdateUserDetailsInCommentsJob, type: :job do
 
   subject(:job) do
     described_class.perform_later(
-      Faker::Internet.user_name(3..32),
-      Faker::Internet.user_name(3..32),
+      Faker::Internet.username(specifier: 3..32),
+      Faker::Internet.username(specifier: 3..32),
       Faker::Avatar.image
     )
   end
