@@ -213,10 +213,10 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.6)
-    kaminari-actionview (1.0.1)
+    kaminari-actionview (1.2.2)
       actionview
-      kaminari-core (= 1.0.1)
-    kaminari-core (1.0.1)
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     kaminari-mongoid (1.0.2)
       kaminari-core (~> 1.0)
       mongoid
@@ -249,11 +249,12 @@ GEM
     mini_mime (1.1.2)
     mini_portile2 (2.4.0)
     minitest (5.15.0)
-    mongo (2.10.5)
-      bson (>= 4.4.2, < 5.0.0)
-    mongoid (7.0.13)
+    mongo (2.13.3)
+      bson (>= 4.8.2, < 5.0.0)
+    mongoid (7.1.11)
       activemodel (>= 5.1, < 6.2)
       mongo (>= 2.7.0, < 3.0.0)
+      ruby2_keywords (~> 0.0.5)
     mongoid-compatibility (1.0.0)
       activesupport
       mongoid (>= 2.0)
@@ -375,7 +376,7 @@ GEM
       rspec-expectations (~> 3.10)
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
-    rspec-support (3.13.5)
+    rspec-support (3.13.6)
     rubocop (1.28.2)
       parallel (~> 1.10)
       parser (>= 3.1.0.0)
@@ -510,15 +511,15 @@ DEPENDENCIES
   hamlit (~> 2.6)
   jbuilder (~> 2.9.1)
   jquery-rails
-  kaminari-actionview (~> 1.0.1)
+  kaminari-actionview (~> 1.2.1)
   kaminari-mongoid (~> 1.0.2)
   launchy (~> 2.4)
   le
   loofah (~> 2.9.1)
   mime-types
   mini_magick (~> 4.8.0)
-  mongo (~> 2.10.1)
-  mongoid (~> 7.0.5)
+  mongo (~> 2.13.2)
+  mongoid (~> 7.1.7)
   mongoid-slug (~> 6.0.1)
   newrelic_rpm
   nokogiri (~> 1.10.10)

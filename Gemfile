@@ -17,9 +17,9 @@ gem 'coffee-rails', '~> 4.2.2'
 # Use HAMLit for faster templates
 gem 'hamlit', '~> 2.6'
 # Use Mongo gem as Ruby driver for MongoDB
-gem 'mongo', '~> 2.10.1'
+gem 'mongo', '~> 2.13.2'
 # Use Mongoid as ODM for MongoDB
-gem 'mongoid', '~> 7.0.5'
+gem 'mongoid', '~> 7.1.7'
 # Use Devise as authentication library
 gem 'devise', '~> 4.7.0'
 # Use Pundit for role-based authorization
@@ -39,7 +39,7 @@ gem 'loofah', '~> 2.9.1'
 # Use Nokogiri as HTML parser
 gem 'nokogiri', '~> 1.10.10'
 # Use Kaminari gem for pagination
-gem 'kaminari-actionview', '~> 1.0.1'
+gem 'kaminari-actionview', '~> 1.2.1'
 # Kaminari adapter for Mongoid
 gem 'kaminari-mongoid', '~> 1.0.2'
 # Use Mongoid Slug as slug generator for beautiful URLs
