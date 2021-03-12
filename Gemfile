@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '2.5.3'
+ruby '3.0.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '6.1.0'
+gem 'rails', '~> 6.1.3.1'
 # Use Puma as application server
 gem 'puma', '~> 4.0.1'
 # Use SCSS for stylesheets
@@ -33,7 +33,7 @@ gem 'turbolinks', '~> 2.5.3'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.9.1'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.1', group: :doc
+gem 'sdoc', '~> 2.0.4', group: :doc
 # Use Loofah for HTML sanitization
 gem 'loofah', '~> 2.9.1'
 # Use Nokogiri as HTML parser
@@ -125,7 +125,7 @@ group :test do
   # Use Faker gem to generate fake test data
   gem 'faker', '~> 2.15.1'
   # Use Capybara for integration specs
-  gem 'capybara', '~> 2.4'
+  gem 'capybara', '~> 3.35.3'
   # Use DatabaseCleaner to wipe DB before tests
   gem 'database_cleaner', '~> 1.5'
   # Use Launchy as helper to Capybara specs
