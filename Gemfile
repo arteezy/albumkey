@@ -108,9 +108,9 @@ group :development do
   # This gem makes Spring watch the filesystem for changes using Listen rather than by polling the filesystem
   gem 'spring-watcher-listen'
   # Use Rack Mini Profiler for advanced performance profiling
-  gem 'rack-mini-profiler', '~> 1.0.1'
+  gem 'rack-mini-profiler', '~> 2.3.1'
   # Use Bullet gem to find slow queries and unused eager loading
-  gem 'bullet', '~> 5.7'
+  gem 'bullet', '~> 6.1.4'
   # Use Pry as Rails console replacement
   gem 'pry-rails'
   # Use Better Errors gem to replace errors page
