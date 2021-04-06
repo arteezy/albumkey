@@ -4,6 +4,7 @@ rvm:
   - 3.0.1
 services:
   - mongodb
+  - redis-server
 addons:
   code_climate:
     repo_token: cf3447f19ab3ba56ecc962661bcf070e9b320bc97f9d083ed5720703d1d1083a

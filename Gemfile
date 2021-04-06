@@ -25,7 +25,7 @@ gem 'devise', '~> 4.7.0'
 # Use Pundit for role-based authorization
 gem 'pundit', '~> 1.1'
 # Use Sidekiq as job queue for background processing
-gem 'sidekiq', '~> 4.2.5'
+gem 'sidekiq', '~> 5.2.7'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster

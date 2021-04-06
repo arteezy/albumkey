@@ -1,4 +1,13 @@
 services:
+  redis:
+    image: redis:6
+    ports:
+      - 6379:6379
+    networks:
+      - net
+    volumes:
+      - redis:/data
+
   mongodb:
     image: mongo:4.4
     ports:
@@ -14,5 +23,6 @@ networks:
     driver: bridge
 
 volumes:
+  redis:
   mongodb:
   mongodb_config:
