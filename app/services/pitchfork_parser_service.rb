@@ -2,12 +2,11 @@ class PitchforkParserService
   def initialize(db, collection)
     @db = Mongo::Client.new(db)
     @collection = @db[collection]
-    Rails.logger.extend(
+    @logger = Rails.logger.extend(
       ActiveSupport::Logger.broadcast(
         ActiveSupport::Logger.new($stdout)
       )
     )
-    @logger = Rails.logger
   end
 
   def parse_review(url)
@@ -22,8 +21,8 @@ class PitchforkParserService
 
     album = {
       source:     url,
-      created_at: Time.now,
-      updated_at: Time.now,
+      created_at: Time.zone.now,
+      updated_at: Time.zone.now,
       p4k_id:     pitchfork_id(url),
       artist:     [review.at_xpath(".//div[contains(@class,'SplitScreenContentHeaderArtist')]").text],
       title:      review.at_xpath(".//h1[contains(@class,'SplitScreenContentHeaderHed')]").text,
@@ -56,12 +55,12 @@ class PitchforkParserService
 
   def meta_label(meta)
     label = meta.at_xpath(".//ul/li/div/p[contains(text(),'Label:')]")
-    label ? [label.next.text] : nil
+    label ? [label.next.text] : ["self-released"]
   end
 
   def meta_date(meta)
     date = meta.at_xpath(".//ul/li/div/p[contains(text(),'Reviewed:')]")
-    date ? Date.parse(date.next.text).to_datetime : nil
+    date ? Date.parse(date.next.text).to_datetime : Time.zone.today
   end
 
   def get_page_links(url)
@@ -118,7 +117,7 @@ class PitchforkParserService
 
   def update
     latest = Album.desc(:date).limit(1).first
-    if Date.today > latest.date
+    if Time.zone.today > latest.date
       incremental_update
     else
       @logger.info 'Album database is already synced with Pitchfork'
